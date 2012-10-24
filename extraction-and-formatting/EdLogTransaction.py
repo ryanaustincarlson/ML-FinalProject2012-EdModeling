@@ -15,6 +15,7 @@ class EdLogTransaction(Transaction):
     _condition = "Condition"
     _duration = "myDuration_woTPA"
     _outcome = "Outcome"
+    _kc = "KC(Default)"
     # TODO: add more later
 
     # list the properties you want to extract
@@ -22,7 +23,8 @@ class EdLogTransaction(Transaction):
     # this lets us easily put in and take out columns we don't want 
     property_list = [
             _student_id, _condition, 
-            _duration, _outcome
+            _duration, _outcome,
+            _kc
             ]
 
     # transaction-level cleanup operations
