@@ -29,6 +29,8 @@ to windows.github.com or mac.github.com to download.
 
 See help.github.com/articles/set-up-git for more help.
 
+And more generally: git-scm.com/book/en/Getting-Started-Git-Basics
+
 Now that you have Git, you need to download the code, which I can help with if
 it's not obvious, but there should be reasonable instructions on our GitHub
 page. It should also be intuitive-ish from Sourcetree or the GitHub app.
