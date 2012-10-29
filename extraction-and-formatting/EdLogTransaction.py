@@ -15,6 +15,14 @@ class EdLogTransaction(Transaction):
     _condition = "Condition"
     _duration = "myDuration_woTPA"
     _outcome = "Outcome"
+    _time = "Time"
+    _day = "Day"
+    _responseType = "Student Response Type"
+    _responseSubType = "Student Response Subtype"
+    _topic = "Level(ProblemSet)"
+    _stepName = "Step Name"
+    _attempts = "Attempt at Step"
+    _action = "Action" 
     # TODO: add more later
 
     # list the properties you want to extract
@@ -22,7 +30,9 @@ class EdLogTransaction(Transaction):
     # this lets us easily put in and take out columns we don't want 
     property_list = [
             _student_id, _condition, 
-            _duration, _outcome
+            _duration, _outcome, _time, _day,
+            _responseType, _responseSubType, _topic, _stepName,
+            _attempts, _action
             ]
 
     # transaction-level cleanup operations
@@ -48,5 +58,6 @@ class EdLogTransaction(Transaction):
     # what defines a valid property?
     def valid(self):
         # for now, any transaction with a valid duration
-        return self.properties[self._duration] != None
-
+        #return self.properties[self._duration] != None
+        return self.properties[self._responseSubType] != "tutor-performed"
+        
