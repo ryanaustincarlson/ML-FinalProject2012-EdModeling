@@ -11,19 +11,15 @@ class EdLogTransaction(Transaction):
 
     # assign each one we want to extract its own variable name for convenience
     # and reference later on
-    _student_id = "Anon Student Id"
+    _student_id = "Anon.Student.Id"
     _condition = "Condition"
-    _duration = "myDuration_woTPA"
+    _duration = "myDuration"
     _outcome = "Outcome"
     _time = "Time"
     _day = "Day"
-    _responseType = "Student Response Type"
-    _responseSubType = "Student Response Subtype"
-    _topic = "Level(ProblemSet)"
-    _stepName = "Step Name"
-    _attempts = "Attempt at Step"
-    _action = "Action" 
-    # TODO: add more later
+    _student_response_type = "Student.Response.Type"
+    _tutor_response_type = "Tutor.Response.Type"
+    _attempts = "Attempt.at.Step"
 
     # list the properties you want to extract
     # 
@@ -31,8 +27,8 @@ class EdLogTransaction(Transaction):
     property_list = [
             _student_id, _condition, 
             _duration, _outcome, _time, _day,
-            _responseType, _responseSubType, _topic, _stepName,
-            _attempts, _action
+            _student_response_type, _tutor_response_type,
+            _attempts
             ]
 
     # transaction-level cleanup operations
@@ -58,6 +54,5 @@ class EdLogTransaction(Transaction):
     # what defines a valid property?
     def valid(self):
         # for now, any transaction with a valid duration
-        #return self.properties[self._duration] != None
-        return self.properties[self._responseSubType] != "tutor-performed"
+        return self.properties[self._duration] != None
         
