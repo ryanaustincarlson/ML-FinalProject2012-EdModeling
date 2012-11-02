@@ -54,6 +54,19 @@ class DataFormatter:
         self.transactions = [transaction for transaction in self.transactions if transaction.valid()]
 
         return self.transactions
+    
+    def split_transactions(self, splitting_property):
+        # key:splitting_property, val:list of transactions for each unique property value
+        split_vals = set( (t.properties[splitting_property] for t in self.transactions) )
+        for val in split_vals:
+            split_transactions = []
+            for transaction in self.transactions:
+                prop = transaction.properties[splitting_property]
+                if prop != val:
+                    continue
+                
+                split_transactions.append(prop)
+            yield (val, split_transactions)
 
     def finalize_transactions(self, mapping):
         """ assumes every transaction has a value for the keys in the mapping...

@@ -12,6 +12,7 @@ class EdLogTransaction(Transaction):
     # assign each one we want to extract its own variable name for convenience
     # and reference later on
     _student_id = "Anon.Student.Id"
+    _problem_name ="Problem.Name"
     _condition = "Condition"
     _duration = "myDuration"
     _outcome = "Outcome"
@@ -25,7 +26,7 @@ class EdLogTransaction(Transaction):
     # 
     # this lets us easily put in and take out columns we don't want 
     property_list = [
-            _student_id, _condition, 
+            _student_id, _problem_name, _condition, 
             _duration, _outcome, _time, _day,
             _student_response_type, _tutor_response_type,
             _attempts
