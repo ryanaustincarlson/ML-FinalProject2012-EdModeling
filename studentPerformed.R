@@ -25,7 +25,8 @@ studentPerformed <- studentPerformed[studentPerformed$Outcome != "", ]
 studentPerformed <- subset(studentPerformed, select = -c(1,2,8:12, 14, 16, 17, 19, 25, 29:31, 33:38, 41:42))
 
 # replace all instances of HINT with Hint
-studentPerformed$Outcome[studentPerformed$Outcome == "HINT"] <- "Hint"
+studentPerformed$Outcome <- factor(studentPerformed$Outcome, levels = c(levels(studentPerformed$Outcome), "HintRequest"))
+studentPerformed$Outcome[studentPerformed$Outcome == "Hint"] <- "HintRequest"
 
 # format the time nicely
 studentPerformed$Time<-strptime(paste(studentPerformed$Day,studentPerformed$Time, sep=" "), "%m/%d/%y %H:%M:%S")

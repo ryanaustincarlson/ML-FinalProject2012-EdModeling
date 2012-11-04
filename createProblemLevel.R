@@ -6,7 +6,7 @@ dataPath <- "data/"
 #load, sort data
 d <- read.csv(paste(dataPath, "studentPerformed.csv", sep=""))
 d <- d[order(d$Anon.Student.Id, d$Problem.Name, d$Time) , ]
-
+sample<-d[1:100,]
 
 
 #minutes spent per problem
@@ -25,6 +25,25 @@ d$hint[d$Student.Response.Type == "HINT_REQUEST"] <- 1
 d$error<-0
 d$error[d$Outcome == "InCorrect"] <- 1 
 
+# either hint_button, get_next_hint_button_mc, or get_previous_hint_button_mc
+hint.levels <- function(df) {
+  selections <- df$Selection
+  hintlevels <- NULL
+  current_hintlevel <- 0
+  for (i in 1:length(selections))
+  {
+    selection = selections[i]
+    if (selection == "get_next_hint_button_mc") { current_hintlevel <- current_hintlevel + 1 }
+    else if (selection == "get_previous_hint_button_mc") { current_hintlevel <- current_hintlevel - 1 }
+    else { current_hintlevel <- 0 }
+    hintlevels <- c(hintlevels, current_hintlevel)
+  }
+  hintlevels
+}
+
+d$hintlevel <- hint.levels(d)
+hintLevels<-ddply(d, .(Anon.Student.Id,Problem.Name,Day,Condition), summarise, num_BOH=)
+
 #number of hints per student/problem
 #number of errors per student/problem
 sumStats<-ddply(d, .(Anon.Student.Id,Problem.Name,Day,Condition), summarise, hints_req=sum(hint), num_errors=sum(error)) 
@@ -36,8 +55,7 @@ transition.matrix <- function(x) {
 
 # Outcome-specific transition matrix
 outcome.transition.matrix <- function(df) {
-  tt <- transition.matrix(df$Outcome)
-  num_incorrect <- table(df$Outcome)[3]
+  num_incorrect <- as.integer(as.matrix(table(df$Outcome))["InCorrect",])
   
   # if the data is "flawless", then we'll get a bunch of
   # NaN's, which look dumb, so just put zeros here
@@ -48,13 +66,13 @@ outcome.transition.matrix <- function(df) {
   if (num_incorrect == 0) {
     return(c(0,0,0))
   }
-  incorrect_to_correct <- tt[3,1] / num_incorrect
-  incorrect_to_hint <- tt[3,2] / num_incorrect
-  incorrect_to_incorrect<-tt[3,3] / num_incorrect
+  tt <- as.data.frame.matrix(transition.matrix(df$Outcome))
+  incorrect_to_correct <- tt["InCorrect","Correct"] / num_incorrect
+  incorrect_to_hint <- (tt["InCorrect","HINT"] + tt["InCorrect","HintRequest"]) / num_incorrect
+  incorrect_to_incorrect<-tt["InCorrect","InCorrect"] / num_incorrect
   c(incorrect_to_correct, incorrect_to_hint, incorrect_to_incorrect)
 }
 
-sample<-d[1:100,]
 outcome.transition.matrix(sample)
 
 transitionMatrices<-ddply(sample, .(Anon.Student.Id,Problem.Name,Day,Condition), outcome.transition.matrix)
