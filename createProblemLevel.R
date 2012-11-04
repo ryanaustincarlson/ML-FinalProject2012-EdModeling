@@ -41,8 +41,16 @@ hint.levels <- function(df) {
   hintlevels
 }
 
-d$hintlevel <- hint.levels(d)
-hintLevels<-ddply(d, .(Anon.Student.Id,Problem.Name,Day,Condition), summarise, num_BOH=)
+num.BOH <- function(df) {
+  hintlevels <- hint.levels(df)
+  numBOHs <- 0
+  numBOHs[1:length(hintlevels)] <- 0
+  numBOHs[hintlevels == 3] <- 1
+  sum(numBOHs)
+}
+
+numBOH<-ddply(d, .(Anon.Student.Id,Problem.Name,Day,Condition), num.BOH)
+names(numBOH)[names(numBOH)=="V1"] <- "NumBOH"
 
 #number of hints per student/problem
 #number of errors per student/problem
@@ -56,7 +64,6 @@ transition.matrix <- function(x) {
 # Outcome-specific transition matrix
 outcome.transition.matrix <- function(df) {
   num_incorrect <- as.integer(as.matrix(table(df$Outcome))["InCorrect",])
-  
   # if the data is "flawless", then we'll get a bunch of
   # NaN's, which look dumb, so just put zeros here
   #
@@ -66,6 +73,10 @@ outcome.transition.matrix <- function(df) {
   if (num_incorrect == 0) {
     return(c(0,0,0))
   }
+  if (length(df$Outcome) == 1) {
+    return(c(0,0,0))
+  }
+    
   tt <- as.data.frame.matrix(transition.matrix(df$Outcome))
   incorrect_to_correct <- tt["InCorrect","Correct"] / num_incorrect
   incorrect_to_hint <- (tt["InCorrect","HINT"] + tt["InCorrect","HintRequest"]) / num_incorrect
@@ -73,17 +84,18 @@ outcome.transition.matrix <- function(df) {
   c(incorrect_to_correct, incorrect_to_hint, incorrect_to_incorrect)
 }
 
-outcome.transition.matrix(sample)
+#outcome.transition.matrix(sample)
 
-transitionMatrices<-ddply(sample, .(Anon.Student.Id,Problem.Name,Day,Condition), outcome.transition.matrix)
+transitionMatrices<-ddply(d, .(Anon.Student.Id,Problem.Name,Day,Condition), outcome.transition.matrix)
 names(transitionMatrices)[names(transitionMatrices)=="V1"] <- "Inc->Cor"
 names(transitionMatrices)[names(transitionMatrices)=="V2"] <- "Inc->Hint"
 names(transitionMatrices)[names(transitionMatrices)=="V3"] <- "Inc->Inc"
-transitionMatrices
+#transitionMatrices
 
 #merge together into problem-level data
 problems <- merge(sumStats,minSpent, by=c("Anon.Student.Id","Problem.Name","Day","Condition"))
 problems <- merge(problems,transitionMatrices, by=c("Anon.Student.Id","Problem.Name","Day","Condition"))
+problems <- merge(problems,numBOH, by=c("Anon.Student.Id","Problem.Name","Day","Condition"))
 
 #order problem-level data
 problems <- problems[order(problems$Anon.Student.Id, problems$Day, problems$Problem.Name) , ]
