@@ -1,21 +1,30 @@
 library(poLCA)
+library(graphics)
+library(mclust)
 
 dataPath <- "data/"
 
 #load, sort data
-problems <- read.csv(paste(dataPath, "problems.csv", sep=""))
+students <- read.csv(paste(dataPath, "students.csv", sep=""))
 
 # turn numeric variables into categorical values
 #hints_req_cat <- 
 
-require(graphics)
 
-head(problems)
+x <- cbind(matrix(students$hints_req), 
+           matrix(students$num_errors),
+           matrix(students$minSpent),
+           matrix(students$Inc..Cor),
+           matrix(students$Inc..Hint),
+           matrix(students$Inc..Inc),
+           matrix(students$NumBOH))
+
+
+head(students)
 
 # Model Based Clustering
-library(mclust)
-fit <- Mclust(mydata)
-plot(fit, mydata) # plot results 
+fit <- Mclust(x)
+plot(fit, x) # plot results 
 print(fit) # display the best model
 
 # # K-Means Clustering with 5 clusters
@@ -32,13 +41,6 @@ print(fit) # display the best model
 # library(fpc)
 # plotcluster(mydata, fit$cluster)
 
-x <- cbind(matrix(problems$hints_req), 
-           matrix(problems$num_errors),
-           matrix(problems$minSpent),
-           matrix(problems$Inc..Cor),
-           matrix(problems$Inc..Hint),
-           matrix(problems$Inc..Inc),
-           matrix(problems$NumBOH))
 x <- scale(x)
 cl <- kmeans(x, 3)
 cl$centers
