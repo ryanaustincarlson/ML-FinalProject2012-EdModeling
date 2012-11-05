@@ -23,29 +23,17 @@ x <- cbind(matrix(students$hints_req),
 head(students)
 
 # Model Based Clustering
-fit <- Mclust(x)
-plot(fit, x) # plot results 
-print(fit) # display the best model
+#fit <- Mclust(x)
+#plot(fit, x) # plot results 
+#print(fit) # display the best model
 
-# # K-Means Clustering with 5 clusters
-# fit <- kmeans(mydata, 5)
-# 
-# # Cluster Plot against 1st 2 principal components
-# 
-# # vary parameters for most readable graph
-# library(cluster) 
-# clusplot(mydata, fit$cluster, color=TRUE, shade=TRUE, 
-#          labels=2, lines=0)
-# 
-# # Centroid Plot against 1st 2 discriminant functions
-# library(fpc)
-# plotcluster(mydata, fit$cluster)
-
-x <- scale(x)
-cl <- kmeans(x, 3)
-cl$centers
-plot(x, col = cl$cluster)
-points(cl$centers, col = 1:2, pch = 8, cex=2)
+# Ward Hierarchical Clustering
+d <- dist(x, method = "euclidean") # distance matrix
+fit <- hclust(x)#, method="ward") 
+plot(fit) # display dendogram
+groups <- cutree(fit, k=5) # cut tree into 5 clusters
+# draw dendogram with red borders around the 5 clusters 
+rect.hclust(fit, k=5, border="red")
 
 # # a 2-dimensional example
 # x <- rbind(matrix(rnorm(100, sd = 0.3), ncol = 2),
