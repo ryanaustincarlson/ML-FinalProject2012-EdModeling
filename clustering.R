@@ -12,6 +12,12 @@ require(graphics)
 
 head(problems)
 
+# Model Based Clustering
+library(mclust)
+fit <- Mclust(mydata)
+plot(fit, mydata) # plot results 
+print(fit) # display the best model
+
 # # K-Means Clustering with 5 clusters
 # fit <- kmeans(mydata, 5)
 # 
