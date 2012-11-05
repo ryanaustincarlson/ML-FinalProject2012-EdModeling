@@ -76,13 +76,10 @@ In the third stage of analysis, we examine the relationship (independence vs.\ d
 The Cognitive Tutor captures a detailed log of the student's interactions with the tutor. It stores a time series of correct and incorrect answers, hint requests, interface selections and durations between interactions. We extract error and hint request rates, as well as average time spent per problem for each student. We exploit the time series by examining trends in error and hint-seeking behavior. To get a sense of the student's progression through the course, we fit a linear model of the number of hints requested and errors made to the number of problems completed. In order to characterize how the student responds when they are having difficulty with the material, we construct a matrix of transition probabilities out of an "Incorrect" state. That is, we compute the empirical probability of answering correctly, requesting a hint or answering incorrectly, conditional on having made a mistake. This serves as a proxy for stubbornness or willingness to seek help from the cognitive tutor. 
 
 \subsection{Clustering}
-\subsection{Condition and Cluster Membership}
-\subsection{Cluster Membership and Outcome}
 
+In this section we describe Latent Class Analysis in some detail (we leave $k$-means for the final report). Additionally, this section will include the clusters we arrived at once the experiments are run.
 
----
-
-\section{Latent Class Analysis}
+\subsubsection{Latent Class Analysis}
 
 Latent Class Analysis (LCA) is a latent variable modeling technique used widely in the behavioral and social sciences. LCA maps a set of categorical variables onto a set of inferred latent variables which are measured by observed variables. The model also makes a local independence assumption, meaning that the observed variables are independent conditional on the latent variable.
 
@@ -107,8 +104,21 @@ where the indicator function $I(y_{j} = r_{j})$ equals 1 when the response varia
 
 There are several measures of fit that we can use to select an appropriate number of latent classes. These include AIC (Akaike information criterion), BIC (Bayesian information criterion), and a $G^{2}$, the likelihood ratio statistic. Additionally, we can use a chi-square test statistic, though its interpretation is somewhat backwards from convention. The ``straw-man'' approach that the null hypothesis normally takes is not the convention in latent class analysis (or any structural equation modeling). Instead, the null hypothesis has some scientific value, so we usually hope that the null hypothesis is not rejected.
 
+\subsection{Condition and Cluster Membership}
 
+Once clusters have been established, we will use Fisher's exact test to determine cluster dependence or independence from condition. 
 
+\subsection{Cluster Membership and Outcome}
+
+We will also run a similar analysis to analyze independence of cluster membership with respect to outcome.
+
+\section{Results}
+
+Forthcoming.
+
+\section{Conclusion}
+
+Forthcoming.
 
 
 
