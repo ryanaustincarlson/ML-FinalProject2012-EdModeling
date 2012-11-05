@@ -65,11 +65,11 @@ An experiment was conducted wherein 290 $4^{th}$ and $5^{th}$ grade students wor
 Students received a pretest on the day before they began working with the tutor and an immediate post-test on the day after they finished. Students also took a delayed post-test about a week after the first. Previous investigation found that students in the multiple representation condition significantly outperformed students in the single representation condition (Scheines, Rau, 2012). 
 
 \section{Method}
-Our analysis proceeds in three conceptual steps. We first reshape the transaction-level data and  extract problem and student-level metrics. We then run a $k$-means algorithm to identify clusters in the data, arriving at $k$ using BIC to score competing models.
+Our analysis proceeds in three conceptual steps. We first reshape the transaction-level data and  extract problem and student-level metrics. We then run a $k$-means algorithm to identify clusters in the data, arriving at $k$ using BIC to score competing models. Additionally, to get another view of the data and to identify latent variables, we will run Latent Class Analysis (or Latent Profile Analysis). We are interested in the differences between these two models, specifically the number of classes of each best-fit model and the underlying clusters they represent.
 
 Once we have clustered our data we investigate the interaction between the student clusters and their experimental conditions. We construct a contingency table binning the experimental conditions into the clusters constructed in the first stage of analysis. We then run a Fisher's exact test, using a null hypothesis of independence between the experimental condition and the student cluster. We thereby arrive at an exact $p$-level at which we can reject independence. 
 
-In the third stage of analysis, we examine the relationship between the clusters and the outcomes of two post-tests using standard regression analysis. We then test for the independence of condition from outcome conditional on cluster membership to test whether we have identified mediators of the representation condition.
+In the third stage of analysis, we examine the relationship (independence vs.\ dependence) between the clusters and the outcomes of two post-tests using standard regression analysis. We then test for the independence of condition from outcome conditional on cluster membership to test whether we have identified mediators of the representation condition.
 
 \subsection{Extracting Features}
 \subsection{Clustering}
