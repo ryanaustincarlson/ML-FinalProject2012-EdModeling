@@ -1,0 +1,4 @@
+I'm attaching the pre/posttest file. i hope you can make sense of it, if not, please ask. It has much more in it than you need, you'll probably want to use:
+sum_rel_NL sum_rel_comp sum_rel_transfer sum_rel_recUnit
+These are the same dependent variables you read about in the paper. The test column indicates whether it was pretest (=1), posttest (=2), and delayed postest (=3).
+Sorry for being slow to respond.
