@@ -58,7 +58,7 @@ Multiple graphical representations are used extensively in middle-school fractio
 
 Classroom studies conducted on middle-school students working with ITSs found that multiple representations, in conjunction with self-explanation prompts, contribute to better learning outcomes [2]. Subsequent studies examining error-rate, hint-use and time-spent in ITS logs failed to identify variables that mediate the effectiveness of multiple representations [3]. The mechanisms by which multiple representations improve learning outcomes remain poorly understood.
 
-We conjecture that previous efforts to identify mediating factors were frustrated by heterogeneity in the problem-solving habits and behaviors of the student population under investigation. We anticipate that clustering students by their patterns of interaction with the tutor will serve as an investigative wedge into the effectiveness of multiple representations. These clusters are amenable to several interpretations. They could be identifying pre-existing learning dispositions in the student populations. In this case, we would expect a uniform distribution of representation conditions among the clusters. If the distribution of representation condition is significantly non-uniform, we can conclude that the clusters are identifying behaviors induced by their representation condition. Furthermore, if these clusters are predictive of learning outcome, we will have identified mediating factors for the effectiveness of multiple representations. 
+We conjecture that previous efforts to identify mediating factors were frustrated by heterogeneity in the problem-solving habits and behaviors of the student population under investigation. We anticipate that clustering students by their patterns of interaction with the tutor will serve as an investigative wedge into the effectiveness of multiple representations. We propose two different flavors of clustering algorithms: $k$-means and latent class analysis. The former makes few assumptions but can be difficult to interpret. The latter makes some assumptions about the structure of the data, but offers easy methods to evaluate (specifically with respect to the number of latent classes) and interpret the models. Both algorithms produce clusters that are amenable to several interpretations. They could be identifying pre-existing learning dispositions in the student populations. In this case, we would expect a uniform distribution of representation conditions among the clusters. If the distribution of representation condition is significantly non-uniform, we can conclude that the clusters are identifying behaviors induced by their representation condition. Furthermore, if these clusters are predictive of learning outcome, we will have identified mediating factors for the effectiveness of multiple representations. 
 
 \section{Experiment}
 An experiment was conducted wherein 290 $4^{th}$ and $5^{th}$ grade students worked with an interactive Fractions Tutor for about 5 hours of their mathematics instruction. Students in the single representation condition worked with either a number line, a circle or a rectangle exclusively. Students in the multiple representation condition were presented with all three. Students interacted with the representations by dragging-and-dropping sections of the representation, using buttons to change the number of sections and by clicking on sections to highlight them. 
@@ -84,9 +84,9 @@ The Cognitive Tutor captures a detailed log of the student's interactions with t
 
 \section{Latent Class Analysis}
 
-Latent Class Analysis (LCA) is a latent variable modeling technique used widely in the behavioral and social sciences. LCA maps a set of categorical variables onto a set of inferred latent variables which are measured by observed variables. 
+Latent Class Analysis (LCA) is a latent variable modeling technique used widely in the behavioral and social sciences. LCA maps a set of categorical variables onto a set of inferred latent variables which are measured by observed variables. The model also makes a local independence assumption, meaning that the observed variables are independent conditional on the latent variable.
 
-We note that the categorical nature of the model adds some noise, since we must select numeric cutoffs to transform some of our variables into nominals. Categorical models can offer greater interpretability by allowing us to organize our data into a small set of variables, which forms the basis for categorizing students into a small set of meaningful homogenous groups. Furthermore, it is not unreasonable to suspect that many of our variables are in some sense ``truly'' categorical. 
+We note that the categorical nature of the model adds some noise, since we must select numeric cutoffs to transform some of our variables into nominals. Categorical models can offer greater interpretability by allowing us to organize our data into a small set of variables, which forms the basis for categorizing students into a small set of meaningful homogenous groups. Furthermore, it is not unreasonable to suspect that many of our variables are in some sense ``truly'' categorical.
 
 Suppose that there are $j = 1 \ldots J$ observed variables, where each such variable $j$ has a set of response variables $r_{j} = 1,\ldots,R_{j}$. We can create a contingency table
 \[ W = \prod_{j=1}^{j} R_{j}. \]
@@ -96,7 +96,7 @@ Now, we need to consider the latent classes. Let $L$ be a latent variable with l
 \[ \sum_{c=1}^{C} \gamma_{c} = 1. \] 
 We also need to define the item-response probability $\rho_{j,r_{j}|c}$, which is the probability of response $r_{j}$ to observed variable $j$, conditional on membership in latent class $c$. Note that 
 \[ \sum_{r_{j}=1}^{R_{j}} \rho_{j,r_{j}|c} = 1 \] 
-because each student provides exactly one response alliterative to variable $j$. 
+because each student provides exactly one response alternative to variable $j$. 
 
 Now that we have defined key variables, we can define the probability of observing a particular response vector based on the $\gamma$'s and $\rho$'s:
 \[
@@ -105,7 +105,7 @@ P(Y = y) = \sum_{c=1}^{C} \gamma_{c} \prod_{j=1}^{J} \prod_{r_{j}}^{R_{j}} \rho_
 \]
 where the indicator function $I(y_{j} = r_{j})$ equals 1 when the response variable $j = r_{j}$. 
 
-There are several convenient measures of fit that we can use to select an appropriate number of latent classes. These include AIC (Akaike information criterion), BIC (Bayesian information criterion), and a $G^{2}$, the likelihood ratio statistic. Additionally, we can use a chi-square test statistic, though its interpretation is somewhat backwards from convention. The ``straw-man'' approach that the null hypothesis normally takes is not the convention in latent class analysis (or any structural equation modeling). Instead, the null hypothesis has some scientific value, so we usually hope that the null hypothesis is not rejected.
+There are several measures of fit that we can use to select an appropriate number of latent classes. These include AIC (Akaike information criterion), BIC (Bayesian information criterion), and a $G^{2}$, the likelihood ratio statistic. Additionally, we can use a chi-square test statistic, though its interpretation is somewhat backwards from convention. The ``straw-man'' approach that the null hypothesis normally takes is not the convention in latent class analysis (or any structural equation modeling). Instead, the null hypothesis has some scientific value, so we usually hope that the null hypothesis is not rejected.
 
 
 
