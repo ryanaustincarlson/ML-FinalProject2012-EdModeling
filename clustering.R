@@ -5,11 +5,10 @@ library(mclust)
 dataPath <- "data/"
 
 #load, sort data
-students <- read.csv(paste(dataPath, "students.csv", sep=""))
+students <- read.csv(paste(dataPath, "students-nominalized.csv", sep=""))
 
 # turn numeric variables into categorical values
 #hints_req_cat <- 
-
 
 x <- cbind(matrix(students$hints_req), 
            matrix(students$num_errors),
