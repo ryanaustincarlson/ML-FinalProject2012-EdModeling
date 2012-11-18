@@ -7,9 +7,6 @@ dataPath <- "data/"
 #load, sort data
 students <- read.csv(paste(dataPath, "students-nominalized.csv", sep=""))
 
-# turn numeric variables into categorical values
-#hints_req_cat <- 
-
 x <- cbind(matrix(students$hints_req), 
            matrix(students$num_errors),
            matrix(students$minSpent),
@@ -18,9 +15,23 @@ x <- cbind(matrix(students$hints_req),
            matrix(students$Inc..Inc),
            matrix(students$NumBOH))
 
-
 head(students)
 
+LCAstats <- function(nclasses)
+  # nclasses is a range, i.e. 1:4
+{
+  stats <- data.frame()
+  for(nclass in nclasses) {
+    f <- cbind(hints_req, num_errors, minSpent, Inc..Cor, Inc..Hint, Inc..Inc, NumBOH) ~ 1 
+    lc <- poLCA(f,students, nclass=nclass)
+    stats <- rbind(stats, data.frame(aic=lc$aic, bic=lc$bic, Gsq=lc$Gsq, Chisq=lc$Chisq))
+  }
+  stats
+}
+
+allstats <- LCAstats(1:10)
+
+" # my multiline comment..
 # Model Based Clustering
 #fit <- Mclust(x)
 #plot(fit, x) # plot results 
@@ -41,3 +52,4 @@ rect.hclust(fit, k=5, border="red")
 # (cl <- kmeans(x, 2))
 # plot(x, col = cl$cluster)
 # points(cl$centers, col = 1:2, pch = 8, cex=2)
+"

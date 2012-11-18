@@ -25,53 +25,53 @@ class StudentTransaction(Transaction):
 
     all_mappings = {
             _hints_req:(
-                (lambda x:x<.67,'Low'),
-                (lambda x:x<1.24,'Low-Mid'),
-                (lambda x:x<1.72,'Mid'),
-                (lambda x:x<3,'High-Mid'),
-                (lambda x:x>=3,'High')
+                (lambda x:x<.67,1),
+                (lambda x:x<1.24,2),
+                (lambda x:x<1.72,3),
+                (lambda x:x<3,4),
+                (lambda x:x>=3,5)
                 ),
             _num_errors:(
-                (lambda x:x<.83,'Low'),
-                (lambda x:x<1.51,'Low-Mid'),
-                (lambda x:x<2.41,'Mid'),
-                (lambda x:x<3.95,'High-Mid'),
-                (lambda x:x>=3.95,'High')
+                (lambda x:x<.83,1),
+                (lambda x:x<1.51,2),
+                (lambda x:x<2.41,3),
+                (lambda x:x<3.95,4),
+                (lambda x:x>=3.95,5)
                 ),
             _min_spent:(
-                (lambda x:x<2.3,'Low'),
-                (lambda x:x<5.2,'Low-Mid'),
-                (lambda x:x<9,'Mid'),
-                (lambda x:x<15.5,'High-Mid'),
-                (lambda x:x>=15.5,'High')
+                (lambda x:x<2.3,1),
+                (lambda x:x<5.2,2),
+                (lambda x:x<9,3),
+                (lambda x:x<15.5,4),
+                (lambda x:x>=15.5,5)
                 ),
             _inc_cor:(
-                (lambda x:x<.618,'Low'),
-                (lambda x:x<.658,'Low-Mid'),
-                (lambda x:x<.728,'Mid'),
-                (lambda x:x<.825,'High-Mid'),
-                (lambda x:x>=.825,'High')
+                (lambda x:x<.618,1),
+                (lambda x:x<.658,2),
+                (lambda x:x<.728,3),
+                (lambda x:x<.825,4),
+                (lambda x:x>=.825,5)
                 ),
             _inc_hint:(
-                (lambda x:x<.0195,'Low'),
-                (lambda x:x<.043,'Low-Mid'),
-                (lambda x:x<.109,'Mid'),
-                (lambda x:x<.211,'High-Mid'),
-                (lambda x:x>=.211,'High')
+                (lambda x:x<.0195,1),
+                (lambda x:x<.043,2),
+                (lambda x:x<.109,3),
+                (lambda x:x<.211,4),
+                (lambda x:x>=.211,5)
                 ),
             _inc_inc:(
-                (lambda x:x<.116,'Low'),
-                (lambda x:x<.144,'Low-Mid'),
-                (lambda x:x<.203,'Mid'),
-                (lambda x:x<.296,'High-Mid'),
-                (lambda x:x>=.296,'High')
+                (lambda x:x<.116,1),
+                (lambda x:x<.144,2),
+                (lambda x:x<.203,3),
+                (lambda x:x<.296,4),
+                (lambda x:x>=.296,5)
                 ),
             _num_boh:(
-                (lambda x:x<.015,'Low'),
-                (lambda x:x<.036,'Low-Mid'),
-                (lambda x:x<.067,'Mid'),
-                (lambda x:x<.157,'High-Mid'),
-                (lambda x:x>=.157,'High')
+                (lambda x:x<.015,1),
+                (lambda x:x<.036,2),
+                (lambda x:x<.067,3),
+                (lambda x:x<.157,4),
+                (lambda x:x>=.157,5)
                 )
             }
 
