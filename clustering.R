@@ -30,6 +30,7 @@ LCAstats <- function(nclasses)
 }
 
 allstats <- LCAstats(1:10)
+allstats
 
 " # my multiline comment..
 # Model Based Clustering
