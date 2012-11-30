@@ -13,7 +13,7 @@ MAXITER <- 5000
 LCAfeatures <- cbind(
   hints_req, 
   num_errors, 
-  minSpent 
+  minSpent,
   #deltaErrors, 
   #intrcpErrors, 
   #deltaHints, 
@@ -21,11 +21,11 @@ LCAfeatures <- cbind(
   #Inc..Cor, 
   #Inc..Hint, 
   #Inc..Inc, 
-  #NumBOH, 
-  #firstHintGeom, 
-  #hintsGeom, 
-  #errorsGeom, 
-  #stubbornGeom,
+  NumBOH,
+  firstHintGeom, 
+  hintsGeom, 
+  errorsGeom, 
+  stubbornGeom
   #numErrors1, 
   #numErrors2, 
   #numErrors3, 
@@ -52,13 +52,31 @@ LCA <- function(students, nclass)
   poLCA(LCAfeatures, students, nclass=nclass, maxiter=MAXITER)
 }
 
+pickBestLCA <- function(students, nclass)
+{
+  bestLCA <- NULL
+  for (iter in 1:20)
+  {
+    capture.output(lc <- LCA(students, nclass), file="/dev/null")
+    if (is.null(bestLCA)) { 
+      bestLCA <- lc 
+    }
+    if (lc$llik > bestLCA$llik) { 
+      print(paste("nclass: ", nclass, " iteration: ", iter,
+                  " --> changing LCA from ", bestLCA$llik, " to ", lc$llik, sep=""))
+      bestLCA <- lc
+    }
+  }
+  bestLCA
+}
+
 LCAstats <- function(students, nclasses)
   # nclasses is a range, i.e. 1:4
 {
   stats <- data.frame()
 
   for(nclass in nclasses) {
-    lc <- LCA(students, nclass)
+    lc <- pickBestLCA(students, nclass)
     stats <- rbind(stats, data.frame(aic=lc$aic, bic=lc$bic, 
                                      Gsq=lc$Gsq, Chisq=lc$Chisq, 
                                      params=lc$npar, degfree=lc$resid.df,
@@ -104,24 +122,7 @@ chooseBestLatentClass <- function(student, lc, nclasses)
   which.max(classprobs)
 }
 
-pickBestLCA <- function(students, nclass)
-{
-  bestLCA <- NULL
-  for (iter in 1:100)
-  {
-    capture.output(lc <- LCA(students, nclass), file="/dev/null")
-    if (is.null(bestLCA)) { 
-      bestLCA <- lc 
-    }
-    if (lc$llik > bestLCA$llik) { 
-      print(paste("iteration:",iter,"--> changing LCA from",bestLCA$llik,"to",lc$llik))
-      bestLCA <- lc
-    }
-  }
-  bestLCA
-}
-
-nBestClass <- 2
+nBestClass <- 5
 lc <- pickBestLCA(students, nBestClass)
 #lc <- LCA(students, nBestClass)
 students$latent <- by(students, 1:nrow(students), chooseBestLatentClass, lc, nBestClass)
