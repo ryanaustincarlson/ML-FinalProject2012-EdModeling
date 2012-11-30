@@ -49,25 +49,7 @@ head(students)
 
 LCA <- function(students, nclass)
 {
-  poLCA(LCAfeatures, students, nclass=nclass, maxiter=MAXITER)
-}
-
-pickBestLCA <- function(students, nclass)
-{
-  bestLCA <- NULL
-  for (iter in 1:20)
-  {
-    capture.output(lc <- LCA(students, nclass), file="/dev/null")
-    if (is.null(bestLCA)) { 
-      bestLCA <- lc 
-    }
-    if (lc$llik > bestLCA$llik) { 
-      print(paste("nclass: ", nclass, " iteration: ", iter,
-                  " --> changing LCA from ", bestLCA$llik, " to ", lc$llik, sep=""))
-      bestLCA <- lc
-    }
-  }
-  bestLCA
+  poLCA(LCAfeatures, students, nclass=nclass, maxiter=MAXITER, nrep=20)
 }
 
 LCAstats <- function(students, nclasses)
@@ -76,7 +58,7 @@ LCAstats <- function(students, nclasses)
   stats <- data.frame()
 
   for(nclass in nclasses) {
-    lc <- pickBestLCA(students, nclass)
+    lc <- LCA(students, nclass)
     stats <- rbind(stats, data.frame(aic=lc$aic, bic=lc$bic, 
                                      Gsq=lc$Gsq, Chisq=lc$Chisq, 
                                      params=lc$npar, degfree=lc$resid.df,
@@ -123,7 +105,7 @@ chooseBestLatentClass <- function(student, lc, nclasses)
 }
 
 nBestClass <- 5
-lc <- pickBestLCA(students, nBestClass)
+lc <- LCA(students, nBestClass)
 #lc <- LCA(students, nBestClass)
 students$latent <- by(students, 1:nrow(students), chooseBestLatentClass, lc, nBestClass)
 chisq.test(table(students$latent,students$Condition))
