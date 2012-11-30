@@ -13,7 +13,7 @@ MAXITER <- 5000
 LCAfeatures <- cbind(
   hints_req, 
   num_errors, 
-  minSpent,
+  #minSpent,
   #deltaErrors, 
   #intrcpErrors, 
   #deltaHints, 
@@ -22,7 +22,7 @@ LCAfeatures <- cbind(
   #Inc..Hint, 
   #Inc..Inc, 
   NumBOH,
-  firstHintGeom, 
+  #firstHintGeom, 
   hintsGeom, 
   errorsGeom, 
   stubbornGeom
@@ -47,9 +47,9 @@ LCAfeatures <- cbind(
 head(students)
 
 
-LCA <- function(students, nclass)
+LCA <- function(students, nclass, graphs=FALSE)
 {
-  poLCA(LCAfeatures, students, nclass=nclass, maxiter=MAXITER, nrep=20)
+  poLCA(LCAfeatures, students, nclass=nclass, maxiter=MAXITER, nrep=20, graphs=graphs)
 }
 
 LCAstats <- function(students, nclasses)
@@ -59,6 +59,7 @@ LCAstats <- function(students, nclasses)
 
   for(nclass in nclasses) {
     lc <- LCA(students, nclass)
+    print("<---------------------->")
     stats <- rbind(stats, data.frame(aic=lc$aic, bic=lc$bic, 
                                      Gsq=lc$Gsq, Chisq=lc$Chisq, 
                                      params=lc$npar, degfree=lc$resid.df,
@@ -105,7 +106,7 @@ chooseBestLatentClass <- function(student, lc, nclasses)
 }
 
 nBestClass <- 5
-lc <- LCA(students, nBestClass)
+lc <- LCA(students, nBestClass, graphs=TRUE)
 #lc <- LCA(students, nBestClass)
 students$latent <- by(students, 1:nrow(students), chooseBestLatentClass, lc, nBestClass)
 chisq.test(table(students$latent,students$Condition))
