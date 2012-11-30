@@ -2,7 +2,10 @@ dataPath <- "data/"
 filename <- "allFeatures.csv"
 students <- read.csv(paste(dataPath, filename, sep=""))
 
-featurenames <- names(students)[5:length(names(students))]
+featurenames <- names(students)
+featurenames <- featurenames[featurenames != "X"]
+featurenames <- featurenames[featurenames != "Anon.Student.Id"]
+featurenames <- featurenames[featurenames != "Condition"]
 
 for (featurename in featurenames)
 {
@@ -15,7 +18,7 @@ for (featurename in featurenames)
 for (featurename in featurenames)
 {
   featurevals <- students[[featurename]]
-  print(unique(featurevals))
+  print(sort(unique(featurevals)))
 }
 
 write.csv(students, paste(dataPath, "students-nominalized.csv", sep=""))
