@@ -109,13 +109,13 @@ pickBestLCA <- function(students, nclass)
   bestLCA <- NULL
   for (iter in 1:100)
   {
-    lc <- LCA(students, nclass)
+    capture.output(lc <- LCA(students, nclass), file="/dev/null")
     if (is.null(bestLCA)) { 
       bestLCA <- lc 
     }
     if (lc$llik > bestLCA$llik) { 
+      print(paste("iteration:",iter,"--> changing LCA from",bestLCA$llik,"to",lc$llik))
       bestLCA <- lc
-      print(paste("changing LCA from",bestLCA$llik,"to",lc$llik))
     }
   }
   bestLCA
