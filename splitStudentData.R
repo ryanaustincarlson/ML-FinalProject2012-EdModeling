@@ -2,23 +2,44 @@ dataPath <- "data/"
 filename <- "allFeatures.csv"
 students <- read.csv(paste(dataPath, filename, sep=""))
 
+
+nominalize <- function(students, featurenames, nCategories=5)
+{
+  for (featurename in featurenames)
+  {
+    featurevals <- students[[featurename]]
+    splits <- unique(quantile(featurevals, seq(0,1,len=nCategories+1), na.rm=TRUE))
+    categories <- cut(featurevals, splits, labels=FALSE, include.lowest=TRUE)
+    students[[featurename]] <- categories
+  }  
+  students
+}
+
 featurenames <- names(students)
+test_names <- c(
+  "pre_test",
+  "immediate_post_test",
+  "immediate_post_test_adjusted",
+  "delayed_post_test",
+  "delayed_post_test_adjusted"
+  )
+
 featurenames <- featurenames[featurenames != "X"]
 featurenames <- featurenames[featurenames != "Anon.Student.Id"]
 featurenames <- featurenames[featurenames != "Condition"]
 
-for (featurename in featurenames)
+for (test_name in test_names)
 {
-  featurevals <- students[[featurename]]
-  splits <- unique(quantile(featurevals, seq(0,1,len=6), na.rm=TRUE))
-  categories <- cut(featurevals, splits, labels=FALSE, include.lowest=TRUE)
-  students[[featurename]] <- categories
+  featurenames <- featurenames[featurenames != test_name]
 }
 
-for (featurename in featurenames)
+students <- nominalize(students, featurenames)
+students <- nominalize(students, test_names, 3)
+
+for (name in c(featurenames, test_names))
 {
-  featurevals <- students[[featurename]]
-  print(sort(unique(featurevals)))
+  print(name)
+  print(sort(unique(students[[name]])))
 }
 
 write.csv(students, paste(dataPath, "students-nominalized.csv", sep=""))

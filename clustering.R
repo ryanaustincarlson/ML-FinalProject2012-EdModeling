@@ -1,6 +1,7 @@
 library(poLCA)
 library(graphics)
 library(mclust)
+library(vcd)
 
 dataPath <- "data/"
 
@@ -9,47 +10,18 @@ students <- read.csv(paste(dataPath, "students-nominalized.csv", sep=""))
 
 MAXITER <- 5000
 
-#LCAfeatures <- cbind(hints_req, num_errors, minSpent, Inc..Cor, Inc..Hint, Inc..Inc, NumBOH) ~ 1 
-LCAfeatures <- cbind(
-  hints_req, 
-  num_errors, 
-  #minSpent,
-  #deltaErrors, 
-  #intrcpErrors, 
-  #deltaHints, 
-  #intrcpHints, 
-  #Inc..Cor, 
-  #Inc..Hint, 
-  #Inc..Inc, 
-  NumBOH,
-  #firstHintGeom, 
-  hintsGeom, 
-  errorsGeom, 
-  stubbornGeom
-  #numErrors1, 
-  #numErrors2, 
-  #numErrors3, 
-  #numErrors4, 
-  #numHints1, 
-  #numHints2, 
-  #numHints3, 
-  #numHints4,
-  #steptime1, 
-  #steptime2, 
-  #steptime3, 
-  #steptime4, 
-  #firstHint1, 
-  #firstHint2, 
-  #firstHint3, 
-  #firstHint4
-  ) ~ 1 
-
-head(students)
-
-
 LCA <- function(students, nclass, graphs=FALSE)
 {
-  poLCA(LCAfeatures, students, nclass=nclass, maxiter=MAXITER, nrep=20, graphs=graphs)
+  if (graphs)
+  {
+    png(file = paste(dataPath, "lca-class-viz.png", sep=""), width = 1000, height = 700)  
+  }
+  x <- poLCA(LCAfeatures, students, nclass=nclass, maxiter=MAXITER, nrep=1, graphs=graphs)
+  if (graphs)
+  {
+    dev.off()
+  }
+  x
 }
 
 LCAstats <- function(students, nclasses)
@@ -68,21 +40,32 @@ LCAstats <- function(students, nclasses)
   stats
 }
 
-allstats <- LCAstats(students, 1:10)
-allstats
-
 plotStats <- function(allstats)
 {
   
-  x1 <- 1:length(allstats$aic)
-  y1 <- allstats$aic
-  x2 <- 1:length(allstats$bic)
-  y2 <- allstats$bic
+  x1 <- 1:length(allstats$bic)
+  y1 <- allstats$bic
+  x2 <- 1:length(allstats$aic)
+  y2 <- allstats$aic
   
-  plot(x1, y1, col="green", ylab="", xlab="# Latent Classes", xlim=range(x1,x2), ylim=range(y1,y2))
-  points(x2,y2, col="red")
+  color1 <- "blue"; pch1 <- 1;
+  color2 <- "red"; pch2 <- 2;
+  
+  plot.it <- function()
+  {
+    plot(x1, y1, col=color1, pch=pch1, lwd=3,
+         ylab="", xlab="# Latent Classes", xlim=range(x1,x2), ylim=range(y1,y2))
+    points(x2,y2, col=color2, pch=pch2, lwd=3)
+    legend("topright", title = "legend", 
+           legend = c("BIC","AIC"), pch = c(pch1, pch2), 
+           col = c(color1, color2) ,inset = .02)      
+  }
+  
+  plot.it()
+  png(file = paste(dataPath, "lca-stats-plot.png", sep=""), width = 1000, height = 600)
+  plot.it()
+  dev.off()
 }
-plotStats(allstats)
 
 chooseBestLatentClass <- function(student, lc, nclasses)
 {
@@ -105,8 +88,49 @@ chooseBestLatentClass <- function(student, lc, nclasses)
   which.max(classprobs)
 }
 
-nBestClass <- 5
+#LCAfeatures <- cbind(hints_req, num_errors, minSpent, Inc..Cor, Inc..Hint, Inc..Inc, NumBOH) ~ 1 
+LCAfeatures <- cbind(
+  #pre_test,
+  hints_req, 
+  num_errors, 
+  minSpent,
+  #deltaErrors, 
+  #intrcpErrors, 
+  #deltaHints, 
+  #intrcpHints, 
+  #Inc..Cor, 
+  #Inc..Hint, 
+  #Inc..Inc, 
+  NumBOH,
+  firstHintGeom, 
+  #hintsGeom, 
+  #errorsGeom, 
+  stubbornGeom
+  #numErrors1, 
+  #numErrors2, 
+  #numErrors3, 
+  #numErrors4, 
+  #numHints1, 
+  #numHints2, 
+  #numHints3, 
+  #numHints4,
+  #steptime1, 
+  #steptime2, 
+  #steptime3, 
+  #steptime4, 
+  #firstHint1, 
+  #firstHint2, 
+  #firstHint3, 
+  #firstHint4
+) ~ 1 
+
+
+allstats <- LCAstats(students, 1:10)
+allstats
+plotStats(allstats)
+
+nBestClass <- 4
 lc <- LCA(students, nBestClass, graphs=TRUE)
-#lc <- LCA(students, nBestClass)
-students$latent <- by(students, 1:nrow(students), chooseBestLatentClass, lc, nBestClass)
-chisq.test(table(students$latent,students$Condition))
+students$latent <- as.vector(by(students, 1:nrow(students), chooseBestLatentClass, lc, nBestClass))
+
+write.csv(students, paste(dataPath, "students-latent.csv", sep=""))

@@ -12,6 +12,9 @@ students$X <- NULL
 morefeatures$X <- NULL
 morefeatures$X.1 <- NULL
 
+tests$immediate_post_test_adjusted <- (tests$immediate_post_test - tests$pre_test) / (1 - tests$pre_test)
+tests$delayed_post_test_adjusted <- (tests$delayed_post_test - tests$pre_test) / (1 - tests$pre_test)
+
 combined <- merge(tests, students)
 combined <- merge(combined, morefeatures)
 
