@@ -83,7 +83,7 @@ Once we have clustered our data we investigate the interaction between the stude
 In the third stage of analysis, we examine the relationship (independence vs.\ dependence) between the clusters and the outcomes of two post-tests using standard regression analysis. We then test for the independence of condition from outcome conditional on cluster membership to test whether we have identified mediators of the representation condition.
 
 \subsection{Extracting Features}
-The Cognitive Tutor captures a detailed log of the student's interactions with the tutor. It stores a time series of correct and incorrect answers, hint requests, interface selections and durations between interactions. Previous analysis (Scheines, Rau, 2012) extracted the average number of errors made per step, the average number of hints requested per step, and the average time spent per step from the log data. We include hints requested and number of errors made per problem. We also note that it is not always the average of these features that best characterizes a student. For example, examination of the distribution of hints requested per step across experimental condition, shows a telling picture. 
+The Cognitive Tutor captures a detailed log of the student's interactions with the tutor. It stores a time series of correct and incorrect answers, hint requests, interface selections and durations between interactions. Previous analysis (Scheines, Rau, 2012) extracted the average number of errors made per step, the average number of hints requested per step, and the average time spent per step from the log data. We include the average number of hints requested ($hints\_req$) and number of errors ($num\_errors$) made per problem by each student. We also extract the average number of bottom-out hints ($NumBOH$) per student per problem -- this is the average number of times a student exhausts the available hints in a given problem. We also note that it is not always the average of these features that best characterizes a student. For example, examination of the distribution of hints requested per step across experimental condition, shows a telling picture. 
 \begin{figure}[htbp]
 \centering
 \includegraphics[scale=.35]{hintsByCondition.png}\\
@@ -98,7 +98,12 @@ Note that students who received only one representation start out requesting the
 \begin{tabular}{| c || c | c | c | c | c | c | c | c | c | c |}
 \hline
 &mean& sd&median&min&max&20\%&40\%&60\%&	80\%&100\%\\ \hline \hline
-hints\_req&0.78&1.27&0.34&0&11.22&0.06&0.19&0.5&1.31&11.22\\ \hlinenum\_errors&2.21&1.27&1.92&0.34&8.39&1.15&1.7&2.18&3.19&8.39\\ \hline firstHintGeom&0.35&0.27&0.27&0.04&1&0.13&0.2&0.33&0.57&1\\ \hlinestubbornGeom&0.36&0.21&0.31&0.07&1&0.19&0.27&0.38&0.47&1\\ \hline \end{tabular}
+hints\_req&0.78&1.27&0.34&0&11.22&0.06&0.19&0.5&1.31&11.22\\ \hline
+num\_errors&2.21&1.27&1.92&0.34&8.39&1.15&1.7&2.18&3.19&8.39\\ \hline 
+firstHintGeom&0.35&0.27&0.27&0.04&1&0.13&0.2&0.33&0.57&1\\ \hline
+stubbornGeom&0.36&0.21&0.31&0.07&1&0.19&0.27&0.38&0.47&1\\ \hline
+NumBOH&0.04&0.08&0&0&0.62&0&0&0.01&0.05&0.63\\ \hline
+ \end{tabular}
 \end{center}
 \label{default}
 \end{table}
