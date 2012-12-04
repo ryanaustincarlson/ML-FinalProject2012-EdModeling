@@ -4,7 +4,7 @@
 
 \usepackage{amsmath}
 \usepackage{graphicx}
-
+\renewcommand{\arraystretch}{1.5}
 \DeclareMathOperator*{\argmax}{arg\,max}
 
 
@@ -92,15 +92,16 @@ The Cognitive Tutor captures a detailed log of the student's interactions with t
 \end{figure}
 
 Note that students who received only one representation start out requesting the fewest hints, but students in the moderate condition eventually need fewer. Such considerations motivated our interest in the temporal distribution of hint behavior at the student level. We fit geometric distributions to the number of steps taken before the first hint request ($firstHintGeom$) and to the number of errors before the first hint ($stubbornGeom$). The estimated parameter is used to characterize the student’s hint-seeking propensity in general and hint-seeking propensity when faced with adversity. For example, students in the first quintile of $stubbornGeom$ seek help soon after making a mistake, whereas students in the fifth quintile don’t change their hint-seeking behavior even after making a large number of errors. Students in the first quintile of $firstHintGeom$ are likely to request hints early in a problem, whereas students in the fifth quintile are unlikely to request hints at any point.
-\begin{table}[htdp]
-\caption{default}
+\begin{table}[htbp]
+\caption{Summary Statistics for Variables Used in Clustering}
 \begin{center}
-\begin{tabular}{| c | c | c |}
-
-\end{tabular}
+\begin{tabular}{| c || c | c | c | c | c | c | c | c | c | c |}
+\hline
+&mean& sd&median&min&max&20\%&40\%&60\%&	80\%&100\%\\ \hline \hline
+hints\_req&0.78&1.27&0.34&0&11.22&0.06&0.19&0.5&1.31&11.22\\ \hlinenum\_errors&2.21&1.27&1.92&0.34&8.39&1.15&1.7&2.18&3.19&8.39\\ \hline firstHintGeom&0.35&0.27&0.27&0.04&1&0.13&0.2&0.33&0.57&1\\ \hlinestubbornGeom&0.36&0.21&0.31&0.07&1&0.19&0.27&0.38&0.47&1\\ \hline \end{tabular}
 \end{center}
 \label{default}
-\end{table}%
+\end{table}
 
 \subsection{Latent Class Analysis}
 \label{sec:LCA}
