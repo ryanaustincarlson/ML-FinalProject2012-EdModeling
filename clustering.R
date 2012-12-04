@@ -16,7 +16,7 @@ LCA <- function(students, nclass, graphs=FALSE)
   {
     png(file = paste(dataPath, "lca-class-viz.png", sep=""), width = 1000, height = 700)  
   }
-  x <- poLCA(LCAfeatures, students, nclass=nclass, maxiter=MAXITER, nrep=1, graphs=graphs)
+  x <- poLCA(LCAfeatures, students, nclass=nclass, maxiter=MAXITER, nrep=25, graphs=graphs)
   if (graphs)
   {
     dev.off()
@@ -93,7 +93,7 @@ LCAfeatures <- cbind(
   #pre_test,
   hints_req, 
   num_errors, 
-  minSpent,
+  #minSpent,
   #deltaErrors, 
   #intrcpErrors, 
   #deltaHints, 
