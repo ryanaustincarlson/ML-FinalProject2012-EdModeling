@@ -139,13 +139,13 @@ We explore the relationships between latent classes, outcome measures, and exper
 
 \subsection{Choosing the Number of Latent Classes}
 
-As we described in Section \ref{sec:LCA}, we use 
+As we described in Section \ref{sec:LCA}, we calculate test statistics (AIC and BIC) as we increase the number of latent classes in the model and look for the ``knee'' of both statistics to agree. Figure \ref{fig:lca-test-statistics} shows this process. Note that we chose to model four latent classes because BIC bottoms out and AIC levels off at that point.
 
 \begin{figure}[htbp]
 \centering
-%\includegraphics[scale=0.5]
-\caption{default}
-\label{default}
+\includegraphics[scale=0.4]{lca-stats-plot.png}
+\caption{Test statistics over increasing number of latent classes. BIC bottoms out and AIC levels off at four classes, so we conclude that four latent classes best fits the data.}
+\label{fig:lca-test-statistics}
 \end{figure}
 
 
@@ -161,21 +161,6 @@ We will also run a similar analysis to analyze independence of cluster membershi
 
 Forthcoming.
 
-\section{Activities}
-
-So far\ldots
-\begin{itemize}
-\item We all helped with feature extraction
-\item Kasey ran exploratory analysis
-\item Ryan began clustering data
-\item Helga focused on the literature review
-\end{itemize}
-In the future...
-\begin{itemize}
-\item Ryan will run latent class analysis (determining the number of classes necessary, interpret clusters)
-\item Kasey will help with cluster interpretation and will evaluate cluster membership against condition and outcome
-\item Helga will run $k$-means and will work with Kasey to evaluate the clusters
-\end{itemize}
 
 
 
