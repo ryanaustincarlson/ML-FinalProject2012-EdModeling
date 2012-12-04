@@ -4,6 +4,13 @@
 
 \usepackage{amsmath}
 
+
+
+
+
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+
 \title{Multiple Representations, Problem-Solving Behavior and Educational Outcomes}
 
 
@@ -75,19 +82,13 @@ In the third stage of analysis, we examine the relationship (independence vs.\ d
 \subsection{Extracting Features}
 The Cognitive Tutor captures a detailed log of the student's interactions with the tutor. It stores a time series of correct and incorrect answers, hint requests, interface selections and durations between interactions. We extract error and hint request rates, as well as average time spent per problem for each student. We exploit the time series by examining trends in error and hint-seeking behavior. To get a sense of the student's progression through the course, we fit a linear model of the number of hints requested and errors made to the number of problems completed. In order to characterize how the student responds when they are having difficulty with the material, we construct a matrix of transition probabilities out of an "Incorrect" state. That is, we compute the empirical probability of answering correctly, requesting a hint or answering incorrectly, conditional on having made a mistake. This serves as a proxy for stubbornness or willingness to seek help from the cognitive tutor. 
 
-\subsection{Clustering}
+\subsection{Latent Class Analysis}
 
-In this section we describe Latent Class Analysis in some detail (we leave $k$-means for the final report). Additionally, this section will include the clusters we arrived at once the experiments are run.
+Latent Class Analysis (LCA) is a modeling technique that determines subtypes based on multinomial distributions. Here, we use LCA to categorize students into \emph{latent classes} using features based on their behavior while interacting with Mathtutor. The model maps a set of categorical variables onto a set of inferred latent variables which are measured by observed variables. LCA is used widely in the behavioral, social, and educational sciences.
 
-\subsubsection{Latent Class Analysis}
+We note that the categorical nature of the model has the potential to add some noise, since we must select numeric cutoffs to transform our variables into nominals. However, categorical models can offer greater interpretability by allowing us to organize our data into a small set of variables, which forms the basis for categorizing students into a small set of meaningful homogenous groups. Furthermore, it is not unreasonable to suspect that our variables are in some sense ``truly'' categorical. 
 
-Latent Class Analysis (LCA) is a latent variable modeling technique used widely in the behavioral and social sciences. LCA maps a set of categorical variables onto a set of inferred latent variables which are measured by observed variables. The model also makes a local independence assumption, meaning that the observed variables are independent conditional on the latent variable.
-
-We note that the categorical nature of the model adds some noise, since we must select numeric cutoffs to transform some of our variables into nominals. Categorical models can offer greater interpretability by allowing us to organize our data into a small set of variables, which forms the basis for categorizing students into a small set of meaningful homogenous groups. Furthermore, it is not unreasonable to suspect that many of our variables are in some sense ``truly'' categorical.
-
-Suppose that there are $j = 1 \ldots J$ observed variables, where each such variable $j$ has a set of response variables $r_{j} = 1,\ldots,R_{j}$. We can create a contingency table
-\[ W = \prod_{j=1}^{j} R_{j}. \]
-Each cell in $W$ corresponds to a response pattern $y = (r_{1},\ldots,r_{j})$. We let $Y$ be an array of response pattern, where each response pattern $y$ is associated with some probability $P(Y = y)$ with $\sum P(Y = y) = 1.$
+The formal representation of LCA begins with $j = 1 \ldots J$ observed variables, where each such variable $j$ has a set of response variables $r_{j} = 1,\ldots,R_{j}$. Let some $y = (r_{1},\ldots,r_{j})$ be a response patterns with each response pattern $y$ is associated with some probability $P(Y = y)$ with \[ \sum P(Y = y) = 1. \]
 
 Now, we need to consider the latent classes. Let $L$ be a latent variable with latent classes $c = 1,\ldots,C$. Furthermore, let $\gamma_{c}$ be the probability of membership in class $c$. Note that latent classes are exhaustive and mutually exclusive, so each student is a member of exactly one latent class. Formally,
 \[ \sum_{c=1}^{C} \gamma_{c} = 1. \] 
@@ -96,13 +97,19 @@ We also need to define the item-response probability $\rho_{j,r_{j}|c}$, which i
 because each student provides exactly one response alternative to variable $j$. 
 
 Now that we have defined key variables, we can define the probability of observing a particular response vector based on the $\gamma$'s and $\rho$'s:
-\[
+\begin{align}
 P(Y = y) = \sum_{c=1}^{C} \gamma_{c} \prod_{j=1}^{J} \prod_{r_{j}=1}^{R_{j}} \rho_{j,r_{j}|c}^{I(y_{j} = r_{j})}
 \label{eqn:LCA-final}
-\]
-where the indicator function $I(y_{j} = r_{j})$ equals 1 when the response variable $j = r_{j}$. 
+\end{align}
+where the indicator function $I(y_{j} = r_{j})$ equals 1 when the response variable $j = r_{j}$. The parameters $\gamma_{c}$ and $\rho_{j,r_{j}|c}$ are estimated by EM. Thus, LCA is very similar to other EM-based algorithms. In fact, LCA is an application of multivariate mixture estimation using categorical variables with one additional assumption: a local independence assumption, meaning that the observed variables are independent of each other conditional on the latent variable. This is an assumption similar to the simplifying assumption made in Naive Bayes, in that without it Equation \ref{eqn:LCA-final} would need to be much more complicated. There is some work on relaxing this independence assumption [5].
 
-There are several measures of fit that we can use to select an appropriate number of latent classes. These include AIC (Akaike information criterion), BIC (Bayesian information criterion), and a $G^{2}$, the likelihood ratio statistic. Additionally, we can use a chi-square test statistic, though its interpretation is somewhat backwards from convention. The ``straw-man'' approach that the null hypothesis normally takes is not the convention in latent class analysis (or any structural equation modeling). Instead, the null hypothesis has some scientific value, so we usually hope that the null hypothesis is not rejected.
+
+Note that unlike some common clustering algorithms (e.g., k-means), LCA produces ``fuzzy'' clusters--probability distributions over features for each class. To cluster students we just identify their most likely class:
+\[
+\argmax_{c} P(Y = y \;|\; L = c) = \argmax_{c} \gamma_{c} \prod_{j=1}^{J} \prod_{r_{j}=1}^{R_{j}} \rho_{j,r_{j}|c}^{I(y_{j} = r_{j})}
+\]
+
+We still need to fix $C$, the number of latent classes. We use two test statistics as measures of fit to select an appropriate $C$: Akaike information criterion (AIC) and Bayesian information criterion (BIC). Plotting these statistics as we increment the number of latent classes, we look for a ``knee'' where both statistics either bottom-out or level off to identify the optimal value of $C$.
 
 \subsection{Condition and Cluster Membership}
 
@@ -506,4 +513,6 @@ Learning from Multiple Representations, Proceedings of the 5th International Con
 Data Mining.
 
 [4] Collins, L. M., Lanza, S. T. (2009). Latent Class and Latent Transition Analysis: With Applications in the Social, Behavioral, and Health Sciences. Wiley Publishing.
+
+[5] Hagenaars JA. Latent structure models with direct effects between indicators: local dependence models. Sociological Methods and Research, 1988, 16, 379-405.
 \end{document}
