@@ -6,7 +6,7 @@
 \usepackage{graphicx}
 \usepackage{url}
 
-\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.55}
 \DeclareMathOperator*{\argmax}{arg\,max}
 
 
@@ -95,14 +95,14 @@ Note that students who received only one representation start out requesting the
 \begin{table}[htbp]
 \caption{Summary Statistics for Variables Used in Clustering}
 \begin{center}
-\begin{tabular}{| c || c | c | c | c | c | c | c | c | c | c |}
+\begin{tabular}{| l || c | c || c | c | c || c | c | c | c | c |}
 \hline
 &mean& sd&median&min&max&20\%&40\%&60\%&	80\%&100\%\\ \hline \hline
-hints\_req&0.78&1.27&0.34&0&11.22&0.06&0.19&0.5&1.31&11.22\\ \hline
-num\_errors&2.21&1.27&1.92&0.34&8.39&1.15&1.7&2.18&3.19&8.39\\ \hline 
-firstHintGeom&0.35&0.27&0.27&0.04&1&0.13&0.2&0.33&0.57&1\\ \hline
-stubbornGeom&0.36&0.21&0.31&0.07&1&0.19&0.27&0.38&0.47&1\\ \hline
-NumBOH&0.04&0.08&0&0&0.62&0&0&0.01&0.05&0.63\\ \hline
+\textbf{hints\_req}&0.78&1.27&0.34&0&11.22&0.06&0.19&0.5&1.31&11.22\\ \hline
+\textbf{num\_errors}&2.21&1.27&1.92&0.34&8.39&1.15&1.7&2.18&3.19&8.39\\ \hline 
+\textbf{firstHintGeom}&0.35&0.27&0.27&0.04&1&0.13&0.2&0.33&0.57&1\\ \hline
+\textbf{stubbornGeom}&0.36&0.21&0.31&0.07&1&0.19&0.27&0.38&0.47&1\\ \hline
+\textbf{NumBOH}&0.04&0.08&0&0&0.62&0&0&0.01&0.05&0.63\\ \hline
  \end{tabular}
 \end{center}
 \label{default}
@@ -176,14 +176,14 @@ We may worry that experimental condition is inducing latent class membership. If
 \begin{table}[hbtp]
 \caption{Condition by Tercile of Adjusted Delayed Post-Test Score (left) and Latent Class (right).}
  \begin{center}
-\begin{tabular}{|c || c | c | c |}
+\begin{tabular}{|l || c | c | c |}
 \hline
 &33\%&66\%&99\%\\ \hline \hline
-  blocked  &   14& 29& 20 \\ \hline
-  increased&   22& 20& 20 \\ \hline
-  interleaved& 13& 21& 18 \\ \hline
-  moderate &   18& 13& 22 \\ \hline
-  single &      30& 13& 17 \\ \hline
+  \textbf{blocked}  &   14& 29& 20 \\ \hline
+  \textbf{increased}&   22& 20& 20 \\ \hline
+\textbf{interleaved}& 13& 21& 18 \\ \hline
+  \textbf{moderate} &   18& 13& 22 \\ \hline
+    \textbf{single} &      30& 13& 17 \\ \hline
  \end{tabular}
 %\end{center}
 \label{default}
@@ -192,14 +192,14 @@ We may worry that experimental condition is inducing latent class membership. If
 %\begin{table}[hbtp]
 %\caption{Experimental Condition and Latent Class}
 % \begin{center}
-\begin{tabular}{|c || c | c | c | c |}
+\begin{tabular}{|l || c | c | c | c |}
 \hline
-&LC1&LC2&LC3&LC4\\ \hline \hline
-blocked&     13& 15& 10& 25\\ \hline
-increased&   21& 16& 10& 15\\ \hline
-interleaved& 17& 18&  7& 10\\ \hline
-moderate&    18& 10& 12& 13\\ \hline
-single&      15& 14& 11& 20\\ \hline
+&LC 1&LC 2&LC 3&LC 4\\ \hline \hline
+\textbf{blocked}&     13& 15& 10& 25\\ \hline
+\textbf{increased}&   21& 16& 10& 15\\ \hline
+\textbf{interleaved}& 17& 18&  7& 10\\ \hline
+\textbf{moderate}&    18& 10& 12& 13\\ \hline
+\textbf{single}&      15& 14& 11& 20\\ \hline
  \end{tabular}
  \end{center}
 \hspace{32pt}$\mathcal{X}^2$ = 17.65, df = 8, p-value = 0.024\hspace{30pt}$\mathcal{X}^2$ = 12.85, df = 12, p-value = 0.38
@@ -208,44 +208,44 @@ single&      15& 14& 11& 20\\ \hline
 \begin{table}[htbp]
 \caption{Condition and Tercile of Adjusted Delayed Post-Test Score, by Latent Class  }
  \begin{center}
-\begin{tabular}{|c || c | c | c |}
+\begin{tabular}{|l || c | c | c |}
 \hline
-{\bf LC1}&33\%&66\%&99\%\\ \hline \hline
-  blocked&      2&  8& 3\\ \hline
-  increased&    4&  9&  8 \\ \hline
-  interleaved&  4&  9&  4 \\ \hline
-  moderate&     4&  5& 9 \\ \hline
-  single&       6&  4&  5 \\ \hline
+\emph{LC 1}&33\%&66\%&99\%\\ \hline \hline
+  \textbf{blocked}&      2&  8& 3\\ \hline
+\textbf{increased}&    4&  9&  8 \\ \hline
+  \textbf{interleaved}&  4&  9&  4 \\ \hline
+     \textbf{moderate}&     4&  5& 9 \\ \hline
+       \textbf{single}&       6&  4&  5 \\ \hline
  \end{tabular}
 \label{default}
-\begin{tabular}{|c || c | c | c |}
+\begin{tabular}{|l || c | c | c |}
 \hline
-{\bf LC2}&33\%&66\%&99\%\\ \hline \hline
-  blocked&      7&  6& 2 \\ \hline
-  increased&    9&  5&  2 \\ \hline
-  interleaved&  5&  8&  5 \\ \hline
-  moderate&     7&  2& 1 \\ \hline
-  single&       5&  5&  4 \\ \hline
+\emph{LC 2}&33\%&66\%&99\%\\ \hline \hline
+  \textbf{blocked}&      7&  6& 2 \\ \hline
+\textbf{increased}&    9&  5&  2 \\ \hline
+  \textbf{interleaved}&  5&  8&  5 \\ \hline
+     \textbf{moderate}&     7&  2& 1 \\ \hline
+       \textbf{single}&       5&  5&  4 \\ \hline
  \end{tabular}
 \\$\mathcal{X}^2$ = 8.08, df = 8, p-value = 0.43\hspace{15pt}$\mathcal{X}^2$ = 6.95, df = 8, p-value = 0.54\\ \hspace{0pt} \\
 \label{default}
-\begin{tabular}{|c || c | c | c |}
+\begin{tabular}{|l || c | c | c |}
 \hline
-{\bf LC3}&33\%&66\%&99\%\\ \hline \hline
-  blocked&      0&  5& 5 \\ \hline
-  increased&    3&  3&  4 \\ \hline
-  interleaved&  2&  2&  3 \\ \hline
-  moderate&     3&  4& 5 \\ \hline
-  single&       5& 1&  5 \\ \hline
+\emph{LC 3}&33\%&66\%&99\%\\ \hline \hline
+  \textbf{blocked}&      0&  5& 5 \\ \hline
+\textbf{increased}&    3&  3&  4 \\ \hline
+  \textbf{interleaved}&  2&  2&  3 \\ \hline
+     \textbf{moderate}&     3&  4& 5 \\ \hline
+       \textbf{single}&       5& 1&  5 \\ \hline
  \end{tabular}
-\begin{tabular}{|c || c | c | c |}
+\begin{tabular}{|l || c | c | c |}
 \hline
-\bf{LC4}&33\%&66\%&99\%\\ \hline \hline
-  blocked&      5&  10& 10 \\ \hline
-  increased&    6&  3&  6 \\ \hline
-  interleaved&  2&  2&  6 \\ \hline
-  moderate&     4&  2& 7 \\ \hline
-  single&       14&  3&  3 \\ \hline
+\emph{LC 4}&33\%&66\%&99\%\\ \hline \hline
+  \textbf{blocked}&      5&  10& 10 \\ \hline
+  \textbf{increased}&    6&  3&  6 \\ \hline
+  \textbf{interleaved}&  2&  2&  6 \\ \hline
+  \textbf{moderate}&     4&  2& 7 \\ \hline
+  \textbf{single}&       14&  3&  3 \\ \hline
  \end{tabular}
 \\$\mathcal{X}^2$ = 7.41, df = 8, p-value = 0.49\hspace{15pt}$\mathcal{X}^2$ = 17.4837, df = 8, p-value = {\bf 0.025}
 \end{center}
