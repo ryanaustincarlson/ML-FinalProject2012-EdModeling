@@ -160,7 +160,7 @@ After identifying the right number of latent classes to use, we can extract prob
 
 The feature distributions over each class are represented graphically in Figure \ref{fig:lca-class-viz}. Note that each feature is listed along the horizontal $x$-axis, the value each variable takes takes is along the front-to-back $y$-axis, and the probability that the feature takes that value is given along the vertical $z$-axis. For example, consider the \emph{hints\_req} feature (average hints requested per problem) in Class 1. In that class, with high probability, students requested many hints (i.e., the highest categorical value for hints) per problem on average. As another example, students in Class 3 are more likely to make a moderate number os errors, though other error levels also occur with nontrivial probabilities. Note that lower values of \emph{firstHintGeom} and \emph{stubbornGeom} indicate a steep geometric slope, which translates to responsive behavior with the interface.
 
-So, we are interested in summarizing characteristic student behavior in each class. Students in Class 1 are ``Moderate'' because they ask for a moderate number of hints, make a moderate number of errors, and are moderately responsive to the interface. We call students in Class 2 ``Interactive'' because these students need help (they make a lot of errors), request many hints, and exhibit responsive behaviors. In Class 3 students are ``Confident'' in that they don't ask for hints, but they also don't generally need hints (because they make very few errors). Finally, Class 4 contain students who are ``Stubborn'' because they don't ask for hints and don't change their hint-seeking behavior over time, and they are generally undifferentiated by the number of errors they make. 
+How do we interpret latent class membership? Students in Class 1 are ``Moderate'', they ask for a moderate number of hints, make a moderate number of errors, and are moderately responsive to the interface. Students in Class 2 are ``Interactive'', they make a lot of errors, but respond by requesting many hints. These students are proactive in asking for help and are not shy about using the resources the cognitive tutor makes available. Students in Class 3 are ``Confident'', they don't ask for hints, but they don't seem to need them. Finally, the students in Class 4 are ``Stubborn'', they are fairly mixed in error-profile but they don't respond to mistakes with hint-requests. These students are not using all the resources that the cognitive tutor makes available.
 
 \begin{figure}[htbp]
 \centering
@@ -169,9 +169,13 @@ So, we are interested in summarizing characteristic student behavior in each cla
 \label{fig:lca-class-viz}
 \end{figure}
 
+\subsection{Condition and Outcome} 
+We construct a measure of student improvement and knowledge consolidation using the pre-test and the delayed post-test: \\\\
+Adjusted Delayed Post-Test Score = $\frac{post\_test - pre\_test}{1-pre\_test}$\\\\
+We then construct terciles of the Adjusted Delayed Post-Test Score and run a Chi-squared test for independence of outcome from experimental condition. Confirming previous results, we reject independence at a $p$-value of .024 (See Table 2). 
 \subsection{Condition and Cluster Membership}
 
-We may worry that experimental condition is inducing latent class membership. If this were the case, we may not be detecting profiles of students that existed 
+We may worry that experimental condition is inducing latent class membership. If this were the case, we would not be detecting pre-existing student profiles, but detecting an artifact of the experimental design. Using the Chi-squared test, we fail to reject independence at a $p$-value of $.38$ (See Table 2). It is therefore likely that our latent classes are detecting genuinely different student profiles, independent of experimental condition. 
 
 \begin{table}[hbtp]
 \caption{Condition by Tercile of Adjusted Delayed Post-Test Score (left) and Latent Class (right).}
@@ -251,9 +255,8 @@ We may worry that experimental condition is inducing latent class membership. If
 \end{center}
 \end{table}
 
-\subsection{Cluster Membership and Outcome}
-
-We will also run a similar analysis to analyze independence of cluster membership with respect to outcome.
+\subsection{Condition, Outcome and Cluster Membership}
+Finally, we ask whether we still detect a dependence of outcome on condition within the latent classes we have defined. Interestingly, we find that latent class membership screens off condition from outcome for all but classes but 4 (See Table 3). Recall that these students rarely requested hints, even when they encountered difficulty. We conclude that since these students are not taking full advantage of the other resources the tutor makes available, it is the multiple representation condition that most strongly determines their learning outcome. 
 
 \section{Conclusion \& Future Work}
 
