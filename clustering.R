@@ -125,9 +125,9 @@ LCAfeatures <- cbind(
 ) ~ 1 
 
 
-allstats <- LCAstats(students, 1:10)
-allstats
-plotStats(allstats)
+#allstats <- LCAstats(students, 1:10)
+#allstats
+#plotStats(allstats)
 
 nBestClass <- 4
 lc <- LCA(students, nBestClass, graphs=TRUE)
