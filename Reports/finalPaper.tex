@@ -78,7 +78,8 @@ In the Spring of 2010, Scheines and Rau conducted an experiment wherein 290 $4^\
 Students interacted with the representations by dragging-and-dropping sections of the representation, using buttons to change the number of sections and by clicking on sections to highlight them. Students received a pre-test on the day before they began working with the tutor and an immediate post-test on the day after they finished. Students also took a delayed post-test a week after the first. Previous investigation found that students in the multiple representation conditions significantly outperformed students in the single representation condition on the delayed post-test[3]. 
 
 \section{Related Work}
-Latent Class Analysis and other clustering tools have commonly been used to analyze educational data. LCA can be used either for explanatory or confirmatory purposes. An application of clustering for educational data is presented by Merceron and Yacef, where students were clustered by types of mistakes. The authors suggested that knowing the different types of learners could be useful for teachers applying remedial methods. Similarly, Perera, Kay, Koprinska, Yacef, and Za•ane applied clustering techniques to group teams of students by the amount of work they performed. With LCA techniques they were able to reduce seven groups to three clusters. van der Maas and Marthe Straatemeier provided a comparative analysis for simulated data (based on the Siegler and Chen findings) for Rule Assessment Methodology and LCA. They found five classes with conditional probabilities close to 0.95. They also found that the five classes worked better with RAM than the previous class definitions. Finally, Wang, Feng ,Weng, Su and Tseng proposed a four-phase learning portfolio mining (LPM) approach, which uses sequential pattern mining, clustering and decision tree creation to find features from the portfolio and predict which group a new learner belongs to. Additional techniques used in educational data mining can be found in Romero and Ventura. 
+Latent Class Analysis and other clustering tools have commonly been used to analyze educational data. LCA can be used either for explanatory or confirmatory purposes. An application of clustering for educational data is presented by Merceron and Yacef, where students were clustered by types of mistakes. The authors suggested that knowing the different types of learners could be useful for teachers applying remedial methods. Similarly, Perera, Kay, Koprinska, Yacef, and Za•ane applied clustering techniques to group teams of students by the amount of work they performed. With LCA techniques they were able to reduce seven groups to three clusters. van der Maas and Marthe Straatemeier provided a comparative analysis for simulated data (based on the Siegler and Chen findings) for Rule Assessment Methodology and LCA. They found five classes with conditional probabilities close to 0.95. They also found that the five classes worked better with RAM than the previous class definitions. Finally, Wang, Feng ,Weng, Su and Tseng proposed a four-phase learning portfolio mining (LPM) approach, which uses sequential pattern mining, clustering and decision tree creation to find features from the portfolio and predict which group a new learner belongs to. Additional techniques used in educational data mining can be found in Romero and Ventura.
+ 
 \section{Method}
 Our analysis proceeds in three stages. Extracting features characterizing error and hint-seeking behavior, we transform the longitudinal log data into a cross-sectional form, with one observation per student. We then run Latent Class Analysis to identify sub-populations of students, using AIC and BIC to select the number of latent classes. 
 
@@ -146,7 +147,7 @@ As we described in Section \ref{sec:LCA}, we calculate complexity-penalized log-
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[scale=0.4]{lca-stats-plot.png}
+\includegraphics[scale=0.3]{lca-stats-plot.png}
 \caption{AIC and BIC over increasing number of latent classes. BIC bottoms out and AIC levels off at four classes, so we conclude that four latent classes best fits the data.}
 \label{fig:lca-test-statistics}
 \end{figure}
@@ -171,10 +172,29 @@ We construct a measure of student improvement and knowledge consolidation using 
 \begin{center}
 Adjusted Delayed Post-Test Score = $\frac{\text{post\_test} - \text{pre\_test}}{1-\text{pre\_test}}$
 \end{center}
-We then construct terciles of the Adjusted Delayed Post-Test Score and run a Chi-squared test for independence of outcome from experimental condition. Confirming previous results, we reject independence at a $p$-value of .024 (See Table 2). 
+We then construct terciles of the Adjusted Delayed Post-Test Score and run a Chi-squared test for independence of outcome from experimental condition. Confirming previous results, we reject independence at a $p$-value of .024 (See Table 3). 
+\subsection{Cluster Membership and Outcome}
+We run a Chi-squared test for independence of latent class membership from outcome on the delayed post-test score. We reject independence at a $p$-value of .0075 (See Table 2). The problem-solving behaviors encoded by latent class membership are highly relevant to a student's learning outcome.
+\begin{table}[hbtp]
+\caption{Latent Class by Tercile of Adjusted Delayed Post-Test Score}
+ \begin{center}
+\begin{tabular}{|l || c | c | c |}
+\hline
+&33\%&66\%&99\%\\ \hline \hline
+  \emph{LC 1}  &   20& 35& 29 \\ \hline
+  \emph{LC 2}&   33& 26& 14 \\ \hline
+\emph{LC 3}& 13& 15& 22 \\ \hline
+  \emph{LC 4} & 31& 20& 32 \\ \hline
+ \end{tabular}
+\\$\mathcal{X}^2$ = 17.52, df = 6, p-value = {\bf 0.0075}
+\end{center}
+\label{default}
+\end{table}
+
+
 \subsection{Condition and Cluster Membership}
 
-We may worry that experimental condition is inducing latent class membership. If this were the case, we would not be detecting pre-existing student profiles, but detecting an artifact of the experimental design. Using the Chi-squared test, we fail to reject independence at a $p$-value of $.38$ (See Table 2). It is therefore likely that our latent classes are detecting genuinely different student profiles, independent of experimental condition. 
+We may worry that experimental condition is inducing latent class membership. If this were the case, we would not be detecting pre-existing student profiles, but detecting an artifact of the experimental design. Using the Chi-squared test, we fail to reject independence at a $p$-value of $.38$ (See Table 3). It is therefore likely that our latent classes are detecting genuinely different student profiles, independent of experimental condition. 
 
 \begin{table}[hbtp]
 \caption{Condition by Tercile of Adjusted Delayed Post-Test Score (left) and Latent Class (right).}
@@ -205,7 +225,7 @@ We may worry that experimental condition is inducing latent class membership. If
 \textbf{single}&      15& 14& 11& 20\\ \hline
  \end{tabular}
  \end{center}
-\hspace{32pt}$\mathcal{X}^2$ = 17.65, df = 8, p-value = 0.024\hspace{30pt}$\mathcal{X}^2$ = 12.85, df = 12, p-value = 0.38
+\hspace{32pt}$\mathcal{X}^2$ = 17.65, df = 8, p-value = {\bf 0.024} \hspace{30pt}$\mathcal{X}^2$ = 12.85, df = 12, p-value = 0.38
 \label{default}
 \end{table}
 \begin{table}[htbp]
@@ -255,7 +275,7 @@ We may worry that experimental condition is inducing latent class membership. If
 \end{table}
 
 \subsection{Condition, Outcome and Cluster Membership}
-Finally, we ask whether we still detect a dependence of outcome on condition within the latent classes we have defined. Interestingly, we find that latent class membership screens off condition from outcome for all classes but the fourth (See Table 3). Recall that these students rarely requested hints, even when they encountered difficulty. Our results suggest that since these students are not taking full advantage of the other resources the tutor makes available, it is the multiple representation condition that most strongly determines their learning outcome. The problem-solving behaviors of students in the other classes makes them insensitive to experimental condition. 
+Finally, we ask whether we still detect a dependence of outcome on condition within the latent classes we have defined. Interestingly, we find that latent class membership screens off condition from outcome for all classes but the fourth (See Table 4). Recall that these students rarely requested hints, even when they encountered difficulty. Our results suggest that since these students are not taking full advantage of the other resources the tutor makes available, it is the multiple representation condition that most strongly determines their learning outcome. The problem-solving behaviors of students in the other classes makes them insensitive to experimental condition. 
 
 \section{Conclusion \& Future Work}
 
