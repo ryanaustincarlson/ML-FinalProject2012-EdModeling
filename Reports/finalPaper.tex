@@ -78,11 +78,9 @@ In the Spring of 2010, Scheines and Rau conducted an experiment wherein 290 $4^{
 Students interacted with the representations by dragging-and-dropping sections of the representation, using buttons to change the number of sections and by clicking on sections to highlight them. Students received a pre-test on the day before they began working with the tutor and an immediate post-test on the day after they finished. Students also took a delayed post-test about a week after the first. Previous investigation found that students in the multiple representation conditions significantly outperformed students in the single representation condition [3]. 
 
 \section{Method}
-Our analysis proceeds in three conceptual steps. We first reshape the transaction-level data and  extract problem and student-level metrics. We then run a $k$-means algorithm to identify clusters in the data, arriving at $k$ using BIC to score competing models. Additionally, to get another view of the data and to identify latent variables, we will run Latent Class Analysis (or Latent Profile Analysis). We are interested in the differences between these two models, specifically the number of classes of each best-fit model and the underlying clusters they represent.
+Our analysis proceeds in three stages. Extracting features characterizing error and hint-seeking behavior, we transform the longitudinal log data into a cross-sectional form, with one observation per student. We then run Latent Class Analysis to identify sub-populations of students, using AIC and BIC to select the number of latent classes. 
 
-Once we have clustered our data we investigate the interaction between the student clusters and their experimental conditions. We construct a contingency table binning the experimental conditions into the clusters constructed in the first stage of analysis. We then run a Fisher's exact test, using a null hypothesis of independence between the experimental condition and the student cluster. We thereby arrive at an exact $p$-level at which we can reject independence. 
-
-In the third stage of analysis, we examine the relationship (independence vs.\ dependence) between the clusters and the outcomes of two post-tests using standard regression analysis. We then test for the independence of condition from outcome conditional on cluster membership to test whether we have identified mediators of the representation condition.
+Once we have clustered our students, we investigate the interaction between the latent classes and their experimental conditions. We construct a contingency table binning the experimental conditions into the clusters estimated by the latent class model. We then run a $\mathcal{X}^2$ test, with a null hypothesis of independence between experimental condition and latent class, arriving at an exact $p$-level at which we can reject independence. $\mathcal{X}^2$ tests are also run to investigate dependence between latent class and post-test outcome and the conditional dependence of outcome and experimental condition, given latent class membership.
 
 \subsection{Extracting Features}
 The Cognitive Tutor captures a detailed log of the student's interactions with the tutor. It stores a time series of correct and incorrect answers, hint requests, interface selections and durations between interactions. Previous analysis (Scheines, Rau, 2012) extracted the average number of errors made per step, the average number of hints requested per step, and the average time spent per step from the log data. We include the average number of hints requested ($hints\_req$) and number of errors ($num\_errors$) made per problem by each student. We also extract the average number of bottom-out hints ($NumBOH$) per student per problem -- this is the average number of times a student exhausts the available hints in a given problem. We also note that it is not always the average of these features that best characterizes a student. For example, examination of the distribution of hints requested per step across experimental condition, shows a telling picture. 
@@ -174,6 +172,40 @@ So, we are interested in summarizing characteristic student behavior in each cla
 \subsection{Condition and Cluster Membership}
 
 Once clusters have been established, we will use Fisher's exact test to determine cluster dependence or independence from condition. 
+
+\renewcommand{\arraystretch}{1}
+\begin{table}[hbtp]
+\caption{Condition by Tercile of Adjusted Delayed Post-Test Score (left) and Latent Class (right).}
+ \begin{center}
+\begin{tabular}{|c || c | c | c |}
+\hline
+&33\%&66\%&99\%\\ \hline \hline
+  blocked  &   14& 29& 20 \\ \hline
+  increased&   22& 20& 20 \\ \hline
+  interleaved& 13& 21& 18 \\ \hline
+  moderate &   18& 13& 22 \\ \hline
+  single &      30& 13& 17 \\ \hline
+ \end{tabular}
+%\end{center}
+\label{default}
+%\end{table}
+\quad
+%\begin{table}[hbtp]
+%\caption{Experimental Condition and Latent Class}
+% \begin{center}
+\begin{tabular}{|c || c | c | c | c |}
+\hline
+&LC1&LC2&LC3&LC4\\ \hline \hline
+blocked&     25& 15& 10& 13\\ \hline
+increased&   15& 16& 10& 21\\ \hline
+interleaved& 10& 18&  7& 17\\ \hline
+moderate&    13& 10& 12& 18\\ \hline
+single&      20& 14& 11& 15\\ \hline
+ \end{tabular}
+ \end{center}
+\hspace{32pt}$\mathcal{X}^2$ = 17.65, df = 8, p-value = 0.024\hspace{30pt}$\mathcal{X}^2$ = 12.85, df = 12, p-value = 0.38
+\label{default}
+\end{table}
 
 \subsection{Cluster Membership and Outcome}
 
