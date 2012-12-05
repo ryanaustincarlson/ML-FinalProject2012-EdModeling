@@ -118,13 +118,10 @@ Latent Class Analysis (LCA) is a modeling technique that determines subtypes bas
 
 We note that the categorical nature of the model has the potential to add some noise, since we must select numeric cutoffs to transform our variables into nominals. However, categorical models can offer greater interpretability by allowing us to organize our data into a small set of variables, which forms the basis for categorizing students into a small set of meaningful homogenous groups. Furthermore, it is not unreasonable to suspect that our variables are in some sense ``truly'' categorical. 
 
-The formal representation of LCA begins with $j = 1 \ldots J$ observed variables, where each such variable $j$ has a set of response variables $r_{j} = 1,\ldots,R_{j}$. Let some $y = (r_{1},\ldots,r_{j})$ be a response patterns with each response pattern $y$ is associated with some probability $P(Y = y)$ with \[ \sum P(Y = y) = 1. \]
+The formal representation of LCA begins with $j = 1 \ldots J$ observed variables, where each such variable $j$ has a set of response variables $r_{j} = 1,\ldots,R_{j}$. Let some $y = (r_{1},\ldots,r_{j})$ be a response patterns with each response pattern $y$ is associated with some probability $P(Y = y)$.
 
-Now, we need to consider the latent classes. Let $L$ be a latent variable with latent classes $c~=~1,\ldots,C$. Furthermore, let $\gamma_{c}$ be the probability of membership in class $c$. Note that latent classes are exhaustive and mutually exclusive, so each student is a member of exactly one latent class:
-\[ \sum_{c=1}^{C} \gamma_{c} = 1. \] 
-We also need to define the item-response probability $\rho_{j,r_{j}|c}$, which is the probability of response $r_{j}$ to observed variable $j$, conditional on membership in latent class $c$. Note that 
-\[ \sum_{r_{j}=1}^{R_{j}} \rho_{j,r_{j}|c} = 1 \] 
-because each student provides exactly one response alternative to variable $j$. 
+Now we need to consider the latent classes. Let $L$ be a latent variable with latent classes $c~=~1,\ldots,C$. Furthermore, let $\gamma_{c}$ be the probability of membership in class $c$. Note that latent classes are exhaustive and mutually exclusive, so each student is a member of exactly one latent class. We also need to define the item-response probability $\rho_{j,r_{j}|c}$, which is the probability of response $r_{j}$ to observed variable $j$, conditional on membership in latent class $c$. Each student provides exactly one response alternative to variable $j$. Given these constraints, note that
+\[ \sum_{c=1}^{C} \gamma_{c} = 1,\quad \sum_{r_{j}=1}^{R_{j}} \rho_{j,r_{j}|c} = 1. \] 
 
 Now that we have defined key variables, we can define the probability of observing a particular response vector based on the $\gamma$'s and $\rho$'s:
 \begin{align}
