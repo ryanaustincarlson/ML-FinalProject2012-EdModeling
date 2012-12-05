@@ -4,6 +4,8 @@
 
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{url}
+
 \renewcommand{\arraystretch}{1.5}
 \DeclareMathOperator*{\argmax}{arg\,max}
 
@@ -128,7 +130,7 @@ Now that we have defined key variables, we can define the probability of observi
 P(Y = y) = \sum_{c=1}^{C} \gamma_{c} \prod_{j=1}^{J} \prod_{r_{j}=1}^{R_{j}} \rho_{j,r_{j}|c}^{I(y_{j} = r_{j})}
 \label{eqn:LCA-final}
 \end{align}
-where the indicator function $I(y_{j} = r_{j})$ equals 1 when the response variable $j = r_{j}$. The parameters $\gamma_{c}$ and $\rho_{j,r_{j}|c}$ are estimated by EM. Thus, LCA is very similar to other EM-based algorithms. In fact, LCA is an application of multivariate mixture estimation using categorical variables with one additional assumption: a local independence assumption, meaning that the observed variables are independent of each other conditional on the latent variable. This is an assumption similar to the simplifying assumption made in Naive Bayes, in that without it Equation \ref{eqn:LCA-final} would need to be much more complicated. There is some work on relaxing this independence assumption [5].
+where the indicator function $I(y_{j} = r_{j})$ equals 1 when the response variable $j = r_{j}$. The parameters $\gamma_{c}$ and $\rho_{j,r_{j}|c}$ are estimated by EM. Since EM is sensitive to starting probabilities, we pick the maximum likelihood over multiple (here, 25) runs. LCA is very similar to other EM-based algorithms. In fact, LCA is an application of multivariate mixture estimation using categorical variables with one additional assumption: a local independence assumption, meaning that the observed variables are independent of each other conditional on the latent variable. This is an assumption similar to the simplifying assumption made in Naive Bayes, in that without it Equation \ref{eqn:LCA-final} would need to be much more complicated. There is some work on relaxing this independence assumption [5]. To run latent class analysis, we used \texttt{poLCA}, a freely available R package\footnote{\url{http://userwww.service.emory.edu/~dlinzer/poLCA/}}.
 
 
 Note that unlike some common clustering algorithms (e.g., k-means), LCA produces ``fuzzy'' clusters--probability distributions over features for each class. To cluster students we just identify their most likely class:
@@ -158,10 +160,14 @@ As we described in Section \ref{sec:LCA}, we calculate complexity-penalized log-
 
 After identifying the right number of latent classes to use, we can extract probabilities for each student. That is, given a latent class, we know the probability distribution over each feature, so we can use Equation \ref{eqn:LCA-argmax} to identify the most likely class for each student.
 
+The feature distributions over each class are represented graphically in Figure \ref{fig:lca-class-viz}. Note that each feature is listed along the horizontal $x$-axis, the value each variable takes takes is along the front-to-back $y$-axis, and the probability that the feature takes that value is given along the vertical $z$-axis. For example, consider the \emph{hints\_req} feature (average hints requested per problem) in Class 1. In that class, with high probability, students requested many hints (i.e., the highest categorical value for hints) per problem on average. As another example, students in Class 3 are more likely to make a moderate number os errors, though other error levels also occur with nontrivial probabilities. Note that lower values of \emph{hintsGeom} and \emph{stubbornGeom} indicate a steep geometric slope, which translates to responsive behavior with the interface.
+
+So, we are interested in summarizing characteristic student behavior in each class. We call students in Class 1 ``Interactive'' because these students need help (they make a lot of errors), request many hints, and exhibit responsive behaviors. Class 2 contain students who are ``Stubborn''--they don't ask for hints and don't change their hint-seeking behavior over time, and they are generally undifferentiated by the number of errors they make. Students in Class 3 are ``Moderate'' because they ask for a moderate number of hints, make a moderate number of errors, and are moderately responsive to the interface. Finally, in Class 4 students are ``Confident'' in that they don't ask for hints, but they also don't generally need hints (because they make very few errors).
+
 \begin{figure}[htbp]
 \centering
 \includegraphics[scale=0.4]{lca-class-viz.png}
-\caption{Visualization of feature distributions for each latent class. The left-to-right $x$-axis identifies each feature, the front-to-back $z$-axis identifies which value that feature takes, and the top-to-bottom $y$-axis describes the probability that the feature takes the value. Thus, given a feature and a class, the $z$-axis also describes the probability distribution over that feature in that class.}
+\caption{Visualization of feature distributions for each latent class. The left-to-right $x$-axis identifies each feature, the front-to-back $y$-axis identifies which value that feature takes, and the top-to-bottom $z$-axis describes the probability that the feature takes the value. Thus, given a feature and a class, the $z$-axis also describes the probability distribution over that feature in that class.}
 \label{fig:lca-class-viz}
 \end{figure}
 
