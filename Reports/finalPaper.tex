@@ -211,9 +211,11 @@ single&      20& 14& 11& 15\\ \hline
 
 We will also run a similar analysis to analyze independence of cluster membership with respect to outcome.
 
-\section{Conclusion}
+\section{Conclusion \& Future Work}
 
-Forthcoming.
+We used latent class analysis to classify students into four groups based on their error-rates and hint-seeking behaviors. We detected dependence of experimental condition and post-test outcome only in the class of students characterized by high-error rate and low hint-seeking propensity. That is, students who did not take full advantage of the resources that the Mathtutor offered were the ones most strongly affected by experimental condition. These students may not have the meta-cognitive skills required to know when to seek hints [6]. Our methods could be used by intelligent tutoring systems designers to detect students with this profile in real time. Tutoring systems could then intervene to target these students with multiple representations and scaffold hint-seeking behaviors.
+
+As we noted in Section \ref{sec:LCA}, there exist extensions to latent class analysis that relax the condition of local independence. Additionally, we used unordered categorical features in running the analysis, but many of our features were truly ordinal. LCA can also be extended to work with such explicitly ordered, which reduces the number of parameters required for estimation. 
 
 
 
@@ -587,5 +589,9 @@ Data Mining.
 
 [4] Collins, L. M., Lanza, S. T. (2009). Latent Class and Latent Transition Analysis: With Applications in the Social, Behavioral, and Health Sciences. Wiley Publishing.
 
-[5] Hagenaars JA. Latent structure models with direct effects between indicators: local dependence models. Sociological Methods and Research, 1988, 16, 379-405.
+[5] Hagenaars JA. (1988) Latent structure models with direct effects between indicators: local dependence models. Sociological Methods and Research.
+
+[6] Aleven, V., McLaren, B., Roll, I., Koedinger K. (2006) Toward Meta-cognitive Tutoring: A Model of Help Seeking with a Cognitive Tutor. International Journal of Artificial Intelligence in Education. 
+
+
 \end{document}
