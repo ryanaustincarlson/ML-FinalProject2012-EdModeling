@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  17 FEB 2013 18:20
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  18 FEB 2013 10:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -292,132 +292,221 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Try loading font information for U+msa on input line 112.
+LaTeX Font Info:    Try loading font information for U+msa on input line 134.
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 112.
+LaTeX Font Info:    Try loading font information for U+msb on input line 134.
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 112.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 134.
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-Overfull \hbox (4.18295pt too wide) in paragraph at lines 130--131
-[]\T1/aer/m/n/9 Classroom stud-ies con-ducted on middle-school stu-dents work-
+Overfull \hbox (10.71048pt too wide) in paragraph at lines 134--134
+ []\eaddfnt lleipuner@researchlabs.org| 
  []
 
-<conditionGraph.png, id=1, 458.6736pt x 280.8894pt>
-File: conditionGraph.png Graphic file (type png)
- <use conditionGraph.png>
-Package pdftex.def Info: conditionGraph.png used on input line 139.
-(pdftex.def)             Requested size: 183.46619pt x 112.35376pt.
+
+Underfull \hbox (badness 1418) in paragraph at lines 135--135
+[][]\T1/aer/m/n/9 (Does NOT pro-duce the per-mis-sion block, copy-right
+ []
+
+
+Underfull \hbox (badness 6032) in paragraph at lines 135--135
+\T1/aer/m/n/9 in-for-ma-tion nor page num-ber-ing). For use with
+ []
+
+
+Overfull \hbox (1.0793pt too wide) in paragraph at lines 136--142
+\T1/aer/m/it/9 Prepar-ing ACM SIG Pro-ceed-ings Us-ing L[]T[]X$\OT1/cmr/m/n/9 2
+[]$ \T1/aer/m/it/9 and BibT[]X\T1/aer/m/n/9 .
+ []
+
+LaTeX Font Info:    Try loading font information for T1+aett on input line 182.
+
+(/usr/local/texlive/2012/texmf-dist/tex/latex/ae/t1aett.fd
+File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
+)
+Underfull \hbox (badness 1360) in paragraph at lines 182--182
+[][]\T1/aer/m/n/9 Two of these, the \T1/aett/m/n/9 \num-bero-fau-thors \T1/aer/
+m/n/9 and \T1/aett/m/n/9 \alig-nau-
+ []
 
 [1{/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
-<hintsByCondition.png, id=13, 1166.3575pt x 551.05875pt>
-File: hintsByCondition.png Graphic file (type png)
 
-<use hintsByCondition.png>
-Package pdftex.def Info: hintsByCondition.png used on input line 158.
-(pdftex.def)             Requested size: 408.23125pt x 192.87344pt.
- [2 <./conditionGraph.png>]
-LaTeX Font Info:    Try loading font information for T1+aett on input line 200.
+LaTeX Warning: Citation `Lamport:LaTeX' on page \thepage  undefined on input li
+ne 238.
 
 
-(/usr/local/texlive/2012/texmf-dist/tex/latex/ae/t1aett.fd
-File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
-)
-./edm_submission.tex:200: Undefined control sequence.
-<argument> ...\z@ \footnotesep \ignorespaces \url 
-                                                  {http://userwww.service.em...
-l.200 ...erwww.service.emory.edu/~dlinzer/poLCA/}}
-                                                  .
-? 
-./edm_submission.tex:207: Undefined control sequence.
-<argument>  \argmax 
-                    _{c} P(Y = y \;|\; L = c) = \argmax _{c} \gamma _{c} \pr...
-l.207 \end{align}
-                 
-? 
-./edm_submission.tex:207: Undefined control sequence.
-<argument> ..._{c} P(Y = y \;|\; L = c) = \argmax 
-                                                  _{c} \gamma _{c} \prod _{j...
-l.207 \end{align}
-                 
-? 
-./edm_submission.tex:207: Undefined control sequence.
-<argument>  \argmax 
-                    _{c} P(Y = y \;|\; L = c) = \argmax _{c} \gamma _{c} \pr...
-l.207 \end{align}
-                 
-? 
-./edm_submission.tex:207: Undefined control sequence.
-<argument> ..._{c} P(Y = y \;|\; L = c) = \argmax 
-                                                  _{c} \gamma _{c} \prod _{j...
-l.207 \end{align}
-                 
-? 
-<lca-stats-plot.png, id=24, 1003.75pt x 602.25pt>
-File: lca-stats-plot.png Graphic file (type png)
- <use lca-stats-plot.png>
-Package pdftex.def Info: lca-stats-plot.png used on input line 216.
-(pdftex.def)             Requested size: 301.12732pt x 180.67639pt.
+LaTeX Warning: Citation `Lamport:LaTeX' on page \thepage  undefined on input li
+ne 253.
 
-[3 <./hintsByCondition.png>] <lca-class-viz.png, id=31, 1003.75pt x 702.625pt>
-File: lca-class-viz.png Graphic file (type png)
 
-<use lca-class-viz.png>
-Package pdftex.def Info: lca-class-viz.png used on input line 230.
-(pdftex.def)             Requested size: 401.49289pt x 281.04501pt.
+LaTeX Warning: Citation `bowman:reasoning' on page \thepage  undefined on input
+ line 279.
 
-Overfull \hbox (2.13393pt too wide) in paragraph at lines 341--341
-[]\secfnt Condition, Out-come and Clus-ter Mem-ber-
+
+LaTeX Warning: Citation `clark:pct' on page \thepage  undefined on input line 2
+79.
+
+
+LaTeX Warning: Citation `braams:babel' on page \thepage  undefined on input lin
+e 279.
+
+
+LaTeX Warning: Citation `herlihy:methodology' on page \thepage  undefined on in
+put line 279.
+
+
+LaTeX Warning: Citation `clark:pct' on page \thepage  undefined on input line 2
+81.
+
+
+LaTeX Warning: Citation `salas:calculus' on page \thepage  undefined on input l
+ine 281.
+
+
+LaTeX Warning: Citation `Lamport:LaTeX' on page \thepage  undefined on input li
+ne 281.
+
+
+LaTeX Warning: Citation `Lamport:LaTeX' on page \thepage  undefined on input li
+ne 287.
+
+
+LaTeX Warning: Citation `Lamport:LaTeX' on page \thepage  undefined on input li
+ne 298.
+
+[2]
+Package epstopdf Info: Source file: <fly.eps>
+(epstopdf)                    date: 2013-01-17 18:31:30
+(epstopdf)                    size: 155104 bytes
+(epstopdf)             Output file: <fly-eps-converted-to.pdf>
+(epstopdf)                    date: 2013-02-17 17:22:50
+(epstopdf)                    size: 4243 bytes
+(epstopdf)             Command: <repstopdf --outfile=fly-eps-converted-to.pdf f
+ly.eps>
+(epstopdf)             \includegraphics on input line 373.
+Package epstopdf Info: Output file is already uptodate.
+ <fly-eps-converted-to.pdf, id=26, 34.1275pt x 32.12pt>
+File: fly-eps-converted-to.pdf Graphic file (type pdf)
+
+<use fly-eps-converted-to.pdf>
+Package pdftex.def Info: fly-eps-converted-to.pdf used on input line 373.
+(pdftex.def)             Requested size: 34.1274pt x 32.1199pt.
+Package epstopdf Info: Source file: <fly.eps>
+(epstopdf)                    date: 2013-01-17 18:31:30
+(epstopdf)                    size: 155104 bytes
+(epstopdf)             Output file: <fly-eps-converted-to.pdf>
+(epstopdf)                    date: 2013-02-17 17:22:50
+(epstopdf)                    size: 4243 bytes
+(epstopdf)             Command: <repstopdf --outfile=fly-eps-converted-to.pdf f
+ly.eps>
+(epstopdf)             \includegraphics on input line 379.
+Package epstopdf Info: Output file is already uptodate.
+File: fly-eps-converted-to.pdf Graphic file (type pdf)
+ <use fly-eps-converted-to.pdf>
+Package pdftex.def Info: fly-eps-converted-to.pdf used on input line 379.
+(pdftex.def)             Requested size: 72.27492pt x 72.27565pt.
+
+
+LaTeX Font Warning: Font shape `T1/aett/bx/n' undefined
+(Font)              using `T1/aett/m/n' instead on input line 381.
+
+\c@theorem=\count115
+
+Underfull \hbox (badness 1603) in paragraph at lines 405--409
+[]\T1/aer/m/n/9 This uses the \T1/aer/bx/n/9 the-o-rem \T1/aer/m/n/9 en-vi-ron-
+ment, cre-ated by the
  []
 
-[4 <./lca-stats-plot.png>] [5 <./lca-class-viz.png>]
-No file edm_submission.bbl.
-[6] [7
+\c@definition=\count116
 
-] (./edm_submission.aux)
+./edm_submission.tex:425: LaTeX Error: Unknown graphics extension: .ps.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.425 ...{file=rosette.ps, height=1in, width=1in,}
+                                                  
+? 
+Package epstopdf Info: Source file: <flies.eps>
+(epstopdf)                    date: 2013-01-17 18:31:24
+(epstopdf)                    size: 343737 bytes
+(epstopdf)             Output file: <flies-eps-converted-to.pdf>
+(epstopdf)                    date: 2013-02-17 17:31:12
+(epstopdf)                    size: 9687 bytes
+(epstopdf)             Command: <repstopdf --outfile=flies-eps-converted-to.pdf
+ flies.eps>
+(epstopdf)             \includegraphics on input line 436.
+Package epstopdf Info: Output file is already uptodate.
+<flies-eps-converted-to.pdf, id=27, 307.1475pt x 114.4275pt>
+File: flies-eps-converted-to.pdf Graphic file (type pdf)
+
+<use flies-eps-converted-to.pdf>
+Package pdftex.def Info: flies-eps-converted-to.pdf used on input line 436.
+(pdftex.def)             Requested size: 307.14674pt x 114.42722pt.
+
+Overfull \hbox (15.60826pt too wide) detected at line 461
+\OML/cmm/m/it/9 l \OT1/cmr/m/n/9 = [] \OML/cmm/m/it/9 f\OT1/cmr/m/n/9 (\OML/cmm
+/m/it/9 x\OT1/cmr/m/n/9 ) = [] [] = [] \OML/cmm/m/it/9 g\OT1/cmr/m/n/9 (\OML/cm
+m/m/it/9 x\OT1/cmr/m/n/9 ) \OMS/cmsy/m/n/9 ^^A [] [] \OT1/cmr/m/n/9 = 0 \OMS/cm
+sy/m/n/9 ^^A \OML/cmm/m/it/9 L \OT1/cmr/m/n/9 = 0\OML/cmm/m/it/9 ;
+ []
+
+
+LaTeX Warning: Citation `salas:calculus' on page \thepage  undefined on input l
+ine 471.
+
+[3 <./fly-eps-converted-to.pdf>]
+No file edm_submission.bbl.
+[4 <./flies-eps-converted-to.pdf>] (./edm_submission.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 2825 strings out of 493488
- 36121 string characters out of 3141326
- 110341 words of memory out of 3000000
- 6054 multiletter control sequences out of 15000+200000
- 52583 words of font info for 71 fonts, out of 3000000 for 9000
+ 2850 strings out of 493488
+ 36289 string characters out of 3141326
+ 99341 words of memory out of 3000000
+ 6066 multiletter control sequences out of 15000+200000
+ 60842 words of font info for 84 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 41i,10n,26p,1191b,270s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,12n,26p,521b,308s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/tex
+live/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/tex
 live/2012/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/
-texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/te
-xlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texl
-ive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texliv
-e/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2
-012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2012
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2012/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2012/tex
+texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/te
+xlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texl
+ive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive
+/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/20
+12/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2012
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2012/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/2012/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2012/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2012/texmf-d
 ist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2012/texmf-dist/fon
-ts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type
-1/urw/times/utmb8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/time
-s/utmri8a.pfb>
-Output written on edm_submission.pdf (7 pages, 370416 bytes).
+ts/type1/urw/helvetic/uhvbo8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/typ
+e1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/
+times/utmb8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utmb
+i8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on edm_submission.pdf (4 pages, 220091 bytes).
 PDF statistics:
  97 PDF objects out of 1000 (max. 8388607)
- 65 compressed objects within 1 object stream
+ 69 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

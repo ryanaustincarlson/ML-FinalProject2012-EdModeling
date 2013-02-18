@@ -61,7 +61,7 @@
 % without further effort on your part as the last section in
 % the body of your article BEFORE References or any Appendices.
 
-\numberofauthors{3} %  in this sample file, there are a *total*
+\numberofauthors{6} %  in this sample file, there are a *total*
 % of EIGHT authors. SIX appear on the 'first-page' (for formatting
 % reasons) and the remaining two appear in the \additionalauthors section.
 %
@@ -77,26 +77,47 @@
 % e-mail address with \email.
 %
 % 1st. author
-\alignauthor
-Helga Caballero\\
-       \affaddr{School of Public and International Affairs}\\
-       \affaddr{University of Pittsburgh}\\
-       \affaddr{Pittsburgh, PA 15260}\\
-       \email{hec33@pitt.edu}
 % 2nd. author
-\alignauthor
+\alignauthor 
 Ryan Carlson\\
        \affaddr{Language Technologies Institute}\\
        \affaddr{Carnegie-Mellon University}\\
        \affaddr{Pittsburgh, PA 15213}\\
        \email{rcarlson@cs.cmu.edu}
 % 3rd. author
-\alignauthor Konstantin Genin\\
+\alignauthor 
+Konstantin Genin\\
        \affaddr{Department of Philosophy}\\
        \affaddr{Carnegie-Mellon University}\\
        \affaddr{Pittsburgh, PA 15213}\\
        \email{kgenin@andrew.cmu.edu}
+\alignauthor
+Helga Caballero\\
+       \affaddr{School of Public and International Affairs}\\
+       \affaddr{University of Pittsburgh}\\
+       \affaddr{Pittsburgh, PA 15260}\\
+       \email{hec33@pitt.edu}
+\and  % use '\and' if you need 'another row' of author names
+% 4th. author
+\alignauthor Martina Rau\\
+       \affaddr{Human-Computer Interaction Institute}\\
+       \affaddr{Carnegie-Mellon University}\\
+       \affaddr{Pittsburgh, PA 15213}\\
+       \email{marau@cs.cmu.edu}
+% 5th. author
+\alignauthor Richard Scheines\\
+       \affaddr{Department of Philosophy}\\
+       \affaddr{Carnegie-Mellon University}\\
+       \affaddr{Pittsburgh, PA 15213}\\      
+        \email{scheines@cmu.edu}
+% 6th. author
+\alignauthor Clark Glymour\\
+       \affaddr{Department of Philosophy}\\
+       \affaddr{Carnegie-Mellon University}\\
+       \affaddr{Pittsburgh, PA 15213}\\      
+        \email{cg09@andrew.cmu.edu}
 }
+
 % There's nothing stopping you putting the seventh, eighth, etc.
 % author on the opening page (as the 'third row') but we ask,
 % for aesthetic reasons that you place these 'additional authors'
@@ -211,12 +232,12 @@ We still need to fix $C$, the number of latent classes. We use two complexity-pe
 \section{Results}
 Figure \ref{fig:lca-test-statistics} shows the parameter selection process described in section 4.2. Note that we chose to model four latent classes because BIC bottoms out and AIC levels off at that point.
 
-\begin{figure*}[htbp]
-\centering
-\includegraphics[scale=0.3]{lca-stats-plot.png}
+\begin{figure}[htbp]
+%\centering
+\includegraphics[scale=0.25]{lca-stats-plot.png}
 \caption{AIC and BIC over increasing number of latent classes. BIC bottoms out and AIC levels off at four classes, so we conclude that four latent classes best fits the data.}
 \label{fig:lca-test-statistics}
-\end{figure*}
+\end{figure}
 \subsection{Exploring the Latent Classes}
 
 After selecting the appropriate $C$ parameter, we extract membership probabilities for the individual students. Given a latent class, we know the probability distribution over each feature, and use Equation \ref{eqn:LCA-argmax} to identify the most likely class for each student.
@@ -261,7 +282,7 @@ We run a Chi-squared test for independence of latent class membership from outco
 
 We may worry that experimental condition is inducing latent class membership. If this were the case, we would not be detecting pre-existing student profiles, but detecting an artifact of the experimental design. Using the Chi-squared test, we fail to reject independence at a $p$-value of $.38$ (See Table 3). It is therefore likely that our latent classes are detecting genuinely different student profiles, independent of experimental condition. 
 
-\begin{table}[hbtp]
+\begin{table*}[hbtp]
 \caption{Condition by Tercile of Adjusted Delayed Post-Test Score (left) and Latent Class (right).}
  \begin{center}
 \begin{tabular}{|l || c | c | c |}
@@ -290,10 +311,10 @@ We may worry that experimental condition is inducing latent class membership. If
 \textbf{single}&      15& 14& 11& 20\\ \hline
  \end{tabular}
  \end{center}
-\hspace{32pt}$\mathcal{X}^2$ = 17.65, df = 8, p-value = {\bf 0.024} \hspace{30pt}$\mathcal{X}^2$ = 12.85, df = 12, p-value = 0.38
+\hspace{60pt}$\mathcal{X}^2$ = 17.65, df = 8, p-value = {\bf 0.024} \hspace{30pt}$\mathcal{X}^2$ = 12.85, df = 12, p-value = 0.38
 \label{default}
-\end{table}
-\begin{table}[htbp]
+\end{table*}
+\begin{table*}[htbp]
 \caption{Condition and Tercile of Adjusted Delayed Post-Test Score, by Latent Class  }
  \begin{center}
 \begin{tabular}{|l || c | c | c |}
@@ -337,82 +358,13 @@ We may worry that experimental condition is inducing latent class membership. If
  \end{tabular}
 \\$\mathcal{X}^2$ = 7.41, df = 8, p-value = 0.49\hspace{15pt}$\mathcal{X}^2$ = 17.4837, df = 8, p-value = {\bf 0.025}
 \end{center}
-\end{table}
+\end{table*}
 \subsection{Condition, Outcome and Cluster Membership}
 Finally, we ask whether we still detect a dependence of outcome on condition within the latent classes we have defined. Interestingly, we find that latent class membership screens off condition from outcome for all classes but the fourth (See Table 4). Recall that these students rarely requested hints, even when they encountered difficulty. Our results suggest that since these students are not taking full advantage of the other resources the tutor makes available, it is the multiple representation condition that most strongly determines their learning outcome. The problem-solving behaviors of students in the other classes makes them insensitive to experimental condition. 
 
 \section{Conclusion \& Future Work}
 
 We estimated a latent class model to classify students into four groups based on their error-rates and hint-seeking behaviors. We detected dependence of experimental condition and post-test outcome only in the class of students characterized by high-error rate and low hint-seeking propensity. That is, students who did not take full advantage of the resources that the Mathtutor offered were the ones most strongly affected by experimental condition. These students may not have the meta-cognitive skills required to know when to seek hints [6]. Our methods could be used by intelligent tutoring systems designers to detect students with this profile in real time. Tutoring systems could then intervene to target these students with multiple representations and to scaffold their hint-seeking behaviors. Future research into  the mediating mechanisms of multiple representations could leverage our results to identify the relevant student sub-populations to investigate. 
-
-\section{Acknowledgments}
-This section is optional; it is a location for you
-to acknowledge grants, funding, editing assistance and
-what have you.  In the present case, for example, the
-authors would like to thank Gerald Murray of ACM for
-his help in codifying this \textit{Author's Guide}
-and the \textbf{.cls} and \textbf{.tex} files that it describes.
-
-%
-% The following two commands are all you need in the
-% initial runs of your .tex file to
-% produce the bibliography for the citations in your paper.
-\bibliographystyle{abbrv}
-\bibliography{sigproc}  % sigproc.bib is the name of the Bibliography in this case
-% You must have a proper ".bib" file
-%  and remember to run:
-% latex bibtex latex latex
-% to resolve all references
-%
-% ACM needs 'a single self-contained file'!
-%
-%APPENDICES are optional
-%\balancecolumns
-\appendix
-%Appendix A
-\section{Headings in Appendices}
-The rules about hierarchical headings discussed above for
-the body of the article are different in the appendices.
-In the \textbf{appendix} environment, the command
-\textbf{section} is used to
-indicate the start of each Appendix, with alphabetic order
-designation (i.e. the first is A, the second B, etc.) and
-a title (if you include one).  So, if you need
-hierarchical structure
-\textit{within} an Appendix, start with \textbf{subsection} as the
-highest level. Here is an outline of the body of this
-document in Appendix-appropriate form:
-\subsection{Introduction}
-\subsection{The Body of the Paper}
-\subsubsection{Type Changes and  Special Characters}
-\subsubsection{Math Equations}
-\paragraph{Inline (In-text) Equations}
-\paragraph{Display Equations}
-\subsubsection{Citations}
-\subsubsection{Tables}
-\subsubsection{Figures}
-\subsubsection{Theorem-like Constructs}
-\subsubsection*{A Caveat for the \TeX\ Expert}
-\subsection{Conclusions}
-\subsection{Acknowledgments}
-\subsection{Additional Authors}
-This section is inserted by \LaTeX; you do not insert it.
-You just add the names and information in the
-\texttt{{\char'134}additionalauthors} command at the start
-of the document.
-\subsection{References}
-Generated by bibtex from your ~.bib file.  Run latex,
-then bibtex, then latex twice (to resolve references)
-to create the ~.bbl file.  Insert that ~.bbl file into
-the .tex source file and comment out
-the command \texttt{{\char'134}thebibliography}.
-% This next section command marks the start of
-% Appendix B, and does not continue the present hierarchy
-\section{More Help for the Hardy}
-The acm\_proc\_article-sp document class file itself is chock-full of succinct
-and helpful comments.  If you consider yourself a moderately
-experienced to expert user of \LaTeX, you may find reading
-it useful but please remember not to change it.
 \balancecolumns
 % That's all folks!
 \end{document}
