@@ -19,7 +19,7 @@ fits <- NULL
 studentIndex <- 1
 for (studentfile in list.files("data/studentSubsets"))
 {
-  students <- read.csv(paste("data/studentSubsets/",studentfile,sep="")
+  students <- read.csv(paste("data/studentSubsets/",studentfile,sep=""))
   newLCA <- LCA(students, nBestClass, graphs=TRUE)
   
   X <- mapBetweenDistributions(newLCA, baselineLCA)
