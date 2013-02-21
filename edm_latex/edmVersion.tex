@@ -159,10 +159,13 @@ Multiple Graphical Representations (MGRs) are used extensively in middle-school 
 
 Prior work conducted on middle-school students working with ITSs found that multiple representations, in conjunction with self-explanation prompts, contribute to improved learning outcomes \cite{Rau2009}. Subsequent studies examining error-rate, hint-use and time-spent in ITS logs failed to identify variables that mediate the effectiveness of multiple representations \cite{Rau2012}. The mechanisms by which multiple representations improve learning outcomes remain poorly understood.
 
-We conjecture that previous efforts to identify mediating factors were frustrated by heterogeneity in the problem-solving habits and behaviors of the student population under investigation. Using latent class analysis, a mixture modeling technique, we cluster students by their patterns of interaction with the tutor and examine how multiple representations affect post-test outcomes in the resulting sub-populations. Confirming previous results, we find dependence between experimental condition and post-test outcome. Furthermore, we establish independence between experimental condition and latent class membership. Most interestingly, we discover conditional independence between experimental condition and outcome, conditional on latent class membership for all but one sub-population of students.
+We conjecture that previous efforts to identify mediating factors were frustrated by heterogeneity in the problem-solving habits and behaviors of the student population under investigation. Using latent class analysis, a mixture modeling technique, we cluster students by their patterns of interaction with the tutor and examine how multiple representations affect post-test outcomes in the resulting sub-populations. Confirming previous results, we find that experimental condition correlates with post-test outcome. Furthermore, we establish independence between cluster membership and experimental condition (i.e., students are randomly distributed into clusters across conditions). Most interestingly, we discover that if we condition on cluster membership, all but one sub-population of students shows conditional independence between experimental condition and outcome. That is, we have identified the group of students where multiple representations correlates with post-test scores.
 
+The rest of this paper is structured as follows. Section \ref{sec:experiment} describes the initial experiment and elaborates on the different graphical representation conditions. We then provide some background in Section \ref{sec:related-work}. We describe our feature extraction process and the mixture model we chose in Section \ref{sec:method}. Section \ref{sec:results} covers the results of the model and additional experiments we ran using the clusters created by the model, and we offer concluding remarks and future directions in Section \ref{sec:conclusion}.
 
 \section{Experiment}
+\label{sec:experiment}
+
 In the Spring of 2010, Scheines and Rau conducted an experiment wherein 290 $4^\text{th}$ and $5^\text{th}$ grade students worked with an interactive Fractions Tutor for about 5 hours of their mathematics instruction. Students were randomly assigned to one of five experimental conditions corresponding to different frequencies with which they would be presented with a new fraction representation. Students in the `Single' representation condition worked exclusively with either a number line, a circle or a rectangle. Students in the `Fully Interleaved' condition would see a different representation with every new problem. Students in the intermediate conditions would go longer before they were presented with a different representation.   
 \begin{figure}[htbp]
 \centering
@@ -174,9 +177,13 @@ In the Spring of 2010, Scheines and Rau conducted an experiment wherein 290 $4^\
 Students interacted with the representations by dragging-and-dropping sections of the representation, using buttons to change the number of sections and by clicking on sections to highlight them. Students received a pre-test on the day before they began working with the tutor and an immediate post-test on the day after they finished. Students also took a delayed post-test a week after the first. Previous investigation found that students in the multiple representation conditions significantly outperformed students in the single representation condition on the delayed post-test \cite{Rau2012}. 
 
 \section{Related Work}
+\label{sec:related-work}
+
 Latent Class Analysis and other clustering tools have commonly been used to analyze educational data. LCA can be used either for explanatory or confirmatory purposes. An application of clustering for educational data is presented in \cite{Merceron2005}, where students were clustered by types of mistakes. The authors suggested that identifying the different types of learners could help teachers apply remedial methods. Similarly, \cite{Perera2009} applied clustering techniques to group teams of students by the amount of work they performed. With LCA techniques they were able to reduce seven groups to three clusters. \cite{Maas2008} provided a comparative analysis of simulated data for Rule Assessment Methodology and LCA. They found five classes with conditional probabilities close to 0.95. They also found that the five classes worked better with RAM than the previous class definitions. Finally, \cite{Su2006} proposed a four-phase learning portfolio mining (LPM) approach, which uses sequential pattern mining, clustering and decision tree creation to find features from the portfolio and predict which group a new learner belongs to. Additional techniques used in educational data mining can be found in \cite{Romero2007}.
  
 \section{Method}
+\label{sec:method}
+
 Our analysis proceeds in three stages. Extracting features characterizing error and hint-seeking behavior, we transform the longitudinal log data into a cross-sectional form, with one observation per student. We then run Latent Class Analysis to identify sub-populations of students, using AIC and BIC to select the number of latent classes. 
 
 Once we have clustered our students, we investigate the interaction between the latent classes and their experimental conditions. We construct a contingency table binning the experimental conditions into the clusters estimated by the latent class model. We then run a Chi-squared test for independence between experimental condition and latent class. Chi-squared tests are also run to investigate dependence between latent class and post-test outcome and the conditional dependence of outcome and experimental condition, given latent class membership.
@@ -239,6 +246,8 @@ Note that unlike some common clustering algorithms (e.g., k-means), LCA produces
 We still need to fix $C$, the number of latent classes. We use two complexity-penalized log-likelihood scores to select an appropriate $C$: Akaike information criterion (AIC) and Bayesian information criterion (BIC). Plotting these statistics as we increment the number of latent classes, we look for a ``knee'' where both statistics either bottom-out or level off to identify the optimal value of $C$.
 
 \section{Results}
+\label{sec:results}
+
 Figure \ref{fig:lca-test-statistics} shows the parameter selection process described in section 4.2. Note that we chose to model four latent classes because BIC bottoms out and AIC levels off at that point.
 
 \begin{figure}[htbp]
@@ -382,6 +391,7 @@ Finally, we ask whether we still detect a dependence of outcome on condition wit
 See Figure \ref{fig:class-stability}
 
 \section{Conclusion \& Future Work}
+\label{sec:conclusion}
 
 We estimated a latent class model to classify students into four groups based on their error-rates and hint-seeking behaviors. We detected dependence of experimental condition and post-test outcome only in the class of students characterized by high-error rate and low hint-seeking propensity. That is, students who did not take full advantage of the resources that the Mathtutor offered were the ones most strongly affected by experimental condition. These students may not have the meta-cognitive skills required to know when to seek hints \cite{Aleven2006}. Our methods could be used by intelligent tutoring systems designers to detect students with this profile in real time. Tutoring systems could then intervene to target these students with multiple representations and to scaffold their hint-seeking behaviors. Future research into  the mediating mechanisms of multiple representations could leverage our results to identify the relevant student sub-populations to investigate. 
 \balancecolumns
