@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  18 FEB 2013 16:16
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  21 FEB 2013 11:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -199,7 +199,11 @@ LaTeX Font Info:    Try loading font information for T1+aer on input line 100.
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/ae/t1aer.fd
 File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
-))) (./edmVersion.aux
+)))
+(/usr/local/texlive/2012/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip11
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+) (./edmVersion.aux
 
 LaTeX Warning: Label `fig:condition-graph' multiply defined.
 
@@ -218,18 +222,18 @@ LaTeX Warning: Label `default' multiply defined.
 )
 \openout1 = `edmVersion.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
  (/usr/local/texlive/2012/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count109
@@ -291,29 +295,29 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Try loading font information for U+msa on input line 133.
+LaTeX Font Info:    Try loading font information for U+msa on input line 140.
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 133.
+LaTeX Font Info:    Try loading font information for U+msb on input line 140.
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 133.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 140.
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-Overfull \hbox (4.18295pt too wide) in paragraph at lines 151--152
+Overfull \hbox (4.18295pt too wide) in paragraph at lines 158--159
 []\T1/aer/m/n/9 Classroom stud-ies con-ducted on middle-school stu-dents work-
  []
 
 <conditionGraph.png, id=1, 458.6736pt x 280.8894pt>
 File: conditionGraph.png Graphic file (type png)
  <use conditionGraph.png>
-Package pdftex.def Info: conditionGraph.png used on input line 160.
+Package pdftex.def Info: conditionGraph.png used on input line 167.
 (pdftex.def)             Requested size: 183.46619pt x 112.35376pt.
 
 [1{/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
@@ -324,67 +328,36 @@ Package pdftex.def Info: conditionGraph.png used on input line 160.
 File: hintsByCondition.png Graphic file (type png)
 
 <use hintsByCondition.png>
-Package pdftex.def Info: hintsByCondition.png used on input line 179.
+Package pdftex.def Info: hintsByCondition.png used on input line 186.
 (pdftex.def)             Requested size: 408.23125pt x 192.87344pt.
- [2 <./conditionGraph.png>]
-LaTeX Font Info:    Try loading font information for T1+aett on input line 221.
+ [2 <./conditionGraph.png>] [3 <./hintsByCondition.png>]
+LaTeX Font Info:    Try loading font information for T1+aett on input line 228.
 
-
-(/usr/local/texlive/2012/texmf-dist/tex/latex/ae/t1aett.fd
+ (/usr/local/texlive/2012/texmf-dist/tex/latex/ae/t1aett.fd
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 )
-./edmVersion.tex:221: Undefined control sequence.
-<argument> ...\z@ \footnotesep \ignorespaces \url 
-                                                  {http://userwww.service.em...
-l.221 ...erwww.service.emory.edu/~dlinzer/poLCA/}}
-                                                  .
-? 
-./edmVersion.tex:228: Undefined control sequence.
-<argument>  \argmax 
-                    _{c} P(Y = y \;|\; L = c) = \argmax _{c} \gamma _{c} \pr...
-l.228 \end{align}
-                 
-? 
-./edmVersion.tex:228: Undefined control sequence.
-<argument> ..._{c} P(Y = y \;|\; L = c) = \argmax 
-                                                  _{c} \gamma _{c} \prod _{j...
-l.228 \end{align}
-                 
-? 
-./edmVersion.tex:228: Undefined control sequence.
-<argument>  \argmax 
-                    _{c} P(Y = y \;|\; L = c) = \argmax _{c} \gamma _{c} \pr...
-l.228 \end{align}
-                 
-? 
-./edmVersion.tex:228: Undefined control sequence.
-<argument> ..._{c} P(Y = y \;|\; L = c) = \argmax 
-                                                  _{c} \gamma _{c} \prod _{j...
-l.228 \end{align}
-                 
-? 
-[3 <./hintsByCondition.png>] <lca-stats-plot.png, id=30, 1003.75pt x 602.25pt>
+<lca-stats-plot.png, id=25, 1003.75pt x 602.25pt>
 File: lca-stats-plot.png Graphic file (type png)
-
-<use lca-stats-plot.png>
-Package pdftex.def Info: lca-stats-plot.png used on input line 237.
+ <use lca-stats-plot.png>
+Package pdftex.def Info: lca-stats-plot.png used on input line 244.
 (pdftex.def)             Requested size: 250.93689pt x 150.56212pt.
 
-Overfull \hbox (10.93689pt too wide) in paragraph at lines 237--238
+Overfull \hbox (10.93689pt too wide) in paragraph at lines 244--245
 [][] 
  []
 
-<lca-class-viz.png, id=31, 1003.75pt x 702.625pt>
+<lca-class-viz.png, id=26, 1003.75pt x 702.625pt>
 File: lca-class-viz.png Graphic file (type png)
  <use lca-class-viz.png>
-Package pdftex.def Info: lca-class-viz.png used on input line 251.
+Package pdftex.def Info: lca-class-viz.png used on input line 258.
 (pdftex.def)             Requested size: 401.49289pt x 281.04501pt.
 
-Overfull \hbox (2.13393pt too wide) in paragraph at lines 362--362
+[4 <./lca-stats-plot.png>] [5 <./lca-class-viz.png>]
+Overfull \hbox (2.13393pt too wide) in paragraph at lines 369--369
 []\secfnt Condition, Out-come and Clus-ter Mem-ber-
  []
 
-[4 <./lca-stats-plot.png>] [5 <./lca-class-viz.png>] [6
+[6] [7] (./edmVersion.bbl) [8
 
 ] (./edmVersion.aux)
 
@@ -392,13 +365,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 2823 strings out of 493488
- 36074 string characters out of 3141326
- 112341 words of memory out of 3000000
- 6054 multiletter control sequences out of 15000+200000
+ 2911 strings out of 493488
+ 37161 string characters out of 3141326
+ 108490 words of memory out of 3000000
+ 6135 multiletter control sequences out of 15000+200000
  51447 words of font info for 70 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 41i,10n,26p,1187b,270s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,10n,26p,1266b,270s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/tex
 live/2012/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/
@@ -414,10 +387,10 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2012/texmf
 ist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2012/texmf-dist/fon
 ts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type
 1/urw/times/utmb8a.pfb>
-Output written on edmVersion.pdf (6 pages, 349910 bytes).
+Output written on edmVersion.pdf (8 pages, 361370 bytes).
 PDF statistics:
- 88 PDF objects out of 1000 (max. 8388607)
- 58 compressed objects within 1 object stream
+ 96 PDF objects out of 1000 (max. 8388607)
+ 64 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
