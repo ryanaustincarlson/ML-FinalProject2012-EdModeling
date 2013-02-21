@@ -50,5 +50,18 @@ for (name in sort(names(classInferences)))
   }
 }
 
-plot(inferencePercents)
-plot(fits)
+# This is the x-axis
+# We're putting this in manually because otherwise it'd be a huge pain...
+percentOfDataAtEachIteration <- c(
+  0.133844902, 0.230393555, 0.300767816,
+  0.402061115, 0.509288697, 0.601261992,
+  0.682034585, 0.779065588, 0.862073683,
+  0.923601014, 0.979815548, 0.99977042,
+  1)
+
+plot(percentOfDataAtEachIteration, 
+     inferencePercents, 
+     xlab="Percentage of Data Examined", 
+     ylab="Stability of Inferred Class", 
+     main="Class Stability Over Time")
+#plot(fits)
