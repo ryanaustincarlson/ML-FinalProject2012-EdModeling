@@ -99,12 +99,12 @@ Konstantin Genin\\
        \affaddr{Carnegie-Mellon University}\\
        \affaddr{Pittsburgh, PA 15213}\\
        \email{kgenin@andrew.cmu.edu}
-\alignauthor
-Helga Caballero\\
-       \affaddr{School of Public and International Affairs}\\
-       \affaddr{University of Pittsburgh}\\
-       \affaddr{Pittsburgh, PA 15260}\\
-       \email{hec33@pitt.edu}
+%\alignauthor
+%Helga Caballero\\
+%      \affaddr{School of Public and International Affairs}\\
+%       \affaddr{University of Pittsburgh}\\
+%      \affaddr{Pittsburgh, PA 15260}\\
+%       \email{hec33@pitt.edu}
 \and  % use '\and' if you need 'another row' of author names
 % 4th. author
 \alignauthor Martina Rau\\
@@ -157,13 +157,15 @@ Four natural classes emerge from our analysis. We find that while graphical repr
 
 \section{Introduction}
 
-Multiple Graphical Representations (MGRs) are used extensively in middle-school fraction instruction.  Fractions can be alternately presented as pie and rectangle graphs, number lines, or discrete sets of objects. The educational psychology literature suggests that multiple-representations support learning in a variety of ways, though the experimental results are not univocal \cite{Ainsworth1999}. Because of the significant log data that intelligent tutoring systems (ITSs) generate from user interactions, these systems are well-suited for conducting experiments on the effect of multiple representations on learning outcomes. The influx of data also suggests that machine learning methods can successfully discern the effectiveness of MGRs and the factors mediating their success.
+Multiple Graphical Representations (MGRs) are used extensively in middle-school fraction instruction.  Fractions can be alternately presented as pie and rectangle graphs, number lines, or discrete sets of objects. The educational psychology literature suggests that multiple-representations support learning in a variety of ways, though the experimental results are not univocal \cite{Ainsworth1999}. Because user interaction with intelligent tutoring systems (ITSs) generates such a significant amount of data, these systems are well-suited for conducting experiments on the effect of multiple representations on learning outcomes. The proliferation of data also suggests that machine learning methods are relevant to the investigation of MGR effectiveness and the factors mediating their success.
 
 Prior work conducted on middle-school students working with ITSs found that multiple representations, in conjunction with self-explanation prompts, contribute to improved learning outcomes \cite{Rau2009}. Subsequent studies examining error-rate, hint-use and time-spent in ITS logs failed to identify variables that mediate the effectiveness of multiple representations \cite{Rau2012}. The mechanisms by which multiple representations improve learning outcomes remain poorly understood.
 
-We conjecture that previous efforts to identify mediating factors were frustrated by heterogeneity in the problem-solving habits and behaviors of the student population under investigation. Using latent class analysis, a mixture modeling technique, we cluster students by their patterns of interaction with the tutor and examine how multiple representations affect post-test outcomes in the resulting sub-populations. Confirming previous results, we find that experimental condition correlates with post-test outcome. Furthermore, we establish independence between cluster membership and experimental condition (i.e., students are randomly distributed into clusters across conditions). Most interestingly, we discover that if we condition on cluster membership, all but one sub-population of students shows conditional independence between experimental condition and outcome. That is, we have identified the group of students where multiple representations correlates with post-test scores.
+We conjecture that previous efforts to identify mediating factors were frustrated by heterogeneity in the problem-solving habits and behaviors of the student population under investigation. Using latent class analysis, a mixture modeling technique, we cluster students by their patterns of interaction with the tutor. Four natural classes emerge from our analysis. Two of the classes are characterized by a low propensity to seek help from the tutor. In one of these the students are simply confident: they make few errors, solicit little help and don't seem to need any. In the other they are stubborn: they make a relatively large number of mistakes but make little use of the support mechanisms the tutor provides. A third class is highly interactive: they make many mistakes and seek assistance readily. Students in the fourth class occupy a middle ground between the interactive and the stubborn: they make an average number of mistakes and will eventually seek help when they are having trouble.
 
-The rest of this paper is structured as follows. Section \ref{sec:experiment} describes the initial experiment and elaborates on the different graphical representation conditions. We then provide some background in Section \ref{sec:related-work}. We describe our feature extraction process and the mixture model we chose in Section \ref{sec:method}. Section \ref{sec:results} covers the results of the model and additional experiments we ran using the clusters created by the model, and we offer concluding remarks and future directions in Section \ref{sec:conclusion}.
+We proceed to explore how multiple representations affect post-test outcomes. Confirming previous results, we find that experimental condition correlates positively with post-test outcome at the population level. We then explore the effect of multiple representations int the sub-populations. We first establish independence between cluster membership and experimental condition. This suggests that we are detecting pre-existing learning profiles, rather than artifacts of the experimental setup. Most interestingly, we discover that conditioning on cluster membership induces independence between experimental condition and outcome for all but the "stubborn" students. It is for these students that multiple representations remain strongly correlated with positive learning outcomes. We conjecture that these students lack the meta-cognitive skills to judge when their learning strategy is failing. These students are the most sensitive to pedagogical decisions since they are the least equipped to structure and manage their own learning. 
+
+Section \ref{sec:experiment} of what follows describes the initial experiment and elaborates on the differences between the representational conditions. Section \ref{sec:related-work} provides some background on relevant literature and references to related methodologies. We describe our feature extraction process and modeling decisions in Section \ref{sec:method}. Section \ref{sec:results} summarizes the results of the model estimation and statistical analysis of the effects of multiple representations at the population and sub-population levels. We make concluding remarks and suggest profitable future directions in Section \ref{sec:conclusion}.
 
 \section{Experiment}
 \label{sec:experiment}
