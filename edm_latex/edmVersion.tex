@@ -231,7 +231,7 @@ Note that students who received only one representation start out requesting the
 
 Latent Class Analysis (LCA) is a modeling technique that determines subtypes based on multinomial distributions. We use LCA to categorize students into \emph{latent classes} using discretized versions of the features described above. Table \ref{tab:sumstats} shows summary statistics and cut-off points for the extracted features. The model maps a set of observed categorical variables onto a set of inferred latent variables. 
 
-We note that the categorical nature of the model has the potential to add some noise, since we must select numeric cutoffs to transform our variables into nominals. However, categorical models can offer greater interpretability by allowing us to organize our data into a small set of variables, which forms the basis for categorizing students into a small set of meaningful homogenous groups. Furthermore, it is not unreasonable to suspect that our variables are in some sense ``truly'' categorical. 
+We note that the categorical nature of the model has the potential to add some noise, since we must select numeric cutoffs to transform our variables into nominals. However, categorical models can offer greater interpretability by allowing us to organize our data into a small set of variables, which forms the basis for categorizing students into a small set of meaningful homogenous groups. Furthermore, it is not unreasonable to suspect that our variables are in some sense ``truly'' categorical \cite[pp8--9]{Collins2009}. 
 
 The formal representation of LCA begins with $j = 1 \ldots J$ observed variables, where each such variable $j$ has a set of response variables $r_{j} = 1,\ldots,R_{j}$. Each student has a distinct response pattern $y = (r_{1},\ldots,r_{j})$.
 
@@ -243,7 +243,7 @@ Now that we have defined key variables, we can define the probability of observi
 P(Y = y) = \sum_{c=1}^{C} \gamma_{c} \prod_{j=1}^{J} \prod_{r_{j}=1}^{R_{j}} \rho_{j,r_{j}|c}^{I(y_{j} = r_{j})}
 \label{eqn:LCA-final}
 \end{align}
-where the indicator function $I(y_{j} = r_{j})$ equals 1 when the response variable $j = r_{j}$. The parameters $\gamma_{c}$ and $\rho_{j,r_{j}|c}$ are estimated by EM. Since EM is sensitive to starting probabilities, we pick the maximum likelihood over twenty-five runs. LCA is very similar to other EM-based algorithms. In fact, LCA is an application of multivariate mixture estimation using categorical variables with an additional local independence assumption, meaning that the observed variables are independent of each other conditional on the latent variable. This is a simplifying assumption similar to the one made in Naive Bayes; without it Equation \ref{eqn:LCA-final} would have to be much more complicated. There is some work on relaxing this independence assumption \cite{Hagenaars1988}. To run latent class analysis, we used \texttt{poLCA}, a freely available R package\footnote{\url{http://userwww.service.emory.edu/~dlinzer/poLCA/}}.
+where the indicator function $I(y_{j} = r_{j})$ equals 1 when the response variable $j = r_{j}$. The parameters $\gamma_{c}$ and $\rho_{j,r_{j}|c}$ are estimated by EM. Since EM is sensitive to starting probabilities, we pick the maximum likelihood over twenty-five runs. LCA is very similar to other EM-based algorithms. In fact, LCA is an application of multivariate mixture estimation using categorical variables with an additional local independence assumption, meaning that the observed variables are independent of each other conditional on the latent variable. This is a simplifying assumption similar to the one made in Naive Bayes; without it Equation \ref{eqn:LCA-final} would have to be much more complicated. There is some work on relaxing this independence assumption \cite{Hagenaars1988,Garrett2004}. To run latent class analysis, we used \texttt{poLCA}, a freely available R package\footnote{\url{http://userwww.service.emory.edu/~dlinzer/poLCA/}}.
 
 
 Note that unlike some common clustering algorithms (e.g., k-means), LCA produces ``fuzzy'' clusters--probability distributions over features for each class. To cluster students we  identify their most likely class:
@@ -257,7 +257,7 @@ We still need to fix $C$, the number of latent classes. We use two complexity-pe
 \section{Results}
 \label{sec:results}
 
-Figure \ref{fig:lca-test-statistics} shows the parameter selection process described in section 4.2. Note that we chose to model four latent classes because BIC bottoms out and AIC levels off at that point.
+Figure \ref{fig:lca-test-statistics} shows the parameter selection process described in Section \ref{sec:LCA}. Note that we chose to model four latent classes because BIC bottoms out and AIC levels off at that point.
 
 \begin{figure}[htbp]
 %\centering
