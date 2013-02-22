@@ -258,7 +258,7 @@ Figure \ref{fig:lca-test-statistics} shows the parameter selection process descr
 
 \begin{figure}[htbp]
 %\centering
-\includegraphics[scale=0.25]{lca-stats-plot.png}
+\includegraphics[scale=0.4]{lca-stats-plot.png}
 \caption{AIC and BIC over increasing number of latent classes. BIC bottoms out and AIC levels off at four classes, so we conclude that four latent classes best fits the data.}
 \label{fig:lca-test-statistics}
 \end{figure}
@@ -284,9 +284,30 @@ We construct a measure of student improvement using the actual gain from pre- to
 \textsc{Adjusted Post-Test} = \scalebox{1.2}{$\frac{\text{\textsc{PostTest}} - \text{\textsc{PreTest}}}{1-\text{\textsc{PreTest}}}$}
 \end{center}
 
-We then construct terciles of the Adjusted Delayed Post-Test Score and run a Chi-squared test for independence of outcome from experimental condition. Confirming previous results, we reject independence at a $p$-value of .024 (See Table 3). As expected, students in the multiple representation conditions were more likely to be in the second or third tercile of adjusted delayed post-test score, whereas students in the single representation condition were more likely to be in the first.
+We then construct terciles of the Adjusted Delayed Post-Test Score and run a Chi-squared test for independence of outcome from experimental condition. Confirming previous results, we reject independence at a $p$-value of .024 (see Table \ref{tab:exp-and-score}). As expected, students in the multiple representation conditions were more likely to be in the second or third tercile of adjusted delayed post-test score, whereas students in the single representation condition were more likely to be in the first.
+
+\begin{table}[hbtp]
+
+\centering
+\begin{tabular}{|l || c | c | c |}
+\hline
+&33\%&66\%&99\%\\ \hline \hline
+  \textbf{blocked}  &   14& 29& 20 \\ \hline
+  \textbf{increased}&   22& 20& 20 \\ \hline
+\textbf{interleaved}& 13& 21& 18 \\ \hline
+  \textbf{moderate} &   18& 13& 22 \\ \hline
+    \textbf{single} &      30& 13& 17 \\ \hline
+ \end{tabular}
+  \begin{center} $\mathcal{X}^2$ = 17.65, df = 8, p-value = {\bf 0.024} \end{center}
+ \caption{Experimental Condition by Tercile of Adjusted Delayed Post-Test Score.}
+\label{tab:exp-and-score}
+\end{table}
+
+
 \subsection{Cluster Membership and Outcome}
-We would expect that a student's problem-solving habits would be highly predictive of ultimate educational outcome. To test this intuition, we calculate a Chi-squared statistic for independence of latent class membership from outcome on the delayed post-test. We reject independence at a $p$-value of .0075 (See Table 2). The problem-solving behaviors encoded by latent class membership seem highly relevant to knowledge consolidation in the long run. Students in the moderate class (\emph{LC 1}) are found mostly in the second and third tercile. These students are implementing a fairly subtle learning strategy that seems largely effective. Their moderation in hint-seeking indicates a level of self-reflectiveness that we would expect from students with highly developed meta-cognitive skills. Students in the interactive class (\emph{LC 2}) are characterized in the log data by a high number of errors, so we are not surprised to find them represented mostly in the first and second tercile. These students are the most likely to exhaust all the hints available in a given problem. If one were looking for students engaging in ``gaming'' behavior this would be the class to search. As one would expect, the confident  students (\emph{LC 3}) are likely to end up in the third tercile. The stubborn students (\emph{LC 4}) are clustered at the extremes: they are more likely to end up in the first or third tercile than the second. \begin{table}[hbtp]
+We would expect that a student's problem-solving habits would be highly predictive of ultimate educational outcome. To test this intuition, we calculate a Chi-squared statistic for independence of latent class membership from outcome on the delayed post-test. We reject independence at a $p$-value of .0075 (see Table \ref{tab:lc-by-score}). The problem-solving behaviors encoded by latent class membership seem highly relevant to knowledge consolidation in the long run. Students in the moderate class (\emph{LC 1}) are found mostly in the second and third tercile. These students are implementing a fairly subtle learning strategy that seems largely effective. Their moderation in hint-seeking indicates a level of self-reflectiveness that we would expect from students with highly developed meta-cognitive skills. Students in the interactive class (\emph{LC 2}) are characterized in the log data by a high number of errors, so we are not surprised to find them represented mostly in the first and second tercile. These students are the most likely to exhaust all the hints available in a given problem. If one were looking for students engaging in ``gaming'' behavior this would be the class to search. As one would expect, the confident  students (\emph{LC 3}) are likely to end up in the third tercile. The stubborn students (\emph{LC 4}) are clustered at the extremes: they are more likely to end up in the first or third tercile than the second. 
+
+\begin{table}[hbtp]
 
 \caption{Latent Class by Tercile of Adjusted Delayed Post-Test Score}
 \begin{center}
@@ -300,32 +321,17 @@ We would expect that a student's problem-solving habits would be highly predicti
  \end{tabular}
 \\$\mathcal{X}^2$ = 17.52, df = 6, p-value = {\bf 0.0075}
 \end{center}
-\label{default}
+\label{tab:lc-by-score}
 \end{table}
 
 \subsection{Condition and Cluster Membership}
 
-We may worry that experimental condition is inducing latent class membership. If this were the case, we would suspect that we were picking up on artifacts of the experimental design rather than pre-existing student profiles. Using the Chi-squared test, we fail to reject independence at a $p$-value of $.38$ (See Table 3). These results suggest that our method is detecting genuine student profiles, independent of experimental condition. 
+We may worry that experimental condition is inducing latent class membership. If this were the case, we would suspect that we were picking up on artifacts of the experimental design rather than pre-existing student profiles. Using the Chi-squared test, we fail to reject independence at a $p$-value of $.38$ (see Table \ref{tab:exp-and-lc}). These results suggest that our method is detecting genuine student profiles, independent of experimental condition. 
 
-\begin{table*}[hbtp]
-\caption{Condition by Tercile of Adjusted Delayed Post-Test Score (left) and Latent Class (right).}
- \begin{center}
-\begin{tabular}{|l || c | c | c |}
-\hline
-&33\%&66\%&99\%\\ \hline \hline
-  \textbf{blocked}  &   14& 29& 20 \\ \hline
-  \textbf{increased}&   22& 20& 20 \\ \hline
-\textbf{interleaved}& 13& 21& 18 \\ \hline
-  \textbf{moderate} &   18& 13& 22 \\ \hline
-    \textbf{single} &      30& 13& 17 \\ \hline
- \end{tabular}
-%\end{center}
-\label{default}
-%\end{table}
-\quad
-%\begin{table}[hbtp]
-%\caption{Experimental Condition and Latent Class}
-% \begin{center}
+
+\begin{table}[hbtp]
+\centering
+
 \begin{tabular}{|l || c | c | c | c |}
 \hline
 &\emph{LC 1}&\emph{LC 2}&\emph{LC 3}&\emph{LC 4}\\ \hline \hline
@@ -335,12 +341,18 @@ We may worry that experimental condition is inducing latent class membership. If
 \textbf{moderate}&    18& 10& 12& 13\\ \hline
 \textbf{single}&      15& 14& 11& 20\\ \hline
  \end{tabular}
- \end{center}
-\hspace{60pt}$\mathcal{X}^2$ = 17.65, df = 8, p-value = {\bf 0.024} \hspace{30pt}$\mathcal{X}^2$ = 12.85, df = 12, p-value = 0.38
-\label{default}
-\end{table*}
+ 
+ \begin{center} $\mathcal{X}^2$ = 12.85, df = 12, p-value = 0.38 \end{center}
+\caption{Experimental Condition by Latent Class}
+\label{tab:exp-and-lc}
+\end{table}
+
+
+
+
+
+
 \begin{table*}[htbp]
-\caption{Condition and Tercile of Adjusted Delayed Post-Test Score, by Latent Class  }
  \begin{center}
 \begin{tabular}{|l || c | c | c |}
 \hline
@@ -383,19 +395,24 @@ We may worry that experimental condition is inducing latent class membership. If
  \end{tabular}
 \\$\mathcal{X}^2$ = 7.41, df = 8, p-value = 0.49\hspace{15pt}$\mathcal{X}^2$ = 17.4837, df = 8, p-value = {\bf 0.025}
 \end{center}
+\caption{Condition and Tercile of Adjusted Delayed Post-Test Score, by Latent Class}
+\label{tab:exp-and-score-by-lc}
 \end{table*}
 \subsection{Condition, Outcome and Cluster}
-Finally, we ask whether we still detect a dependence of post-test outcome on representational condition within the sub-populations we have identified. Interestingly, we find that latent class membership screens off condition from outcome for all students but the ``stubborn'' (See Table 4). Students in the other three classes are not significantly affected by their representation condition. The learning strategies that these students implement seem to make them resilient to representational choice. Recall that students in the remaining class rarely requested hints, even when they encountered difficulty. The students seem to lack the meta-cognitive skills to judge when their learning strategies are failing. They are the most sensitive to pedagogical decisions because they are the least equipped to structure and manage their own learning. 
+Finally, we ask whether we still detect a dependence of post-test outcome on representational condition within the sub-populations we have identified. Interestingly, we find that latent class membership screens off condition from outcome for all students but the ``stubborn'' (see Table \ref{tab:exp-and-score-by-lc}). Students in the other three classes are not significantly affected by their representation condition. The learning strategies that these students implement seem to make them resilient to representational choice. Recall that students in the remaining class rarely requested hints, even when they encountered difficulty. The students seem to lack the meta-cognitive skills to judge when their learning strategies are failing. They are the most sensitive to pedagogical decisions because they are the least equipped to structure and manage their own learning. 
 
 \subsection{Class Stability}
 
 \begin{figure}
 \includegraphics[scale=.6]{class-stability.png}
-\caption{TODO}
+\caption{We measure the number of students who were classified into the correct latent class as the amount of data available to LCA is increased. We see that at about 60\% of the data we can correctly classify about 75\% of the students.}
 \label{fig:class-stability}
 \end{figure}
 
-We asserted in Section \ref{sec:introduction} that our methodology can be used on the fly in an intelligent tutoring system. One important factor in the usability of the behavior-based clustering described in this paper is how stable the clusters are, and when they become sufficiently stable. To measure this, we first run LCA on the entire corpus. Then, we artificially reduce the number of problems seen by the clustering algorithm, compute the proportion of students who are in their ``final'' class, and then iteratively increase the amount of data the algorithm has access to. That is, we simulate how well our algorithm predicts student subpopulations as the students are working through the tutor. Figure \ref{fig:class-stability} shows the results, with the percentage of data available to the algorithm plotted against the proportion of students assigned to their correct class.
+We asserted in Section \ref{sec:introduction} that our methodology can be used on the fly in an intelligent tutoring system. One important factor in the usability of the behavior-based clustering described in this paper is how stable the clusters are, and when they become sufficiently stable. To measure this, we first run LCA on the entire corpus and assign each student to their most likely class. Then, we artificially reduce the number of problems seen by the clustering algorithm, compute the proportion of students who are in their ``final'' class, and then iteratively increase the amount of data the algorithm has access to. That is, we simulate how well our algorithm predicts student subpopulations as the students are working through the tutor. 
+
+% TODO FIXME wrt num problems
+Figure \ref{fig:class-stability} shows the percentage of data available to the algorithm plotted against the proportion of students assigned to their correct class. At each iteration, we add about 10 problems from each student and re-evaluate. Importantly, we note that we can correctly classify three-quarters of the students after reviewing 63\% of the data. Thus, after about 60 problems, a dynamic intelligent tutoring system could intervene on students who fit the ``stubborn'' profile and ensure that they are given multiple graphical representations, which we've showed impacts student outcomes.
 
 \section{Conclusion \& Future Work}
 \label{sec:conclusion}
