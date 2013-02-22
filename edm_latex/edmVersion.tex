@@ -157,6 +157,7 @@ Four natural classes emerge from our analysis. We find that while graphical repr
 %\keywords{ACM proceedings, \LaTeX, text tagging} % NOT required for Proceedings
 
 \section{Introduction}
+\label{sec:introduction}
 
 Multiple Graphical Representations (MGRs) are used extensively in middle-school fraction instruction.  Fractions can be alternately presented as pie and rectangle graphs, number lines, or discrete sets of objects. The educational psychology literature suggests that multiple-representations support learning in a variety of ways, though the experimental results are not univocal \cite{Ainsworth1999}. In particular, the mechanisms through which multiple representations influence student achievement are not well understood \cite{Ainsworth2006}. MGRs are generally implemented to achieve transfer because students who can translate between representations are creating deep knowledge structures that can impact learning outcomes. 
 
@@ -168,7 +169,7 @@ We conjecture that previous efforts to identify mediating factors were frustrate
 
 Four natural classes emerge from our analysis. Two of the classes are characterized by a low propensity to seek help from the tutor. In one of these the students are simply confident: they make few errors, solicit little help and don't seem to need any. In the other they are stubborn: they make a relatively large number of mistakes but make little use of the support mechanisms the tutor provides. A third class is highly interactive: they make many mistakes and seek assistance readily. Students in the fourth class occupy a middle ground between the interactive and the stubborn: they make an average number of mistakes and will eventually seek help when they are having trouble.
 
-We proceed to explore how multiple representations affect post-test outcomes. Confirming previous results, we find that experimental condition correlates positively with post-test outcome at the population level. We then explore the effect of multiple representations int the sub-populations. We first establish independence between cluster membership and experimental condition. This suggests that we are detecting pre-existing learning profiles, rather than artifacts of the experimental setup. Most interestingly, we discover that conditioning on cluster membership induces independence between experimental condition and outcome for all but the "stubborn" students. It is for these students that multiple representations remain strongly correlated with positive learning outcomes. We conjecture that these students lack the meta-cognitive skills to judge when their learning strategies are failing. These students are the most sensitive to pedagogical decisions because they are the least equipped to structure and manage their own learning. 
+We proceed to explore how multiple representations affect post-test outcomes. Confirming previous results, we find that experimental condition correlates positively with post-test outcome at the population level. We then explore the effect of multiple representations int the sub-populations. We first establish independence between cluster membership and experimental condition. This suggests that we are detecting pre-existing learning profiles, rather than artifacts of the experimental setup. Most interestingly, we discover that conditioning on cluster membership induces independence between experimental condition and outcome for all but the ``stubborn'' students. It is for these students that multiple representations remain strongly correlated with positive learning outcomes. We conjecture that these students lack the meta-cognitive skills to judge when their learning strategies are failing. These students are the most sensitive to pedagogical decisions because they are the least equipped to structure and manage their own learning. 
 
 Section \ref{sec:experiment} of what follows describes the initial experiment and elaborates on the differences between the representational conditions. We describe our feature extraction process and modeling decisions in Section \ref{sec:method}. Section \ref{sec:results} summarizes the results of the model estimation and statistical analysis of the effects of multiple representations at the population and sub-population levels. We make concluding remarks and suggest profitable future directions in Section \ref{sec:conclusion}.
 
@@ -198,7 +199,7 @@ Our analysis proceeds in three stages. Extracting features characterizing error 
 Once we have clustered our students, we investigate the interaction between the latent classes and their experimental conditions. We construct a contingency table binning the experimental conditions into the clusters estimated by the latent class model. We then run a Chi-squared test for independence between experimental condition and latent class. Chi-squared tests are also run to investigate dependence between latent class and post-test outcome and the conditional dependence of outcome and experimental condition, given latent class membership.
 
 \subsection{Extracting Features}
-The Cognitive Tutor captures a detailed log of each student's interactions with the tutor. It stores a time series of correct and incorrect answers, hint requests, interface selections and durations between interactions. Previous analysis (Scheines, Rau, 2012) extracted the average number of errors made per step, the average number of hints requested per step, and the average time spent per step from the log data. Similarly, we include the average number of hints requested (\ftr{hints\_req}) and number of errors (\ftr{num\_errors}) made per \emph{problem} by each student. We also extract the average number of bottom-out hints (\ftr{NumBOH}) per student per problem -- this is the average number of times a student exhausts the available hints in a given problem. We also note that it is not always the average of these features that best characterizes a student. For example, examination of the distribution of hints requested per step across experimental condition, shows a telling picture. 
+The Cognitive Tutor captures a detailed log of each student's interactions with the tutor. It stores a time series of correct and incorrect answers, hint requests, interface selections and durations between interactions. Previous analysis (Scheines, Rau, 2012) extracted the average number of errors made per step, the average number of hints requested per step, and the average time spent per step from the log data. Similarly, we include the average number of hints requested (\ftr{HintsRequested}) and number of errors (\ftr{NumErrors}) made per \emph{problem} by each student. We also extract the average number of bottom-out hints (\ftr{NumBOH}) per student per problem -- this is the average number of times a student exhausts the available hints in a given problem. We also note that it is not always the average of these features that best characterizes a student. For example, examination of the distribution of hints requested per step across experimental condition, shows a telling picture. 
 \begin{figure*}[htbp]
 \centering
 \includegraphics[scale=.35]{hintsByCondition.png}\\
@@ -206,25 +207,22 @@ The Cognitive Tutor captures a detailed log of each student's interactions with 
 \label{fig:condition-graph}
 \end{figure*}
 
-Note that students who received only one representation start out requesting the fewest hints, but students in the moderate condition eventually need fewer. Such considerations motivated our interest in the temporal distribution of hint behavior at the student level. We fit geometric distributions to the number of steps taken before the first hint request (\ftr{firstHintGeom}) and to the number of errors before the first hint (\ftr{stubbornGeom}). The estimated parameter is used to characterize the student's hint-seeking propensity in general and hint-seeking propensity when faced with adversity. For example, students in the first quintile of \ftr{stubbornGeom} seek help soon after making a mistake, whereas students in the fifth quintile don't change their hint-seeking behavior even after making a large number of errors. Students in the first quintile of \ftr{firstHintGeom} are likely to request hints early in a problem, whereas students in the fifth quintile are unlikely to request hints at any point.
+Note that students who received only one representation start out requesting the fewest hints, but students in the moderate condition eventually need fewer. Such considerations motivated our interest in the temporal distribution of hint behavior at the student level. We fit geometric distributions to the number of steps taken before the first hint request (\ftr{FirstHintGeometric}) and to the number of errors before the first hint (\ftr{StubbornGeometric}). The estimated parameter is used to characterize the student's hint-seeking propensity in general and hint-seeking propensity when faced with adversity. For example, students in the first quintile of \ftr{StubbornGeometric} seek help soon after making a mistake, whereas students in the fifth quintile don't change their hint-seeking behavior even after making a large number of errors. Students in the first quintile of \ftr{FirstHintGeometric} are likely to request hints early in a problem, whereas students in the fifth quintile are unlikely to request hints at any point.
 \begin{table*}[htbp]
 \caption{Summary Statistics for Variables Used in Clustering}
 \begin{center}
 \begin{tabular}{| l || c | c || c | c | c || c | c | c | c | c |}
 \hline
 &mean& sd&median&min&max&20\%&40\%&60\%&	80\%&100\%\\ \hline \hline
-\textbf{hints\_req}&0.78&1.27&0.34&0&11.22&0.06&0.19&0.5&1.31&11.22\\ \hline
-\textbf{num\_errors}&2.21&1.27&1.92&0.34&8.39&1.15&1.7&2.18&3.19&8.39\\ \hline 
-\textbf{firstHintGeom}&0.35&0.27&0.27&0.04&1&0.13&0.2&0.33&0.57&1\\ \hline
-\textbf{stubbornGeom}&0.36&0.21&0.31&0.07&1&0.19&0.27&0.38&0.47&1\\ \hline
-\textbf{NumBOH}&0.04&0.08&0&0&0.62&0&0&0.01&0.05&0.63\\ \hline
+\ftr{HintsRequested}&0.78&1.27&0.34&0&11.22&0.06&0.19&0.5&1.31&11.22\\ \hline
+\ftr{NumErrors}&2.21&1.27&1.92&0.34&8.39&1.15&1.7&2.18&3.19&8.39\\ \hline 
+\ftr{FirstHintGeometric}&0.35&0.27&0.27&0.04&1&0.13&0.2&0.33&0.57&1\\ \hline
+\ftr{Stubborn Geometric}&0.36&0.21&0.31&0.07&1&0.19&0.27&0.38&0.47&1\\ \hline
+\ftr{NumBOH}&0.04&0.08&0&0&0.62&0&0&0.01&0.05&0.63\\ \hline
  \end{tabular}
 \end{center}
 \label{tab:sumstats}
 \end{table*}
-
-
-
 
 \subsection{Latent Class Analysis}
 \label{sec:LCA}
@@ -269,7 +267,7 @@ Figure \ref{fig:lca-test-statistics} shows the parameter selection process descr
 
 After selecting the appropriate $C$ parameter, we extract membership probabilities for the individual students. Given a latent class, we know the probability distribution over each feature, and use Equation \ref{eqn:LCA-argmax} to identify the most likely class for each student.
 
-The feature distributions over each class are represented graphically in Figure \ref{fig:lca-class-viz}. Note that each feature is listed along the horizontal $x$-axis, the value each variable takes takes is along the front-to-back $y$-axis, and the probability that the feature takes that value is given along the vertical $z$-axis. For example, consider the \emph{hints\_req} feature (average hints requested per problem) in Class 2. In that class, with high probability, students requested many hints (i.e., the highest categorical value for hints) per problem on average. As another example, students in Class 1 are more likely to make a moderate number of errors, though other error levels also occur with nontrivial probabilities. Note that lower values of \emph{firstHintGeom} and \emph{stubbornGeom} indicate a steep geometric slope, corresponding to a higher hint-seeking propensity.
+The feature distributions over each class are represented graphically in Figure \ref{fig:lca-class-viz}. Note that each feature is listed along the horizontal $x$-axis, the value each variable takes takes is along the front-to-back $y$-axis, and the probability that the feature takes that value is given along the vertical $z$-axis. For example, consider the \ftr{HintsRequested} feature (average hints requested per problem) in Class 2. In that class, with high probability, students requested many hints (i.e., the highest categorical value for hints) per problem on average. As another example, students in Class 1 are more likely to make a moderate number of errors, though other error levels also occur with nontrivial probabilities. Note that lower values of \ftr{FirstHintGeometric} and \ftr{StubbornGeometric} indicate a steep geometric slope, corresponding to a higher hint-seeking propensity.
 
 How do we interpret latent class membership? Students in Class 1 are ``Moderate'', they ask for a moderate number of hints, make a moderate number of errors, and are moderately responsive to the interface. Students in Class 2 are ``Interactive'', they make a lot of errors, but respond by requesting many hints. These students are proactive in asking for help and are not shy about using the resources the cognitive tutor makes available. Students in Class 3 are ``Confident'', they don't ask for hints, but they don't seem to need them. Finally, the students in Class 4 are ``Stubborn'', they are fairly mixed in error-profile but they don't respond to mistakes with hint-requests. These students are not using all the resources that the cognitive tutor makes available.
 
@@ -282,15 +280,17 @@ How do we interpret latent class membership? Students in Class 1 are ``Moderate'
 
 
 \subsection{Condition and Outcome} 
-We construct a measure of student improvement and knowledge consolidation using the pre-test and the delayed post-test: 
+We construct a measure of student improvement using the actual gain from pre- to post-test score normalized by possible gain given the pre-test score. This normalization rewards students for making gains relative to their starting point and offers an intuitive scheme to compare gains across many students.
 \begin{center}
-Adjusted Delayed Post-Test Score = $\frac{\text{post\_test} - \text{pre\_test}}{1-\text{pre\_test}}$
+\textsc{Adjusted Post-Test} = \scalebox{1.2}{$\frac{\text{\textsc{PostTest}} - \text{\textsc{PreTest}}}{1-\text{\textsc{PreTest}}}$}
 \end{center}
+
 We then construct terciles of the Adjusted Delayed Post-Test Score and run a Chi-squared test for independence of outcome from experimental condition. Confirming previous results, we reject independence at a $p$-value of .024 (See Table 3). As expected, students in the multiple representation conditions were more likely to be in the second or third tercile of adjusted delayed post-test score, whereas students in the single representation condition were more likely to be in the first.
 \subsection{Cluster Membership and Outcome}
 We would expect that a student's problem-solving habits would be highly predictive of ultimate educational outcome. To test this intuition, we calculate a Chi-squared statistic for independence of latent class membership from outcome on the delayed post-test. We reject independence at a $p$-value of .0075 (See Table 2). The problem-solving behaviors encoded by latent class membership seem highly relevant to knowledge consolidation in the long run. Students in the moderate class (\emph{LC 1}) are found mostly in the second and third tercile. These students are implementing a fairly subtle learning strategy that seems largely effective. Their moderation in hint-seeking indicates a level of self-reflectiveness that we would expect from students with highly developed meta-cognitive skills. Students in the interactive class (\emph{LC 2}) are characterized in the log data by a high number of errors, so we are not surprised to find them represented mostly in the first and second tercile. These students are the most likely to exhaust all the hints available in a given problem. If one were looking for students engaging in ``gaming'' behavior this would be the class to search. As one would expect, the confident  students (\emph{LC 3}) are likely to end up in the third tercile. The stubborn students (\emph{LC 4}) are clustered at the extremes: they are more likely to end up in the first or third tercile than the second. \begin{table}[hbtp]
+
 \caption{Latent Class by Tercile of Adjusted Delayed Post-Test Score}
- \begin{center}
+\begin{center}
 \begin{tabular}{|l || c | c | c |}
 \hline
 &33\%&66\%&99\%\\ \hline \hline
@@ -396,7 +396,7 @@ Finally, we ask whether we still detect a dependence of post-test outcome on rep
 \label{fig:class-stability}
 \end{figure}
 
-See Figure \ref{fig:class-stability}
+We asserted in Section \ref{sec:introduction} that our methodology can be used on the fly in an intelligent tutoring system. One important factor in the usability of the behavior-based clustering described in this paper is how stable the clusters are, and when they become sufficiently stable. To measure this, we first run LCA on the entire corpus. Then, we artificially reduce the number of problems seen by the clustering algorithm, compute the proportion of students who are in their ``final'' class, and then iteratively increase the amount of data the algorithm has access to. That is, we simulate how well our algorithm predicts student subpopulations as the students are working through the tutor. Figure \ref{fig:class-stability} shows the results, with the percentage of data available to the algorithm plotted against the proportion of students assigned to their correct class.
 
 \section{Conclusion \& Future Work}
 \label{sec:conclusion}
