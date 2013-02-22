@@ -241,7 +241,6 @@ Now that we have defined key variables, we can define the probability of observi
 P(Y = y) = \sum_{c=1}^{C} \gamma_{c} \prod_{j=1}^{J} \prod_{r_{j}=1}^{R_{j}} \rho_{j,r_{j}|c}^{I(y_{j} = r_{j})}
 \label{eqn:LCA-final}
 \end{align}
-<<<<<<< HEAD
 where the indicator function $I(y_{j} = r_{j})$ equals 1 when the response variable $j = r_{j}$. The parameters $\gamma_{c}$ and $\rho_{j,r_{j}|c}$ are estimated by EM. Since EM is sensitive to starting probabilities, we pick the maximum likelihood over twenty-five runs. LCA is very similar to other EM-based algorithms. In fact, LCA is an application of multivariate mixture estimation using categorical variables with an additional local independence assumption, meaning that the observed variables are independent of each other conditional on the latent variable. This is a simplifying assumption similar to the one made in Naive Bayes classification models; without it Equation \ref{eqn:LCA-final} would have to be much more complicated. There is some work on relaxing this independence assumption \cite{Hagenaars1988,Garrett2004}. To run latent class analysis, we used \texttt{poLCA}, a freely available R package\footnote{\url{http://userwww.service.emory.edu/~dlinzer/poLCA/}}.
 
 Note that unlike some common clustering algorithms (e.g., k-means), LCA produces ``fuzzy'' clusters--probability distributions over features for each class. To cluster students we  identify their most likely class:
