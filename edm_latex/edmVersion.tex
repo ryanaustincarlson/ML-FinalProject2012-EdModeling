@@ -30,7 +30,7 @@
 
 %\usepackage{amsmath} % might need this later..
 %\usepackage{graphicx} % might need this later..
-\usepackage{url}
+\usepackage{url,paralist}
 
 \renewcommand{\arraystretch}{1.55}
 \DeclareMathOperator*{\argmax}{arg\,max}
@@ -256,6 +256,16 @@ We still need to fix $C$, the number of latent classes. We use two complexity-pe
 \section{Results}
 \label{sec:results}
 
+In the sections that follow we begin by analyzing the results of our latent class analysis. We describe the classes that were generated and characterize the students in each class. We then consider the relationships between our variables of interest: 
+\begin{inparaenum}[\itshape (a)]
+\item adjusted delayed post-test score,
+\item experimental condition (the graphical representation condition), and
+\item cluster membership.
+\end{inparaenum}
+Specifically, we run a series of Chi-squared tests for independence to determine how each variable interacts with the others, commenting on the importance of each comparison. Finally, we explore the stability of these classes and how that can inform future systems.
+
+\subsection{Exploring the Latent Classes}
+
 Figure \ref{fig:lca-test-statistics} shows the parameter selection process described in Section \ref{sec:LCA}. Note that we chose to model four latent classes because BIC bottoms out and AIC levels off at that point.
 
 \begin{figure}[htbp]
@@ -264,13 +274,12 @@ Figure \ref{fig:lca-test-statistics} shows the parameter selection process descr
 \caption{AIC and BIC over increasing number of latent classes. BIC bottoms out and AIC levels off at four classes, so we conclude that four latent classes best fits the data.}
 \label{fig:lca-test-statistics}
 \end{figure}
-\subsection{Exploring the Latent Classes}
 
 After selecting the appropriate $C$ parameter, we extract membership probabilities for the individual students. Given a latent class, we know the probability distribution over each feature, and use Equation \ref{eqn:LCA-argmax} to identify the most likely class for each student.
 
-The feature distributions over each class are represented graphically in Figure \ref{fig:lca-class-viz}. Note that each feature is listed along the horizontal $x$-axis, the value each variable takes is along the front-to-back $y$-axis, and the probability that the feature takes that value is given along the vertical $z$-axis. For example, consider the \ftr{HintsRequested} feature (average hints requested per problem) in Class 2. In that class, with high probability, students requested many hints (i.e., the highest categorical value for hints) per problem on average. As another example, students in Class 1 are more likely to make a moderate number of errors, though other error levels also occur with nontrivial probabilities. Note that lower values of \ftr{FirstHintGeometric} and \ftr{StubbornGeometric} indicate a steep geometric slope, corresponding to a higher hint-seeking propensity.
+The feature distributions over each class are represented graphically in Figure \ref{fig:lca-class-viz}. Note that each feature is listed along the horizontal $x$-axis, the value each variable takes is along the front-to-back $y$-axis, and the probability that the feature takes that value is given along the vertical $z$-axis. For example, consider the \ftr{HintsRequested} feature (average hints requested per problem) in Class 2. In that class, with high probability, students requested many hints (i.e., the highest categorical value for hints) per problem on average. As another example, students in Class 1 are more likely to make a moderate number of errors, though other error levels also occur with nontrivial probabilities. Note that lower values of \ftr{FirstHintGeometric} and \ftr{StubbornGeometric} indicate a steep geometric slope, corresponding to a higher hint-seeking propensity and stubbornness, respectively.
 
-How do we interpret latent class membership? Students in Class 1 are ``Moderate'', they ask for a moderate number of hints, make a moderate number of errors, and are moderately responsive to the interface. Students in Class 2 are ``Interactive'', they make a lot of errors, but respond by requesting many hints. These students are proactive in asking for help and are not shy about using the resources the cognitive tutor makes available. Students in Class 3 are ``Confident'', they don't ask for hints, but they don't seem to need them. Finally, the students in Class 4 are ``Stubborn'', they are fairly mixed in error-profile but they don't respond to mistakes with hint-requests. These students are not using all the resources that the cognitive tutor makes available.
+How do we interpret latent class membership? Students in Class 1 are ``Moderate'', they ask for a moderate number of hints, make a moderate number of errors, and are moderately responsive to the interface. Students in Class 2 are ``Interactive'', they make a lot of errors, but respond by requesting many hints. These students are proactive in asking for help and are not shy about using the resources the cognitive tutor makes available. Students in Class 3 are ``Confident'', they don't ask for hints, but they don't seem to need them (since they make few errors). Finally, we call students in Class 4 ``Stubborn'' because they are fairly mixed in error-profile but they don't respond to mistakes with hint-requests. These students are not using all the resources that the cognitive tutor makes available.
 
 \begin{figure*}[htbp]
 \centering
@@ -307,10 +316,10 @@ We then construct terciles of the Adjusted Delayed Post-Test Score and run a Chi
 
 
 \subsection{Cluster Membership and Outcome}
+
 We would expect that a student's problem-solving habits would be highly predictive of ultimate educational outcome. To test this intuition, we calculate a Chi-squared statistic for independence of latent class membership from outcome on the delayed post-test. We reject independence at a $p$-value of .0075 (see Table \ref{tab:lc-by-score}). The problem-solving behaviors encoded by latent class membership seem highly relevant to knowledge consolidation in the long run. Students in the moderate class (\emph{LC 1}) are found mostly in the second and third tercile. These students are implementing a fairly subtle learning strategy that seems largely effective. Their moderation in hint-seeking indicates a level of self-reflectiveness that we would expect from students with highly developed meta-cognitive skills. Students in the interactive class (\emph{LC 2}) are characterized in the log data by a high number of errors, so we are not surprised to find them represented mostly in the first and second tercile. These students are the most likely to exhaust all the hints available in a given problem. If one were looking for students engaging in ``gaming'' behavior this would be the class to search. As one would expect, the confident  students (\emph{LC 3}) are likely to end up in the third tercile. The stubborn students (\emph{LC 4}) are clustered at the extremes: they are more likely to end up in the first or third tercile than the second. 
 
 \begin{table}[hbtp]
-
 \caption{Latent Class by Tercile of Adjusted Delayed Post-Test Score}
 \begin{center}
 \begin{tabular}{|l || c | c | c |}
@@ -400,8 +409,15 @@ We may worry that experimental condition is inducing latent class membership. If
 \caption{Condition and Tercile of Adjusted Delayed Post-Test Score, by Latent Class}
 \label{tab:exp-and-score-by-lc}
 \end{table*}
+
+
 \subsection{Condition, Outcome and Cluster}
-Finally, we ask whether we still detect a dependence of post-test outcome on representational condition within the sub-populations we have identified. Interestingly, we find that latent class membership screens off condition from outcome for all students but the ``stubborn'' (see Table \ref{tab:exp-and-score-by-lc}). Students in the other three classes are not significantly affected by their representation condition. The learning strategies that these students implement seem to make them resilient to representational choice. Recall that students in the remaining class rarely requested hints, even when they encountered difficulty. The students seem to lack the meta-cognitive skills to judge when their learning strategies are failing. They are the most sensitive to pedagogical decisions because they are the least equipped to structure and manage their own learning. An adaptive learning environment ought to ensure that these students are targeted with multiple representations. An ITS can help ``scaffold'' effective learning behaviors by spontaneously offering hints to these students when they look like they may need them. Moreover, studying this sub-population seems to be a promising avenue for illuminating the mechanism by which multiple representations improve learning outcomes. 
+
+Finally, we ask whether we still detect a dependence of post-test outcome on representational condition within the sub-populations we have identified. Interestingly, we find that latent class membership screens off condition from outcome for all students but those in the ``stubborn'' group (see Table \ref{tab:exp-and-score-by-lc}).  Note that most students in \emph{LC 4} perform in the second and third tercile when given multiple graphical representations, but are overwhelmingly in the first tercile when given a single representation. 
+
+Students in the other three classes are not significantly affected by their representation condition. The learning strategies that these students implement seem to make them resilient to representational choice. Recall that students in the remaining class rarely requested hints, even when they encountered difficulty. We speculate that these students may lack the meta-cognitive skills to judge when their learning strategies are failing, and thus are not seeking help at appropriate times \cite{Aleven2006}. They are the most sensitive to pedagogical decisions because they are the least equipped to structure and manage their own learning. 
+
+An adaptive learning environment ought to ensure that these students are targeted with multiple representations. While not all students in \emph{LC 4} improve when given multiple representation, the vast majority of them do. An ITS can help scaffold effective learning behaviors by spontaneously offering hints to these students when they look like they may need them. Moreover, studying this sub-population seems to be a promising avenue for illuminating the mechanism by which multiple representations improve learning outcomes. 
 
 \subsection{Class Stability}
 
@@ -419,7 +435,9 @@ Figure \ref{fig:class-stability} shows the percentage of total data used to esti
 \section{Conclusion \& Future Work}
 \label{sec:conclusion}
 
-We estimated a latent class model to classify students into four groups based on their error-rates and hint-seeking behaviors. We detected dependence of experimental condition and post-test outcome only in the class of students characterized by high-error rate and low hint-seeking propensity. That is, students who did not take full advantage of the resources that the Mathtutor offered were the ones most strongly affected by experimental condition. These students may not have the meta-cognitive skills required to know when to seek hints \cite{Aleven2006}. Our methods could be used by intelligent tutoring systems designers to detect students with this profile in real time. Tutoring systems could then intervene to target these students with multiple representations and to scaffold their hint-seeking behaviors. Future research into  the mediating mechanisms of multiple representations could leverage our results to identify the relevant student sub-populations to investigate. 
+We estimated a latent class model to classify students into four groups based on their error-rates and hint-seeking behaviors. We detected dependence of experimental condition and post-test outcome only in the class of students characterized by high-error rate and low hint-seeking propensity. That is, students who did not take full advantage of the resources that the Mathtutor offered were the ones most strongly affected by experimental condition. These students may not have the meta-cognitive skills required to know when to seek hints. 
+
+Our methods could be used by ITS designers to detect students with this profile in real time. Tutoring systems could then intervene to target these students with multiple representations and to scaffold their hint-seeking behaviors. Future research into  the mediating mechanisms of multiple representations could leverage our results to identify the relevant student sub-populations to investigate. Our post-hoc is not designed to identify the cognitive processes involved in the student problem solving process, so interviews or a cognitive task analysis with students who fit the ``stubborn'' profile could reveal more details about their experience than we can detect and speculate about. Additional investigation into different features may help further characterize student behavior and could help us more accurately group students into relevant subpopulations. In particular, the ``stubborn'' students who did not benefit from multiple graphical representations deserve more attention.
 \bibliographystyle{abbrv}
 \bibliography{references}
 
