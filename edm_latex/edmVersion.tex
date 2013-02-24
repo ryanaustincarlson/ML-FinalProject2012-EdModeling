@@ -226,32 +226,34 @@ Note that students who received only one representation start out requesting the
 \label{tab:sumstats}
 \end{table*}
 
-\subsection{Latent Class Analysis}
-\label{sec:LCA}
+\subsection{Expectation-Maximization Clustering}
+\label{sec:EM-clust}
 
-Latent Class Analysis (LCA) is a modeling technique that determines subtypes based on multinomial distributions. We use LCA to categorize students into \emph{latent classes} using discretized versions of the features described above. Table \ref{tab:sumstats} shows summary statistics and cut-off points for the extracted features. The model maps a set of observed categorical variables onto a set of inferred latent variables. 
+Expectation-Maximization (EM) clustering is a modeling technique that determines subtypes based on multinomial distributions. We use the model to categorize students into subpopulations using discretized versions of the features described above. Table \ref{tab:sumstats} shows summary statistics and cut-off points for the extracted features. The model maps a set of observed categorical variables onto a set of inferred classes. 
 
 We note that the categorical nature of the model has the potential to add some noise, since we must select numeric cutoffs to transform our variables into nominals. However, categorical models can offer greater interpretability by allowing us to organize our data into a small set of variables, which forms the basis for categorizing students into a small set of meaningful homogenous groups. Furthermore, it is not unreasonable to suspect that our variables are in some sense ``truly'' categorical \cite[pp8--9]{Collins2009}. 
 
-The formal representation of LCA begins with $j = 1 \ldots J$ observed variables, where each such variable $j$ has a set of response variables $r_{j} = 1,\ldots,R_{j}$. Each student has a distinct response pattern $y = (r_{1},\ldots,r_{j})$.
+%The formal representation of LCA begins with $j = 1 \ldots J$ observed variables, where each such variable $j$ has a set of response variables $r_{j} = 1,\ldots,R_{j}$. Each student has a distinct response pattern $y = (r_{1},\ldots,r_{j})$.
 
-Now we need to consider the latent classes. Let $L$ be a latent variable with latent classes $c~=~1,\ldots,C$. Furthermore, let $\gamma_{c}$ be the probability of membership in class $c$. Note that latent classes are exhaustive and mutually exclusive, so each student is a member of exactly one latent class. We also need to define the item-response probability $\rho_{j,r_{j}|c}$, which is the probability of response $r_{j}$ to observed variable $j$, conditional on membership in latent class $c$. Each student provides exactly one response alternative to variable $j$. Given these constraints, note that
-\[ \sum_{c=1}^{C} \gamma_{c} = 1,\quad \sum_{r_{j}=1}^{R_{j}} \rho_{j,r_{j}|c} = 1. \] 
+%Now we need to consider the latent classes. Let $L$ be a latent variable with latent classes $c~=~1,\ldots,C$. Furthermore, let $\gamma_{c}$ be the probability of membership in class $c$. Note that latent classes are exhaustive and mutually exclusive, so each student is a member of exactly one latent class. We also need to define the item-response probability $\rho_{j,r_{j}|c}$, which is the probability of response $r_{j}$ to observed variable $j$, conditional on membership in latent class $c$. Each student provides exactly one response alternative to variable $j$. Given these constraints, note that
+%\[ \sum_{c=1}^{C} \gamma_{c} = 1,\quad \sum_{r_{j}=1}^{R_{j}} \rho_{j,r_{j}|c} = 1. \] 
 
-Now that we have defined key variables, we can define the probability of observing a particular response vector based on the $\gamma$'s and $\rho$'s:
+%Now that we have defined key variables, we can define the probability of observing a particular response vector based on the $\gamma$'s and $\rho$'s:
+%\begin{align}
+%P(Y = y) = \sum_{c=1}^{C} \gamma_{c} \prod_{j=1}^{J} \prod_{r_{j}=1}^{R_{j}} \rho_{j,r_{j}|c}^{I(y_{j} = r_{j})}
+%\label{eqn:LCA-final}
+%\end{align}
+%where the indicator function $I(y_{j} = r_{j})$ equals 1 when the response variable $j = r_{j}$. The parameters $\gamma_{c}$ and $\rho_{j,r_{j}|c}$ are estimated by EM. Since EM is sensitive to starting probabilities, we pick the maximum likelihood over twenty-five runs. LCA is very similar to other EM-based algorithms. In fact, LCA is an application of multivariate mixture estimation using categorical variables with an additional local independence assumption, meaning that the observed variables are independent of each other conditional on the latent variable. This is a simplifying assumption similar to the one made in Naive Bayes classification models; without it Equation \ref{eqn:LCA-final} would have to be much more complicated. There is some work on relaxing this independence assumption \cite{Hagenaars1988,Garrett2004}. For more details on the formalism and its applications, see \cite{Collins2009}. To run latent class analysis, we used \texttt{poLCA}, a freely available R package\footnote{\url{http://userwww.service.emory.edu/~dlinzer/poLCA/}}.
+
+Note that unlike some common clustering algorithms (e.g., k-means), EM produces ``fuzzy'' clusters (i.e., probability distributions over features for each class). We use these probability distributions in our qualitative discussion about the subpopulations (Section \ref{sec:exploring-classes}), however we ultimately need to identify each student's most likely class. For each student $s$ and latent class $c$ we calculate
 \begin{align}
-P(Y = y) = \sum_{c=1}^{C} \gamma_{c} \prod_{j=1}^{J} \prod_{r_{j}=1}^{R_{j}} \rho_{j,r_{j}|c}^{I(y_{j} = r_{j})}
-\label{eqn:LCA-final}
-\end{align}
-where the indicator function $I(y_{j} = r_{j})$ equals 1 when the response variable $j = r_{j}$. The parameters $\gamma_{c}$ and $\rho_{j,r_{j}|c}$ are estimated by EM. Since EM is sensitive to starting probabilities, we pick the maximum likelihood over twenty-five runs. LCA is very similar to other EM-based algorithms. In fact, LCA is an application of multivariate mixture estimation using categorical variables with an additional local independence assumption, meaning that the observed variables are independent of each other conditional on the latent variable. This is a simplifying assumption similar to the one made in Naive Bayes classification models; without it Equation \ref{eqn:LCA-final} would have to be much more complicated. There is some work on relaxing this independence assumption \cite{Hagenaars1988,Garrett2004}. For more details on the formalism and its applications, see \cite{Collins2009}. To run latent class analysis, we used \texttt{poLCA}, a freely available R package\footnote{\url{http://userwww.service.emory.edu/~dlinzer/poLCA/}}.
-
-Note that unlike some common clustering algorithms (e.g., k-means), LCA produces ``fuzzy'' clusters (i.e., probability distributions over features for each class). To cluster students we identify their most likely class:
-\begin{align}
-\argmax_{c} P(Y = y \;|\; L = c) = \argmax_{c} \gamma_{c} \prod_{j=1}^{J} \prod_{r_{j}=1}^{R_{j}} \rho_{j,r_{j}|c}^{I(y_{j} = r_{j})}
+\argmax_{c} P(S = s \;|\; L = c)
+%\argmax_{c} P(Y = y \;|\; L = c) = \argmax_{c} \gamma_{c} \prod_{j=1}^{J} \prod_{r_{j}=1}^{R_{j}} \rho_{j,r_{j}|c}^{I(y_{j} = r_{j})}
 \label{eqn:LCA-argmax}
 \end{align}
+where the probabilities are determined by the EM algorithm.
 
-We still need to fix $C$, the number of latent classes. We use two complexity-penalized log-likelihood scores to select an appropriate $C$: Akaike information criterion (AIC) and Bayesian information criterion (BIC). Plotting these statistics as we increment the number of latent classes, we look for a ``knee'' where both statistics either bottom-out or level off to identify the optimal value of $C$.
+Note that still need to fix $C$, the number of latent classes. We use two complexity-penalized log-likelihood scores to select an appropriate $C$: Akaike information criterion (AIC) and Bayesian information criterion (BIC). Plotting these statistics as we increment the number of latent classes, we look for a ``knee'' where both statistics either bottom-out or level off to identify the optimal value of $C$. To run analysis, we used \texttt{poLCA}, a freely available R package\footnote{\url{http://userwww.service.emory.edu/~dlinzer/poLCA/}}.
 
 \section{Results}
 \label{sec:results}
@@ -264,9 +266,10 @@ In the sections that follow we begin by analyzing the results of our latent clas
 \end{inparaenum}
 Specifically, we run a series of Chi-squared tests for independence to determine how each variable interacts with the others, commenting on the importance of each comparison. Finally, we explore the stability of these classes and how that can inform future systems.
 
-\subsection{Exploring the Latent Classes}
+\subsection{Exploring the Classes}
+\label{sec:exploring-classes}
 
-Figure \ref{fig:lca-test-statistics} shows the parameter selection process described in Section \ref{sec:LCA}. Note that we chose to model four latent classes because BIC bottoms out and AIC levels off at that point.
+Figure \ref{fig:lca-test-statistics} shows the parameter selection process described in Section \ref{sec:EM-clust}. Note that we chose to model four latent classes because BIC bottoms out and AIC levels off at that point.
 
 \begin{figure}[htbp]
 %\centering
@@ -423,11 +426,11 @@ An adaptive learning environment ought to ensure that these students are targete
 
 \begin{figure}
 \includegraphics[scale=.6]{class-stability.png}
-\caption{We measure the number of students who were classified into the correct latent class as the amount of data available to LCA is increased. We see that at about 60\% of the data we can correctly classify about 75\% of the students.}
+\caption{We measure the number of students who were classified into the correct latent class as the amount of data available to EM is increased. We see that at about 60\% of the data we can correctly classify about 75\% of the students.}
 \label{fig:class-stability}
 \end{figure}
 
-We claim that an intelligent tutoring system can implement our classification methodology on-the-fly. To substantiate the promise of the methodology we investigate how efficiently the algorithm stabilizes to the final classification. To measure this, we first run LCA on the entire corpus and assign each student to their most likely class. We then artificially subset the data by restricting the number of problems seen by the clustering algorithm, compute the proportion of students who are in their ``final'' class, and then iteratively increase the size of the subset. This simulates how well our algorithm identifies student profiles as they make their way through the material. 
+We claim that an intelligent tutoring system can implement our classification methodology on-the-fly. To substantiate the promise of the methodology we investigate how efficiently the algorithm stabilizes to the final classification. To measure this, we first cluster on the entire corpus and assign each student to their most likely class. We then artificially subset the data by restricting the number of problems seen by the clustering algorithm, compute the proportion of students who are in their ``final'' class, and then iteratively increase the size of the subset. This simulates how well our algorithm identifies student profiles as they make their way through the material. 
 
 % TODO FIXME wrt num problems
 Figure \ref{fig:class-stability} shows the percentage of total data used to estimate the model plotted against the proportion of students assigned to their final class. At each iteration, we look at an addition 10 problems from each student and re-estimate the cluster assignments. The regression estimates that 63\% of the data is sufficient to classify three quarters of the students into their ultimate cluster. Thus, after seeing about 60 problems -- about two days of classroom instruction -- a dynamic intelligent tutoring system could intervene on students who fit the ``stubborn'' profile by ensuring that they are presented with multiple graphical representations and offering them spontaneous hints. 
