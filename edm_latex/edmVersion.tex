@@ -30,7 +30,10 @@
 
 %\usepackage{amsmath} % might need this later..
 %\usepackage{graphicx} % might need this later..
-\usepackage{url,paralist}
+\usepackage{url,paralist,multirow}
+\usepackage{color, colortbl}
+\definecolor{Gray}{gray}{0.9}
+
 
 \renewcommand{\arraystretch}{1.55}
 \DeclareMathOperator*{\argmax}{arg\,max}
@@ -314,29 +317,49 @@ We then construct terciles of the Adjusted Delayed Post-Test Score and run a Chi
 \end{table}
 
 
-\subsection{Cluster Membership and Outcome}
+\subsection{Cluster Membership and Test Scores}
 
 We would expect that a student's problem-solving habits would be highly predictive of ultimate educational outcome. To test this intuition, we calculate a Chi-squared statistic for independence of latent class membership from outcome on the delayed post-test. We reject independence at a $p$-value of .0075 (see Table \ref{tab:lc-by-score}). The problem-solving behaviors encoded by latent class membership seem highly relevant to knowledge consolidation in the long run. Students in the moderate class (\emph{LC 1}) are found mostly in the second and third tercile. These students are implementing a fairly subtle learning strategy that seems largely effective. Their moderation in hint-seeking indicates a level of self-reflectiveness that we would expect from students with highly developed meta-cognitive skills. Students in the interactive class (\emph{LC 2}) are characterized in the log data by a high number of errors, so we are not surprised to find them represented mostly in the first and second tercile. These students are the most likely to exhaust all the hints available in a given problem. If one were looking for students engaging in ``gaming'' behavior this would be the class to search. As one would expect, the confident  students (\emph{LC 3}) are likely to end up in the third tercile. The stubborn students (\emph{LC 4}) are clustered at the extremes: they are more likely to end up in the first or third tercile than the second. 
 
 \begin{table}[hbtp]
-\caption{Latent Class by Tercile of Adjusted Delayed Post-Test Score}
-\begin{center}
-\begin{tabular}{|l || c | c | c |}
+\centering
+\begin{tabular}{|l || c | c | c | c | c | c |}
 \hline
-&33\%&66\%&99\%\\ \hline \hline
-  \emph{LC 1}  &   20& 35& 29 \\ \hline
-  \emph{LC 2}&   33& 26& 14 \\ \hline
-\emph{LC 3}& 13& 15& 22 \\ \hline
-  \emph{LC 4} & 31& 20& 32 \\ \hline
- \end{tabular}
-\\$\mathcal{X}^2$ = 17.52, df = 6, p-value = {\bf 0.0075}
-\end{center}
+& \multicolumn{3}{c|}{Learning Gain} & \multicolumn{3}{c|}{Pre-Test} \\ \cline{2-7}
+&33\%&66\%&99\%&33\%&66\%&99\%\\ \hline \hline
+  \emph{LC 1}  &   20& 35& 29 & 30 & 32 & 22 \\ \hline
+  \emph{LC 2}&   33& 26& 14 & 37 & 27 & 9\\ \hline
+\emph{LC 3}& 13& 15& 22 &5 & 14 & 31\\ \hline
+  \emph{LC 4} & 31& 20& 32 & 26 & 22 & 35 \\ \hline
+ \end{tabular} \\
+Learning Gain: $\mathcal{X}^2$ = 17.52, df = 6, p-value = {\bf 0.0075} \\
+Pre-Test: $\mathcal{X}^{2}$ = 42.3764, df = 6, p-value = {\bf <0.001}
+\caption{Latent Class by Tercile of Adjusted Delayed Post-Test Score}
 \label{tab:lc-by-score}
 \end{table}
 
+Despite implicitly accounting for the pre-test scores in our learning gain outcome metric, we are also interested in the relationship between class membership and pre-test scores. As expected we reject independence between class membership and pre-test score, reinforcing the conclusion that the features we chose and the clusters that emerged are meaningful characterizations for our students. 
+
+Foreshadowing the results that follow, we also note that the average pre-test score for the ``stubborn'' students (LC 4) does not differ significantly from the rest of the population\footnote{Student's T-test: t = 0.9978, df = 139.602, p-value = 0.3201}. However, every pairwise t-test between clusters shows a significant difference in mean pre-test score except the pairing of stubborn (LC 4) and moderate (LC 1) students. This indicates...
+
+%\begin{table}[hbtp]
+%\centering
+%\begin{tabular}{|c|c|c|c|}
+%\hline
+%		 & Stubborn & Clever & Medium \\ \hline
+%Clever   & $<.005$ &\cellcolor{Gray} & \cellcolor{Gray} \\ \hline
+%Medium   & .342 & $<.005$ & \cellcolor{Gray} \\ \hline
+%Interactive & $<.005$ & $<.005$ & $<.005$ \\ \hline
+%\end{tabular}
+%\caption{Correlation Matrix}
+%\label{tab:correlations}
+%\end{table}
+
+
+
 \subsection{Condition and Cluster Membership}
 
-We may worry that experimental condition is inducing latent class membership. If this were the case, we would suspect that we were picking up on artifacts of the experimental design rather than pre-existing student profiles. Using the Chi-squared test, condition and cluster membership appear independent\footnote{i.e., we fail to reject independence at a $p$-value of $.38$} (see Table \ref{tab:exp-and-lc}). If all four multiple representation types are collapsed into one monolithic multiple representation category, we continue to find independence\footnote{$\mathcal{X}^{2}$ = 1.1517, df = 3, p-value = 0.7646}. These results suggest that our method is detecting genuine student profiles, independent of experimental condition. 
+We may worry that experimental condition is inducing latent class membership. If this were the case, we would suspect that we were picking up on artifacts of the experimental design rather than pre-existing student profiles. Using the Chi-squared test, condition and cluster membership appear independent\footnote{i.e., we fail to reject independence at a $p$-value of $.38$} (see Table \ref{tab:exp-and-lc}). Anticipating Simpson's paradox-type worries, note that if all four multiple representation types are collapsed into one monolithic multiple representation category, we continue to find independence\footnote{$\mathcal{X}^{2}$ = 1.1517, df = 3, p-value = 0.7646}. These results suggest that our method is detecting genuine student profiles, independent of experimental condition. 
 
 
 \begin{table}[hbtp]
@@ -421,7 +444,7 @@ An adaptive learning environment ought to ensure that these students are targete
 \subsection{Class Stability}
 
 \begin{figure}
-\includegraphics[scale=.6]{class-stability.png}
+\includegraphics[scale=.4]{class-stability.png}
 \caption{We measure the number of students who were classified into the correct latent class as the amount of data available to EM is increased. We see that at about 60\% of the data we can correctly classify about 75\% of the students.}
 \label{fig:class-stability}
 \end{figure}
