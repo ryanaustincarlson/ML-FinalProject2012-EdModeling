@@ -197,7 +197,7 @@ When interacting with different graphical representations of fractions, students
 \section{Method}
 \label{sec:method}
 
-We proceed in three stages: (1) we extract features characterizing error and hint-seeking behavior from the data logs, (2) we transform the longitudinal log data into a cross-sectional form, with one observation per student, and (3) we estimate a mixture model to identify sub-populations of students, using AIC and BIC to select the number of latent classes. 
+We proceed in three stages: (1) we extract features characterizing error and hint-seeking behavior from the data logs, (2) we transform the longitudinal log data into a cross-sectional form, with one observation per student, and (3) we estimate a mixture model to identify sub-populations of students, using AIC and BIC to select the number of classes. 
 
 Once we have clustered our students by their learning strategy, we investigate the interaction between the strategies and the experimental conditions. We construct a contingency table binning the experimental conditions into the clusters estimated by the mixture model. We then run a Chi-squared test for independence between experimental condition and learning strategy. Chi-squared tests are also run to investigate dependence between pre-test outcome and strategy, strategy and post-test outcome and the conditional dependence of outcome and experimental condition, given a strategy profile.
 
@@ -246,7 +246,7 @@ We note that the categorical nature of the model has the potential to add some n
 %\end{align}
 %where the indicator function $I(y_{j} = r_{j})$ equals 1 when the response variable $j = r_{j}$. The parameters $\gamma_{c}$ and $\rho_{j,r_{j}|c}$ are estimated by EM. Since EM is sensitive to starting probabilities, we pick the maximum likelihood over twenty-five runs. LSA is very similar to other EM-based algorithms. In fact, LSA is an application of multivariate mixture estimation using categorical variables with an additional local independence assumption, meaning that the observed variables are independent of each other conditional on the latent variable. This is a simplifying assumption similar to the one made in Naive Bayes classification models; without it Equation \ref{eqn:LSA-final} would have to be much more complicated. There is some work on relaxing this independence assumption \cite{Hagenaars1988,Garrett2004}. For more details on the formalism and its applications, see \cite{Collins2009}. To run latent class analysis, we used \texttt{poLSA}, a freely available R package\footnote{\url{http://userwww.service.emory.edu/~dlinzer/poLSA/}}.
 
-Note that unlike some common clustering algorithms (e.g., k-means), EM produces ``fuzzy'' clusters (i.e., probability distributions over features for each class). We use these probability distributions in our qualitative discussion about the subpopulations (Section \ref{sec:exploring-classes}), however we ultimately need to identify each student's most likely class. For each student $s$ and latent class $c$ we calculate
+Note that unlike some common clustering algorithms (e.g., k-means), EM produces ``fuzzy'' clusters (i.e., probability distributions over features for each class). We use these probability distributions in our qualitative discussion about the subpopulations (Section \ref{sec:exploring-classes}), however we ultimately need to identify each student's most likely class. For each student $s$ and class $c$ we calculate
 \begin{align}
 \argmax_{c} P(S = s \;|\; L = c)
 %\argmax_{c} P(Y = y \;|\; L = c) = \argmax_{c} \gamma_{c} \prod_{j=1}^{J} \prod_{r_{j}=1}^{R_{j}} \rho_{j,r_{j}|c}^{I(y_{j} = r_{j})}
@@ -254,7 +254,7 @@ Note that unlike some common clustering algorithms (e.g., k-means), EM produces 
 \end{align}
 where the probabilities are determined by the EM algorithm.
 
-Note that still need to fix $C$, the number of latent classes. We use two complexity-penalized log-likelihood scores to select an appropriate $C$: Akaike information criterion (AIC) and Bayesian information criterion (BIC). Plotting these statistics as we increment the number of latent classes, we look for a ``knee'' where both statistics either bottom-out or level off to identify the optimal value of $C$. To run analysis, we used \texttt{poLCA}, a freely available R package\footnote{\url{http://userwww.service.emory.edu/~dlinzer/poLCA/}}.
+Note that still need to fix $C$, the number of classes. We use two complexity-penalized log-likelihood scores to select an appropriate $C$: Akaike information criterion (AIC) and Bayesian information criterion (BIC). Plotting these statistics as we increment the number of classes, we look for a ``knee'' where both statistics either bottom-out or level off to identify the optimal value of $C$. To run analysis, we used \texttt{poLCA}, a freely available R package\footnote{\url{http://userwww.service.emory.edu/~dlinzer/poLCA/}}.
 
 \section{Results}
 \label{sec:results}
@@ -288,7 +288,7 @@ How do we interpret cluster membership? Students in Class 1 are ``Moderate'', th
 \begin{figure*}[t]
 \centering
 \includegraphics[scale=0.5]{LCa-class-viz.png}
-\caption{Visualization of feature distributions for each latent class. The left-to-right $x$-axis identifies each feature, the front-to-back $y$-axis identifies which value that feature takes, and the top-to-bottom $z$-axis describes the probability that the feature takes the value. Thus, given a feature and a class, the $z$-axis also describes the probability distribution over that feature in that class.}
+\caption{Visualization of feature distributions for each learning profile. The left-to-right $x$-axis identifies each feature, the front-to-back $y$-axis identifies which value that feature takes, and the top-to-bottom $z$-axis describes the probability that the feature takes the value. Thus, given a feature and a class, the $z$-axis also describes the probability distribution over that feature in that class.}
 \label{fig:LCa-class-viz}
 \end{figure*}
 
