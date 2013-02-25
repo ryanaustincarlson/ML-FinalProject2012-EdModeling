@@ -50,11 +50,11 @@ plotStats <- function(allstats)
   plot.it <- function()
   {
     plot(x1, y1, col=color1, pch=pch1, lwd=3,
-         ylab="", xlab="# Latent Classes", xlim=range(x1,x2), ylim=range(y1,y2))
+         ylab="", xlab="Number of Latent Classes", xlim=range(x1,x2), ylim=range(y1,y2))
     points(x2,y2, col=color2, pch=pch2, lwd=3)
-    legend("topright", title = "legend", 
+    legend("topright", title = "Statistic", 
            legend = c("BIC","AIC"), pch = c(pch1, pch2), 
-           col = c(color1, color2) ,inset = .02)      
+           col = c(color1, color2) ,horiz=TRUE, inset=.02)
   }
   
   plot.it()

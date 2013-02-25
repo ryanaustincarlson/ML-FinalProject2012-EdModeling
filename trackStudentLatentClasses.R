@@ -5,6 +5,7 @@ source("clusteringClassValuesAnalysis.R")
 
 dataPath <- "data/"
 allstudents <- read.csv(paste(dataPath, "students-nominalized.csv", sep=""))
+#allstudents <- read.csv(paste("data/studentSubsets/students-nominalized08.csv"))
 
 nBestClass <- 4
 baselineLCA <- LCA(allstudents, nBestClass, graphs=TRUE)
@@ -59,9 +60,10 @@ percentOfDataAtEachIteration <- c(
   0.923601014, 0.979815548, 0.99977042,
   1)
 
-plot(percentOfDataAtEachIteration, 
-     inferencePercents, 
+plot(inferencePercents ~ percentOfDataAtEachIteration, 
      xlab="Percentage of Data Examined", 
      ylab="Stability of Inferred Class", 
-     main="Class Stability Over Time")
+     main="Class Stability Over Time",
+     ylim=c(0,1))
+abline(lm(inferencePercents ~ percentOfDataAtEachIteration))
 #plot(fits)
