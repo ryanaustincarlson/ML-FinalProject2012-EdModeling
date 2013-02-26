@@ -92,7 +92,7 @@
 %
 % 1st. author
 % 2nd. author
-%\comment{
+\comment{
 \alignauthor 
 Ryan Carlson\\
        \affaddr{Language Technologies Institute}\\
@@ -132,7 +132,7 @@ Konstantin Genin\\
 %       \affaddr{Pittsburgh, PA 15213}\\      
 %        \email{cg09@andrew.cmu.edu}
 }
-%}
+}
 
 % There's nothing stopping you putting the seventh, eighth, etc.
 % author on the opening page (as the 'third row') but we ask,
@@ -250,13 +250,13 @@ We note that the categorical nature of the model has the potential to add some n
 
 Note that unlike some common clustering algorithms (e.g., k-means), EM produces ``fuzzy'' clusters (i.e., probability distributions over features for each class). We use these probability distributions in our qualitative discussion about the subpopulations (Section \ref{sec:exploring-classes}), however we ultimately need to identify each student's most likely class. For each student $s$ and class $c$ we calculate
 \begin{align}
-\argmax_{c} P(S = s \;|\; L = c)
+\argmax_{c} P(S = s \;|\; C = c)
 %\argmax_{c} P(Y = y \;|\; L = c) = \argmax_{c} \gamma_{c} \prod_{j=1}^{J} \prod_{r_{j}=1}^{R_{j}} \rho_{j,r_{j}|c}^{I(y_{j} = r_{j})}
 \label{eqn:LCA-argmax}
 \end{align}
 where the probabilities are determined by the EM algorithm.
 
-Note that we still need to fix $C$, the number of classes. We use two complexity-penalized log-likelihood scores to select an appropriate $C$: Akaike information criterion (AIC) and Bayesian information criterion (BIC). Plotting these statistics as we increment the number of classes, we look for a ``knee'' where both statistics either bottom-out or level off to identify the optimal value of $C$. To run analysis, we used \texttt{poLCA}, a freely available R package.\footnote{\url{http://userwww.service.emory.edu/~dlinzer/poLCA/}}
+Note that we still need to fix $N$, the number of classes. We use two complexity-penalized log-likelihood scores to select an appropriate $N$: Akaike information criterion (AIC) and Bayesian information criterion (BIC). Plotting these statistics as we increment the number of classes, we look for a ``knee'' where both statistics either bottom-out or level off to identify the optimal value of $N$. To run analysis, we used \texttt{poLCA}, a freely available R package.\footnote{\url{http://userwww.service.emory.edu/~dlinzer/poLCA/}}
 \\\\
 \section{Results}
 \label{sec:results}
@@ -281,7 +281,7 @@ Figure \ref{fig:LCa-test-statistics} shows the parameter selection process descr
 \label{fig:LCa-test-statistics}
 \end{figure}
 
-After selecting the appropriate $C$ parameter, we extract membership probabilities for the individual students. Given a strategic profile, we can estimate the probability distribution over each feature, and use Equation \ref{eqn:LCA-argmax} to identify the most likely profile for each student.
+After selecting the appropriate $N$ parameter, we extract membership probabilities for the individual students. Given a strategic profile, we can estimate the probability distribution over each feature, and use Equation \ref{eqn:LCA-argmax} to identify the most likely profile for each student.
 
 The feature distributions over each profile are represented graphically in Figure \ref{fig:LCA-class-viz}. Note that each feature is listed along the horizontal $x$-axis, the value each variable takes is along the front-to-back $y$-axis, and the probability that the feature takes that value is given along the vertical $z$-axis. For example, consider the \ftr{HintsRequested} feature (average hints requested per problem) in the ``interactive'' class. In that class, with high probability, students requested many hints (i.e., the highest categorical value for hints) per problem on average. As another example, students in the ``moderate'' class are more likely to make a moderate number of errors, though other error levels also occur with nontrivial probabilities. Note that lower values of \ftr{FirstHintGeometric} and \ftr{StubbornGeometric} indicate a steep geometric slope, corresponding to a higher hint-seeking propensity and stubbornness, respectively.
 
@@ -321,6 +321,7 @@ We then construct terciles of the Adjusted Delayed Post-Test Score and run a Chi
 \end{table}
 
 
+%\newpage
 \subsection{Learning Strategy and Test Scores}
 
 We would expect that a student's learning strategy would predict (and perhaps cause) their ultimate educational outcome. To test this intuition, we calculate a Chi-squared statistic for independence of learning strategy from normalized delayed post-test gain. We reject independence at a $p$-value of .0075 (see Table \ref{tab:LS-by-score}). The behaviors encoded by strategic profile seem highly relevant to knowledge consolidation in the long run. Students in the moderate class are found mostly in the second and third tercile. These students are implementing a subtle but effective strategy. Their moderation in hint-seeking indicates a level of self-reflectiveness that we would expect from students with highly developed metacognitive skills. Students in the interactive class are characterized by a high number of errors, so we are not surprised to find them represented mostly in the first and second terciles. These students are the most likely to exhaust all the hints available in a given problem. If one were looking for students engaging in ``gaming'' behavior this would be the class to search. As one would expect, the confident  students are likely to end up in the third tercile. The stubborn students are clustered at the extremes: they are more likely to end up in the first or third tercile than the second. 
@@ -363,7 +364,7 @@ We note that although pre-test score and strategic profile are dependent, the av
 
 \subsection{Condition and Learning Strategy}
 
-We may also worry that experimental condition is inducing learning strategy. If this were the case, we would suspect that we were picking up on artifacts of the experimental design rather than pre-existing student profiles. However, using the Chi-squared test, condition and cluster membership appear independent (see Table \ref{tab:exp-and-LS}).\footnote{We fail to reject independence at a $p$-value of $.38$.}  To anticipate Simpson's paradox-type worries, we collapse all four multiple representation conditions (blocked, moderate, increased, interleaved) into a single "multiple representation" condition, but still find independence.\footnote{$\mathcal{X}^{2}$ = 1.1517, df = 3, p-value = 0.7646} These results suggest that our method is detecting genuine student profiles, independent of experimental condition. 
+We may also worry that experimental condition is inducing learning strategy. If this were the case, we would suspect that we were picking up on artifacts of the experimental design rather than pre-existing student profiles. However, using the Chi-squared test, condition and cluster membership appear independent (see Table \ref{tab:exp-and-LS}).\footnote{We fail to reject independence at a $p$-value of $.38$.}  To anticipate Simpson's paradox-type worries, we collapse all four multiple representation conditions (blocked, moderate, increased, interleaved) into a single ``multiple representation'' condition, but still find independence.\footnote{$\mathcal{X}^{2}$ = 1.1517, df = 3, p-value = 0.7646} These results suggest that our method is detecting genuine student profiles, independent of experimental condition. 
 
 
 \begin{table}[hbtp]
@@ -458,6 +459,7 @@ If an intelligent tutoring system could implement our classification methodology
 % TODO FIXME wrt num problems
 Figure \ref{fig:class-stability} shows the percentage of total data used to estimate the model plotted against the proportion of students assigned to their final strategic profile. At each iteration, we look at an additional 10 problems from each student and re-estimate the cluster assignments. The regression estimates that 63\% of the data is sufficient to classify three quarters of the students into their ultimate cluster. Thus, after seeing about 60 problems -- about two days of classroom instruction -- a dynamic intelligent tutoring system might intervene on students who fit the ``stubborn'' profile by ensuring that they are presented with multiple graphical representations, offering them spontaneous hints or targeting them with some other form of metacognitive support. 
 
+%\newpage
 \section{Conclusion \& Future Work}
 \label{sec:conclusion}
 
